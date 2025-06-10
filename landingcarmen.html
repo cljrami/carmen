@@ -1134,16 +1134,7 @@
       function renderQuiz() {
         const container = document.getElementById("popupQuizContainer");
         if (current >= quiz.length) {
-          // MODIFICACIÓN: Se restaura el texto detallado de la pantalla final.
-          container.innerHTML = `
-            <div class="completion-message">
-              <h2>¡Gracias por abrir tu historia!</h2>
-              <p>✨ Has hecho algo poderoso: nombrar lo que antes no tenía forma.</p>
-              <p>Tus respuestas ya están siendo procesadas con base en un enfoque profundo y compasivo.</p>
-              <div style="margin-top: 30px;">
-                  <button class="redirect-btn" onclick="sendAnswersToMake()">Enviar y ver mi resultado</button>
-              </div>
-            </div>`;
+          container.innerHTML = `<div class="completion-message"><h2>¡Gracias por abrir tu historia!</h2><p>✨ Has hecho algo poderoso: nombrar lo que antes no tenía forma.</p><p>Tus respuestas ya están siendo procesadas con base en un enfoque profundo y compasivo.</p><div style="margin-top: 30px;"><button class="redirect-btn" onclick="sendAnswersToMake()">Enviar y ver mi resultado</button></div></div>`;
           return;
         }
         const q = quiz[current];
@@ -1196,10 +1187,13 @@
         updateQuizButtonState();
       }
 
+      // --- INICIO DE LA CORRECCIÓN DE VALIDACIÓN ---
       function updateQuizButtonState() {
         if (current >= quiz.length) return;
+
         const q = quiz[current];
         let isAnswered = false;
+
         if (q.type === "text" || q.type === "number") {
           const input = document.querySelector(
             "#popupQuizContainer .input-field"
@@ -1216,6 +1210,7 @@
             isAnswered = true;
           }
         }
+
         const nextButton = document.getElementById("nextBtn");
         if (nextButton) {
           nextButton.disabled = !isAnswered;
@@ -1247,11 +1242,10 @@
           );
           if (input) answers[current] = input.value;
         }
-        if (current < quiz.length) {
-          current++;
-          renderQuiz();
-        }
+        current++;
+        renderQuiz();
       }
+      // --- FIN DE LA CORRECCIÓN DE VALIDACIÓN ---
 
       function prevStep() {
         if (current > 0) {
@@ -1260,12 +1254,14 @@
         }
       }
 
-      function redirectToApp() {
-        window.location.href =
-          "https://app.ndefi.io/v2/preview/2oAuoaq9tGRpcYe9918W";
-      }
-
+      // --- INICIO DE LA CORRECCIÓN DE LA FUNCIÓN DE ENVÍO Y REDIRECCIÓN ---
       function sendAnswersToMake() {
+        const button = document.querySelector(".redirect-btn");
+        if (button) {
+          button.innerText = "Procesando...";
+          button.disabled = true;
+        }
+
         const formData = { ...introData };
         quiz.forEach((question, index) => {
           let finalAnswer = answers[index];
@@ -1292,19 +1288,22 @@
         })
           .then((response) => {
             console.log("Respuesta de Make.com recibida.");
-            document.getElementById("popupOverlay").style.display = "none";
             if (!response.ok) {
-              console.error(
-                "Make.com respondió con un error:",
-                response.status,
-                response.statusText
-              );
+              throw new Error(`Error del servidor: ${response.status}`);
             }
+            // SI EL ENVÍO ES EXITOSO, SE REDIRIGE A LA PÁGINA DE RESULTADOS
+            window.location.href =
+              "https://app.ndefi.io/v2/preview/2oAuoaq9tGRpcYe9918W";
           })
           .catch((err) => {
             console.error("Error al enviar los datos a Make.com:", err);
+            if (button) {
+              button.innerText = "Error. Reintentar";
+              button.disabled = false;
+            }
           });
       }
+      // --- FIN DE LA CORRECCIÓN ---
     </script>
   </body>
 </html>
