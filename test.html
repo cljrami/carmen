@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test de Lealtades Invisibles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background: linear-gradient(120deg, #232526, #414345);
+        color: #fff;
+        font-family: "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .start-container {
+        text-align: center;
+        margin: 80px 0;
+      }
+      .nav-btn {
+        background: #dd2476;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 28px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .nav-btn:hover {
+        background: #ff512f;
+      }
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 9999;
+        display: none; /* Hidden by default */
+        justify-content: center;
+        align-items: center;
+      }
+      .quiz-container {
+        position: relative;
+        max-width: 500px;
+        margin: 0 16px;
+        background: rgba(30, 30, 40, 0.95);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        padding: 48px 24px 24px;
+        animation: fadeIn 1s;
+        overflow: hidden;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .close-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: transparent;
+        border: none;
+        font-size: 1.4em;
+        color: #fff;
+        cursor: pointer;
+      }
+      .quiz-header {
+        text-align: center;
+        margin-bottom: 16px;
+      }
+      .quiz-header h1 {
+        margin: 0;
+        font-size: 1.8em;
+      }
+      .quiz-header .subtitle {
+        margin-top: 4px;
+        color: #ff512f;
+        font-size: 1em;
+      }
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #333;
+        border-radius: 4px;
+        margin: 24px 0;
+        overflow: hidden;
+      }
+      .progress {
+        height: 100%;
+        background: linear-gradient(90deg, #ff512f, #dd2476);
+        width: 0;
+        transition: width 0.4s cubic-bezier(0.4, 2, 0.6, 1);
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 18px;
+      }
+      .question-section {
+        min-height: 120px;
+        margin-bottom: 18px;
+        animation: fadeIn 0.7s;
+      }
+      .answers {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .input-field {
+        background: #232526;
+        color: #fff;
+        border: 2px solid #ff512f;
+        border-radius: 8px;
+        padding: 14px 10px;
+        font-size: 1.1em;
+        width: 100%;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+      }
+      .input-field:focus {
+        outline: none;
+        border-color: #ff512f;
+      }
+      input[type="date"] {
+        background: #232526;
+        color: #fff;
+        border: 2px solid #ff512f;
+        border-radius: 8px;
+        padding: 14px 10px;
+        font-size: 1.1em;
+        width: 100%;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+      }
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        opacity: 0.8;
+        cursor: pointer;
+      }
+      .answer-btn {
+        background: #232526;
+        color: #fff;
+        border: 2px solid #ff512f;
+        border-radius: 8px;
+        padding: 14px 10px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+      }
+      .answer-btn:hover,
+      .answer-btn.selected {
+        background: #ff512f;
+        border-color: #fff;
+      }
+      .error-message {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 8px;
+      }
+      .nav-btns {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 18px;
+      }
+      .nav-btn:disabled {
+        background: #555;
+        cursor: not-allowed;
+      }
+      .completion-message {
+        text-align: center;
+        padding: 30px 20px;
+        animation: fadeIn 1s;
+      }
+      .section-title {
+        color: #ff512f;
+        font-size: 1.2em;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+      .form-description {
+        text-align: center;
+        color: #aaa;
+        margin: 20px 0;
+        font-style: italic;
+        line-height: 1.5;
+      }
+      .redirect-btn {
+        background: linear-gradient(90deg, #ff512f, #dd2476);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        margin: 20px 10px;
+        font-weight: bold;
+      }
+      .redirect-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 81, 47, 0.3);
+      }
+      /* POPUP Styles - Ahora centrados como el test principal */
+      .popup-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 9999;
+        display: none; /* Hidden by default */
+        justify-content: center;
+        align-items: center;
+      }
+      .popup-step {
+        display: none;
+        text-align: center;
+        margin: 0 16px;
+        max-width: 500px;
+        width: 100%;
+        background: rgba(30, 30, 40, 0.95);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        padding: 48px 24px 24px;
+        animation: fadeIn 1s;
+        overflow: hidden;
+        position: relative;
+      }
+      .popup-step.active {
+        display: block;
+      }
+      .popup-step h2 {
+        margin-bottom: 18px;
+        font-size: 1.5em;
+        color: #ff512f;
+      }
+      .popup-step p {
+        margin-bottom: 24px;
+        font-size: 1em;
+        color: #ccc;
+        line-height: 1.5;
+      }
+      .popup-step button {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="width: 100%; text-align: center">
+      <button class="nav-btn" onclick="openQuizPopup()">
+        Quiero Saber Qué Patrón Estoy Repitiendo
+      </button>
+    </div>
+
+    <div class="popup-container" id="popupContainer">
+      <div class="popup-step active" id="popupStep1">
+        <h2>🌿 Este no es un test cualquiera.</h2>
+        <p>
+          Es una herramienta terapéutica basada en psicología sistémica que
+          puede ayudarte a descubrir por qué el amor, el dinero o tu paz
+          interior parecen escaparse… incluso cuando haces todo bien.
+        </p>
+        <p>¿Estás lista/o para mirar con amor lo que no habías podido ver?</p>
+        <button class="nav-btn" onclick="showNextPopup()">
+          Sí, quiero descubrirlo
+        </button>
+      </div>
+
+      <div class="popup-step" id="popupStep2">
+        <h2>¿Cómo funciona?</h2>
+        <p>
+          Cada pregunta que verás ha sido construida desde el enfoque de las
+          Constelaciones Familiares, la aromaterapia emocional y la psicología
+          transgeneracional.
+        </p>
+        <p>
+          Tus respuestas serán analizadas con base en más de 10 años de
+          experiencia terapéutica y un compendio de conocimiento extraído de
+          libros, técnicas y vivencias de miles de personas.
+        </p>
+        <p>
+          ✨ Es una lectura profunda y reflexiva. No reemplaza una terapia, pero
+          puede mostrarte exactamente dónde mirar.
+        </p>
+        <button class="nav-btn" onclick="showNextPopup()">
+          Entiendo, continuar
+        </button>
+      </div>
+
+      <div class="popup-step" id="popupStep3">
+        <h2>Antes de comenzar</h2>
+        <p>
+          🧘‍♀️ Respira. Este momento es solo para ti. Tómate tu tiempo, escribe
+          sin apuro y deja que tu historia se revele.
+        </p>
+        <p>
+          💬 "Lo que no se nombra… se repite. Pero lo que se comprende, se
+          transforma."
+        </p>
+        <p>Este test puede ser el inicio de una gran transformación.</p>
+        <button class="nav-btn" onclick="startQuizFromIntro()">
+          Empezar el test ahora
+        </button>
+      </div>
+    </div>
+
+    <div class="popup-overlay" id="popupOverlay">
+      <div class="quiz-container" id="popupQuizContainer"></div>
+    </div>
+
+    <script>
+      let currentPopup = 1;
+
+      // Function to open the initial quiz introduction popup
+      function openQuizPopup() {
+        document.getElementById("popupContainer").style.display = "flex";
+      }
+
+      function showNextPopup() {
+        const currentStep = document.getElementById(`popupStep${currentPopup}`);
+        currentPopup++;
+        if (currentPopup > 3) {
+          // If all intro steps are done, start the main quiz
+          startQuizFromIntro();
+          return;
+        }
+        const nextStep = document.getElementById(`popupStep${currentPopup}`);
+        currentStep.classList.remove("active");
+        nextStep.classList.add("active");
+      }
+
+      function startQuizFromIntro() {
+        // Hide the introductory popups container
+        document.getElementById("popupContainer").style.display = "none";
+        // Show the main quiz popup overlay
+        document.getElementById("popupOverlay").style.display = "flex";
+        renderQuiz(); // Start rendering the first quiz question
+      }
+
+      const quiz = [
+        // PERSONAL DATA
+        {
+          section: "INFORMACIÓN GENERAL",
+          question: "Nombre completo:",
+          type: "text",
+        },
+        {
+          section: "INFORMACIÓN GENERAL",
+          question: "Teléfono:",
+          type: "number",
+        },
+        { section: "INFORMACIÓN GENERAL", question: "Email:", type: "email" },
+        { section: "INFORMACIÓN GENERAL", question: "Edad:", type: "number" },
+        {
+          section: "INFORMACIÓN GENERAL",
+          question: "¿Actualmente tienes pareja?",
+          type: "radio",
+          options: ["Sí", "No"],
+        },
+        {
+          section: "INFORMACIÓN GENERAL",
+          question: "¿Tienes hijos? ¿Qué edades tienen?",
+          type: "text",
+        },
+        // LET'S TALK ABOUT YOUR FAMILY SYSTEM
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          showDescription: true,
+          description:
+            "A continuación verás las preguntas que nos permitirán hacer un análisis de tus lealtades invisibles, cómo te limitan en tu vida y cómo liberarte. Entre más información compartas, mejor podremos ayudarte, no hay límite de palabras por respuesta, expláyate cuando corresponda.",
+          question:
+            "¿Cómo describirías tu relación con tu madre en una sola palabra?",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question: "¿Cómo describirías tu relación con tu padre?",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Hubo alguna separación difícil que marcó a tu familia (divorcio, fallecimiento, abandono)? ¿Qué edad tenías?",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Cuáles son los temas en tu familia de los que no se hablan? (Ej.: infidelidades, abortos, adicciones, enfermedades, abusos, etc.)",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Cómo recuerdas el ambiente en tu hogar durante tu infancia? (Ej.: amoroso, distante, tenso, violento…)",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Hay alguien en tu familia a quien nadie quiere parecerse? ¿Por qué?",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Hay alguien en tu familia a quienes todos admiran? ¿Por qué?",
+          type: "text",
+        },
+        // DYNAMICS AND REPETITIVE PATTERNS
+        {
+          section: "DINÁMICAS Y PATRONES REPETITIVOS",
+          question:
+            "¿Qué situaciones has notado que se repiten en tu familia? (Ej.: dificultades económicas, relaciones conflictivas, divorcios, enfermedades)",
+          type: "text",
+        },
+        {
+          section: "DINÁMICAS Y PATRONES REPETITIVOS",
+          question: "¿De qué miembros de tu familia te sientes responsable?",
+          type: "text",
+        },
+        {
+          section: "DINÁMICAS Y PATRONES REPETITIVOS",
+          question:
+            "¿Has sentido que ocupas un rol diferente al de tu lugar de nacimiento? (Ej.: actuar como padre/madre de tus hermanos o de tus propios padres)",
+          type: "radio",
+          options: ["Sí", "No"],
+        },
+        {
+          section: "DINÁMICAS Y PATRONES REPETITIVOS",
+          question:
+            "¿Eres más propenso/a a dar o a recibir en tus relaciones familiares?",
+          type: "radio",
+          options: ["Dar", "Recibir"],
+        },
+        // RELATIONSHIPS
+        {
+          section: "RELACIONES DE PAREJA",
+          question: "¿Qué patrón identificas en tus relaciones sentimentales?",
+          type: "text",
+        },
+        {
+          section: "RELACIONES DE PAREJA",
+          question: "¿Qué creencias aprendiste sobre el amor en tu infancia?",
+          type: "text",
+        },
+        {
+          section: "RELACIONES DE PAREJA",
+          question:
+            "¿Te pareces o te dicen que te pareces a alguien de tu familia, incluso si no lo conociste? (Ej.: abuelos, tíos, exparejas) ¿En qué te pareces?",
+          type: "text",
+        },
+        // RELATIONSHIP WITH MONEY AND ABUNDANCE
+        {
+          section: "RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question: "¿Cómo era la relación de tus padres con el dinero?",
+          type: "text",
+        },
+        {
+          section: "RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question: "¿Qué frases familiares recuerdas sobre el dinero?",
+          type: "text",
+        },
+        {
+          section: "RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question:
+            "¿Qué emociones sientes al pensar en tener más dinero que tus padres?",
+          type: "text",
+        },
+        {
+          section: "RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question:
+            "¿Tienes miedo a que, si te va bien, algo malo pueda pasar?",
+          type: "radio",
+          options: ["Sí", "No"],
+        },
+        {
+          section: "RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question:
+            "¿Quién en tu familia fue rechazado o excluido por tener mucho o poco dinero?",
+          type: "text",
+        },
+        {
+          section: "RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question:
+            "¿Sientes que, sin importar lo que hagas, nunca serás tan bueno/a o exitoso/a como cierto familiar? ¿Con quién te comparas y por qué?",
+          type: "text",
+        },
+        // BODY AND EMOTION
+        {
+          section: "CUERPO Y EMOCIÓN",
+          question:
+            "¿Sufres actualmente de algún síntoma físico o problema de salud que te preocupe o se repita constantemente? (Ej.: ansiedad, insomnio, sobrepeso, enfermedades autoinmunes, fatiga crónica…)",
+          type: "text",
+        },
+        {
+          section: "CUERPO Y EMOCIÓN",
+          question:
+            "¿Qué emoción sientes con mayor frecuencia en tu día a día? (Ej.: tristeza, enojo, miedo, ansiedad, alegría)",
+          type: "text",
+        },
+        // YOUR CURRENT MOMENT
+        {
+          section: "TU MOMENTO ACTUAL",
+          question:
+            "¿Qué es lo que más anhelas sanar o transformar en tu vida en este momento?",
+          type: "text",
+        },
+      ];
+
+      let current = 0;
+      let answers = [];
+
+      function renderQuiz() {
+        const container = document.getElementById("popupQuizContainer");
+        container.innerHTML = `
+          <div class="quiz-header">
+            <h1>Test de Lealtades Invisibles</h1>
+            <div class="subtitle">Descubre patrones emocionales y lealtades familiares</div>
+          </div>
+        `;
+
+        if (current >= quiz.length) {
+          sendAnswersToMake(); // Send data to the Make webhook
+          container.innerHTML += `
+            <div class="completion-message">
+              <h2>¡Gracias por abrir tu historia!</h2>
+              <p>✨ Has hecho algo poderoso: nombrar lo que antes no tenía forma.</p>
+              <p>Tus respuestas ya están siendo procesadas con base en un enfoque profundo y compasivo, guiado por el método de AromaConstelaciones.</p>
+              <p>En la siguiente pantalla podrás recibir tu perfil personalizado con lo que descubrimos sobre tus posibles lealtades invisibles, patrones heredados y oportunidades de liberación.</p>
+              <div style="margin-top: 30px;">
+                <button class="redirect-btn" onclick="redirectToApp()">Enviar y ver mi resultado</button>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        const q = quiz[current];
+        const progress = Math.round((current / quiz.length) * 100);
+
+        let sectionTitle = "";
+        if (
+          current === 0 ||
+          quiz[current].section !== quiz[current - 1].section
+        ) {
+          sectionTitle = `<div class="section-title">${q.section}</div>`;
+        }
+
+        let descriptionHTML = "";
+        if (q.showDescription) {
+          descriptionHTML = `<div class="form-description">${q.description}</div>`;
+        }
+
+        let inputOrOptionsHTML = "";
+        if (q.type === "text" || q.type === "number" || q.type === "email") {
+          const inputType = q.type;
+          inputOrOptionsHTML = `
+            <div class="answers">
+              <input class="input-field" type="${inputType}" placeholder="Responde aquí"
+                     oninput="${
+                       inputType === "email"
+                         ? "validateEmail(this)"
+                         : "enableNextButton()"
+                     }"
+                     value="${answers[current] || ""}">
+            </div>
+          `;
+        } else if (q.type === "radio") {
+          inputOrOptionsHTML = `
+            <div class="answers">
+              ${q.options
+                .map(
+                  (opt, i) =>
+                    `<button class="answer-btn${
+                      answers[current] === i ? " selected" : ""
+                    }" onclick="selectAnswer(${i})">${opt}</button>`
+                )
+                .join("")}
+            </div>
+          `;
+        }
+
+        container.innerHTML += `
+          <div class="progress-bar"><div class="progress" style="width:${progress}%"></div></div>
+          ${sectionTitle}
+          ${descriptionHTML}
+          <div class="question-section"><p>${q.question}</p></div>
+          ${inputOrOptionsHTML}
+          <div class="nav-btns">
+            <button class="nav-btn" onclick="prevStep()" ${
+              current === 0 ? "disabled" : ""
+            }>Anterior</button>
+            <button class="nav-btn" onclick="nextStep()" id="nextBtn" disabled>Siguiente</button>
+          </div>
+          <div style="text-align:center; margin-top:10px; font-size:0.9em; color:#aaa;">Pregunta ${
+            current + 1
+          } de ${quiz.length}</div>
+        `;
+
+        // Re-enable button if an answer was already present when navigating back
+        if (answers[current] !== undefined && answers[current] !== "") {
+          document.getElementById("nextBtn").disabled = false;
+        }
+      }
+
+      function selectAnswer(idx) {
+        answers[current] = idx;
+        document
+          .querySelectorAll(".answer-btn")
+          .forEach((b, i) => b.classList.toggle("selected", i === idx));
+        document.getElementById("nextBtn").disabled = false;
+      }
+
+      function enableNextButton() {
+        document.getElementById("nextBtn").disabled = false;
+      }
+
+      function validateEmail(inputElement) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailPattern.test(inputElement.value)) {
+          enableNextButton();
+        } else {
+          document.getElementById("nextBtn").disabled = true;
+        }
+      }
+
+      function nextStep() {
+        const input = document.querySelector(".input-field");
+        if (input) {
+          answers[current] = input.value;
+        }
+        current++;
+        renderQuiz();
+      }
+
+      function prevStep() {
+        if (current > 0) {
+          current--;
+          renderQuiz();
+        }
+      }
+
+      // Function to redirect to the app
+      function redirectToApp() {
+  // Redirige inmediatamente
+  window.location.href = "https://app.ndefi.io/v2/preview/2oAuoaq9tGRpcYe9918W";
+}
+      // function redirectToApp() {
+      //   // Hide the current button
+      //   document.querySelector(".redirect-btn").style.display = "none";
+      //   // Show the centered loader
+      //   const loader = document.getElementById("loaderOverlay");
+      //   loader.style.visibility = "visible";
+      //   // Redirect after 10 seconds
+      //   setTimeout(() => {
+      //     window.location.href =
+      //       "https://app.ndefi.io/v2/preview/2oAuoaq9tGRpcYe9918W";
+      //   }, 10000); // 10 seconds
+      // }
+
+      // Function to send answers to Make webhook
+      function sendAnswersToMake() {
+        // Create an object to store the answers
+        const formData = {};
+        // Iterate over each quiz question
+        quiz.forEach((question, index) => {
+          // Get the answer
+          let answer = answers[index];
+          // If it's a radio type question, get the text of the selected option
+          if (question.type === "radio" && answer !== undefined) {
+            answer = question.options[answer];
+          }
+          // Use the question directly as the key (without cleaning it)
+          formData[question.question] = answer || "";
+        });
+
+        // Add a timestamp
+        formData["timestamp"] = new Date().toISOString();
+        console.log("Enviando datos:", formData);
+
+        // Send data to the webhook
+        fetch("https://hook.us2.make.com/tnz1ckj8qgepwrwmxjc0wjfjimo501ml", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            console.log("Respuesta recibida");
+          })
+          .catch((err) => {
+            console.error("Error al enviar:", err);
+          });
+      }
+    </script>
+    <!-- <div
+      id="loaderOverlay"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        visibility: hidden;
+      "
+    >
+      <div
+        style="
+          text-align: center;
+          color: white;
+          font-size: 1.5em;
+          font-weight: bold;
+        "
+      >
+        <div
+          style="
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #ff512f;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            animation: spin 1s linear infinite;
+          "
+        ></div>
+        Cargando resultados...
+      </div> -->
+    </div>
+    <!-- <style>
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style> -->
+  </body>
+</html>

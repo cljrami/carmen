@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test de Lealtades Invisibles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        background: linear-gradient(120deg, #232526, #414345);
+        color: #fff;
+        font-family: "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .start-container {
+        text-align: center;
+        margin: 80px 0;
+      }
+      .nav-btn {
+        background: #dd2476;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 28px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .nav-btn:hover {
+        background: #ff512f;
+      }
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        z-index: 9999;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+      .quiz-container {
+        position: relative;
+        max-width: 500px;
+        margin: 0 16px;
+        background: rgba(30, 30, 40, 0.95);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        padding: 48px 24px 24px;
+        animation: fadeIn 1s;
+        overflow: hidden;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .close-btn {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: transparent;
+        border: none;
+        font-size: 1.4em;
+        color: #fff;
+        cursor: pointer;
+      }
+      .quiz-header {
+        text-align: center;
+        margin-bottom: 16px;
+      }
+      .quiz-header h1 {
+        margin: 0;
+        font-size: 1.8em;
+      }
+      .quiz-header .subtitle {
+        margin-top: 4px;
+        color: #ff512f;
+        font-size: 1em;
+      }
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #333;
+        border-radius: 4px;
+        margin: 24px 0;
+        overflow: hidden;
+      }
+      .progress {
+        height: 100%;
+        background: linear-gradient(90deg, #ff512f, #dd2476);
+        width: 0;
+        transition: width 0.4s cubic-bezier(0.4, 2, 0.6, 1);
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 18px;
+      }
+      .question-section {
+        min-height: 120px;
+        margin-bottom: 18px;
+        animation: fadeIn 0.7s;
+      }
+      .answers {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .input-field {
+        background: #232526;
+        color: #fff;
+        border: 2px solid #ff512f;
+        border-radius: 8px;
+        padding: 14px 10px;
+        font-size: 1.1em;
+        width: 100%;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+      }
+      .input-field:focus {
+        outline: none;
+        border-color: #ff512f;
+      }
+      input[type="date"] {
+        background: #232526;
+        color: #fff;
+        border: 2px solid #ff512f;
+        border-radius: 8px;
+        padding: 14px 10px;
+        font-size: 1.1em;
+        width: 100%;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+      }
+      input[type="date"]::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+        opacity: 0.8;
+        cursor: pointer;
+      }
+      .answer-btn {
+        background: #232526;
+        color: #fff;
+        border: 2px solid #ff512f;
+        border-radius: 8px;
+        padding: 14px 10px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+      }
+      .answer-btn:hover,
+      .answer-btn.selected {
+        background: #ff512f;
+        border-color: #fff;
+      }
+      .error-message {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 8px;
+      }
+      .nav-btns {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 18px;
+      }
+      .nav-btn:disabled {
+        background: #555;
+        cursor: not-allowed;
+      }
+      .completion-message {
+        text-align: center;
+        padding: 30px 20px;
+        animation: fadeIn 1s;
+      }
+      .section-title {
+        color: #ff512f;
+        font-size: 1.2em;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-weight: bold;
+      }
+      .form-description {
+        text-align: center;
+        color: #aaa;
+        margin: 20px 0;
+        font-style: italic;
+        line-height: 1.5;
+      }
+      .redirect-btn {
+        background: linear-gradient(90deg, #ff512f, #dd2476);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        margin: 20px 10px;
+        font-weight: bold;
+      }
+      .redirect-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 81, 47, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="start-container">
+      <button class="nav-btn" onclick="openQuizPopup()">
+        Quiero Saber Qué Patrón Estoy Repitiendo
+      </button>
+    </div>
+
+    <div
+      class="popup-overlay"
+      id="popupOverlay"
+      onclick="event.stopPropagation()"
+    >
+      <div
+        class="quiz-container"
+        id="popupQuizContainer"
+        onclick="event.stopPropagation()"
+      ></div>
+    </div>
+
+    <script>
+      const quiz = [
+        // DATOS PERSONALES
+        {
+          section: "Lealtades invisibles",
+          question: "Nombre completo:",
+          type: "text",
+        },
+        {
+          section: "Lealtades invisibles",
+          question: "Teléfono:",
+          type: "number",
+        },
+        { section: "Lealtades invisibles", question: "Email:", type: "email" },
+        { section: "Lealtades invisibles", question: "Edad:", type: "number" },
+        {
+          section: "Lealtades invisibles",
+          question: "¿Actualmente tienes pareja?",
+          type: "radio",
+          options: ["Sí", "No"],
+        },
+        {
+          section: "Lealtades invisibles",
+          question: "¿Tienes hijos? ¿Qué edades tienen?",
+          type: "text",
+        },
+
+        // HABLEMOS UN POCO DE TU SISTEMA FAMILIAR
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          showDescription: true,
+          description:
+            "A continuación verás las preguntas que nos permitirán hacer un análisis de tus lealtades invisibles, cómo te limitan en tu vida y cómo liberarte. Entre más información compartas, mejor podremos ayudarte, no hay límite de palabras por respuesta, expláyate cuando corresponda.",
+          question:
+            "¿Cómo describirías tu relación con tu madre en una palabra?",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Cómo describirías tu relación con tu padre en una palabra?",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Hubo alguna separación difícil que marcó a tu familia (divorcio, fallecimiento, abandono)? ¿Qué edad tenías?",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Cuáles son los temas en tu familia de los que no se hablan? (ejemplo: infidelidades, abortos asesinatos)",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Cómo recuerdas el ambiente en tu hogar durante tu infancia? (Ejemplo: amoroso, distante, tenso, violento etc.)",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Hay alguien en tu familia a quien nadie quiere parecerse? ¿Por qué?",
+          type: "text",
+        },
+        {
+          section: "HABLEMOS UN POCO DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Hay alguien en tu familia a quienes todos o la mayoría lo admiran? ¿Por qué?",
+          type: "text",
+        },
+
+        // DINÁMICAS Y PATRONES FAMILIARES
+        {
+          section: "CONOZCAMOS MÁS SOBRE TUS DINÁMICAS Y PATRONES FAMILIARES",
+          question:
+            "¿Qué situaciones has notado que se repiten en tu familia? (Ejemplo: dificultades económicas, relaciones conflictivas, divorcios, enfermedades)",
+          type: "text",
+        },
+        {
+          section: "CONOZCAMOS MÁS SOBRE TUS DINÁMICAS Y PATRONES FAMILIARES",
+          question: "¿De qué miembros de tu familia te sientes responsable?",
+          type: "text",
+        },
+        {
+          section: "CONOZCAMOS MÁS SOBRE TUS DINÁMICAS Y PATRONES FAMILIARES",
+          question:
+            "¿Has sentido que ocupas un rol diferente al de tu lugar natural de nacimiento? (Ejemplo: actuar como padre/madre de tus hermanos o de tus propios padres)",
+          type: "radio",
+          options: ["Sí", "No"],
+        },
+        {
+          section: "CONOZCAMOS MÁS SOBRE TUS DINÁMICAS Y PATRONES FAMILIARES",
+          question:
+            "¿Eres más propenso a dar o a recibir en tus relaciones familiares?",
+          type: "radio",
+          options: ["Dar", "Recibir"],
+        },
+
+        // RELACIONES DE PAREJA
+        {
+          section: "CUÉNTAME SOBRE TUS RELACIONES DE PAREJA",
+          question: "¿Qué patrón identificas en tus relaciones sentimentales?",
+          type: "text",
+        },
+        {
+          section: "CUÉNTAME SOBRE TUS RELACIONES DE PAREJA",
+          question: "¿Qué creencias aprendiste sobre el amor en tu infancia?",
+          type: "text",
+        },
+        {
+          section: "CUÉNTAME SOBRE TUS RELACIONES DE PAREJA",
+          question:
+            "¿Te pareces o te dicen que te pareces físicamente o en su personalidad a alguien de tu familia aún si no lo conociste? (abuelos, exparejas, hermanos, tíos) ¿Por qué?",
+          type: "text",
+        },
+
+        // RELACIÓN CON LA ABUNDANCIA
+        {
+          section: "¿CÓMO HA SIDO TU RELACIÓN CON LA ABUNDANCIA?",
+          question: "¿Cómo era la relación de tus padres con el dinero?",
+          type: "text",
+        },
+        {
+          section: "¿CÓMO HA SIDO TU RELACIÓN CON LA ABUNDANCIA?",
+          question:
+            "¿Qué emociones sientes al pensar en tener más dinero que tus padres?",
+          type: "text",
+        },
+        {
+          section: "¿CÓMO HA SIDO TU RELACIÓN CON LA ABUNDANCIA?",
+          question:
+            "¿Hay frases familiares típicas sobre el dinero que recuerdes?",
+          type: "text",
+        },
+        {
+          section: "¿CÓMO HA SIDO TU RELACIÓN CON LA ABUNDANCIA?",
+          question:
+            "¿Sientes que, sin importar lo que hagas, nunca serás lo suficientemente bueno como algún familiar que tuvo éxito? Si es así, ¿con quién te comparas y por qué?",
+          type: "text",
+        },
+        {
+          section: "¿CÓMO HA SIDO TU RELACIÓN CON LA ABUNDANCIA?",
+          question:
+            "¿Quién en tu árbol fue rechazado o excluido por tener mucho/poco dinero?",
+          type: "text",
+        },
+        {
+          section: "¿CÓMO HA SIDO TU RELACIÓN CON LA ABUNDANCIA?",
+          question: "¿Tienes miedo a que si te va bien, algo malo puede pasar?",
+          type: "radio",
+          options: ["Sí", "No"],
+        },
+
+        // AROMAS Y CONEXIÓN EMOCIONAL
+        {
+          section: "AROMAS Y CONEXIÓN EMOCIONAL",
+          question: "¿Con qué tipo de aromas te identificas más?",
+          type: "radio",
+          options: ["Floral", "Cítrico", "Herbal", "Amaderado"],
+        },
+        {
+          section: "AROMAS Y CONEXIÓN EMOCIONAL",
+          question: "¿Qué emoción sientes con más frecuencia en tu día a día?",
+          type: "text",
+        },
+      ];
+
+      let current = 0;
+      let answers = [];
+
+      function openQuizPopup() {
+        document.getElementById("popupOverlay").style.display = "flex";
+        current = 0;
+        answers = [];
+        renderQuiz();
+
+        // Prevenir el cierre con ESC una vez iniciado el test
+        document.addEventListener("keydown", preventEscape);
+      }
+
+      function preventEscape(event) {
+        if (event.key === "Escape" && current > 0 && current < quiz.length) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      }
+
+      function closeQuizPopup() {
+        // Solo permitir cerrar al final del test
+        if (current < quiz.length) {
+          return;
+        }
+        document.getElementById("popupOverlay").style.display = "none";
+        document.removeEventListener("keydown", preventEscape);
+      }
+
+      function renderQuiz() {
+        const container = document.getElementById("popupQuizContainer");
+        container.innerHTML = `
+          <div class="quiz-header">
+            <h1>Test de Lealtades Invisibles</h1>
+            <div class="subtitle">Descubre patrones emocionales y lealtades familiares</div>
+          </div>
+        `;
+
+        if (current >= quiz.length) {
+          sendAnswersToMake(); // Enviar datos al webhook de Make
+          container.innerHTML += `
+            <div class="completion-message">
+              <h2>¡Gracias por completar el test!</h2>
+              <p>Cada respuesta es una llave para liberar tu historia. Lo estás haciendo por ti.</p>
+              <p id="statusMessage">Enviando respuestas...</p>
+              <div style="margin-top: 30px;">
+                <button class="redirect-btn" onclick="redirectToApp()">Continuar con mi Análisis</button>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        const q = quiz[current];
+        const progress = Math.round((current / quiz.length) * 100);
+
+        let sectionTitle = "";
+        if (
+          current === 0 ||
+          quiz[current].section !== quiz[current - 1].section
+        ) {
+          sectionTitle = `<div class="section-title">${q.section}</div>`;
+        }
+
+        let descriptionHTML = "";
+        if (q.showDescription) {
+          descriptionHTML = `<div class="form-description">${q.description}</div>`;
+        }
+
+        if (q.type === "text") {
+          container.innerHTML += `
+            <div class="progress-bar"><div class="progress" style="width:${progress}%"></div></div>
+            ${sectionTitle}
+            ${descriptionHTML}
+            <div class="question-section"><p>${q.question}</p></div>
+            <div class="answers"><input class="input-field" type="text" placeholder="Responde aquí" oninput="enableNextButton()"></div>
+            <div class="nav-btns">
+              <button class="nav-btn" onclick="prevStep()" ${
+                current === 0 ? "disabled" : ""
+              }>Anterior</button>
+              <button class="nav-btn" onclick="nextStep()" id="nextBtn" disabled>Siguiente</button>
+            </div>
+            <div style="text-align:center; margin-top:10px; font-size:0.9em; color:#aaa;">Pregunta ${
+              current + 1
+            } de ${quiz.length}</div>
+          `;
+        } else if (q.type === "number" || q.type === "email") {
+          const inputType = q.type;
+          container.innerHTML += `
+            <div class="progress-bar"><div class="progress" style="width:${progress}%"></div></div>
+            ${sectionTitle}
+            ${descriptionHTML}
+            <div class="question-section"><p>${q.question}</p></div>
+            <div class="answers"><input class="input-field" type="${inputType}" ${
+            inputType === "email"
+              ? 'oninput="validateEmail(this)"'
+              : 'oninput="enableNextButton()"'
+          }></div>
+            <div class="nav-btns">
+              <button class="nav-btn" onclick="prevStep()" ${
+                current === 0 ? "disabled" : ""
+              }>Anterior</button>
+              <button class="nav-btn" onclick="nextStep()" id="nextBtn" disabled>Siguiente</button>
+            </div>
+            <div style="text-align:center; margin-top:10px; font-size:0.9em; color:#aaa;">Pregunta ${
+              current + 1
+            } de ${quiz.length}</div>
+          `;
+        } else if (q.type === "radio") {
+          container.innerHTML += `
+            <div class="progress-bar"><div class="progress" style="width:${progress}%"></div></div>
+            ${sectionTitle}
+            ${descriptionHTML}
+            <div class="question-section"><p>${q.question}</p></div>
+            <div class="answers">
+              ${q.options
+                .map(
+                  (opt, i) =>
+                    `<button class="answer-btn${
+                      answers[current] === i ? " selected" : ""
+                    }" onclick="selectAnswer(${i})">${opt}</button>`
+                )
+                .join("")}
+            </div>
+            <div class="nav-btns">
+              <button class="nav-btn" onclick="prevStep()" ${
+                current === 0 ? "disabled" : ""
+              }>Anterior</button>
+              <button class="nav-btn" onclick="nextStep()" id="nextBtn" ${
+                answers[current] === undefined ? "disabled" : ""
+              }>Siguiente</button>
+            </div>
+            <div style="text-align:center; margin-top:10px; font-size:0.9em; color:#aaa;">Pregunta ${
+              current + 1
+            } de ${quiz.length}</div>
+          `;
+        }
+      }
+
+      function selectAnswer(idx) {
+        answers[current] = idx;
+        document
+          .querySelectorAll(".answer-btn")
+          .forEach((b, i) => b.classList.toggle("selected", i === idx));
+        document.getElementById("nextBtn").disabled = false;
+      }
+
+      function enableNextButton() {
+        document.getElementById("nextBtn").disabled = false;
+      }
+
+      function validateEmail(inputElement) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailPattern.test(inputElement.value)) {
+          enableNextButton();
+        } else {
+          document.getElementById("nextBtn").disabled = true;
+        }
+      }
+
+      function nextStep() {
+        const input = document.querySelector(".input-field");
+        if (input) {
+          answers[current] = input.value;
+        }
+        current++;
+        renderQuiz();
+      }
+
+      function prevStep() {
+        if (current > 0) {
+          current--;
+          renderQuiz();
+        }
+      }
+
+      // Función para redirigir a la app
+      function redirectToApp() {
+        window.open(
+          "https://app.ndefi.io/v2/preview/2oAuoaq9tGRpcYe9918W",
+          "_blank"
+        );
+      }
+
+      // Para make
+      function sendAnswersToMake() {
+        // Creamos un objeto para almacenar las respuestas
+        const formData = {};
+
+        // Recorremos cada pregunta del quiz
+        quiz.forEach((question, index) => {
+          // Obtenemos la respuesta
+          let answer = answers[index];
+
+          // Si es una pregunta de tipo radio, obtenemos el texto de la opción seleccionada
+          if (question.type === "radio" && answer !== undefined) {
+            answer = question.options[answer];
+          }
+
+          // Usamos directamente la pregunta como clave (sin limpiarla)
+          formData[question.question] = answer || "";
+        });
+
+        // Agregamos un timestamp
+        formData["timestamp"] = new Date().toISOString();
+
+        console.log("Enviando datos:", formData);
+
+        // Enviamos los datos al webhook
+        fetch("https://hook.us2.make.com/tnz1ckj8qgepwrwmxjc0wjfjimo501ml", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            console.log("Respuesta recibida");
+            document.getElementById("statusMessage").textContent =
+              "✅ Datos enviados correctamente.";
+          })
+          .catch((err) => {
+            console.error("Error al enviar:", err);
+            document.getElementById("statusMessage").textContent =
+              "⚠️ Hubo un error al enviar los datos.";
+          });
+      }
+    </script>
+  </body>
+</html>
