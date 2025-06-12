@@ -11,7 +11,6 @@
       rel="stylesheet"
     />
     <style>
-      /* --- VARIABLES Y ESTILOS BASE --- */
       :root {
         --color-primary: #e6007e;
         --color-accent: #5a00ff;
@@ -24,13 +23,11 @@
         --font-headings: "Montserrat", sans-serif;
         --font-body: "Lato", sans-serif;
       }
-
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
       body {
         font-family: var(--font-body);
         background-color: var(--color-bg-dark);
@@ -39,7 +36,6 @@
         scroll-behavior: smooth;
         overflow-x: hidden;
       }
-
       #particle-canvas {
         position: fixed;
         top: 0;
@@ -49,7 +45,6 @@
         z-index: -1;
         opacity: 0.5;
       }
-
       .container {
         width: 90%;
         max-width: 800px;
@@ -59,13 +54,11 @@
         position: relative;
         z-index: 2;
       }
-
       .main-heading,
       .section-heading {
         font-family: var(--font-headings);
         font-weight: 800;
       }
-
       .main-heading {
         font-size: 3rem;
         line-height: 1.3;
@@ -73,28 +66,23 @@
         color: var(--color-text-light);
         text-shadow: 0 0 15px rgba(230, 0, 126, 0.3);
       }
-
       .main-heading .highlight {
         color: var(--color-primary);
       }
-
       .section-heading {
         font-size: 2.8rem;
         margin-bottom: 25px;
       }
-
       .body-text {
         max-width: 700px;
         margin: 0 auto 25px auto;
         color: var(--color-text-medium);
         font-size: 1.2rem;
       }
-
       .body-text strong {
         color: var(--color-text-light);
         font-weight: 700;
       }
-
       .cta-button {
         position: relative;
         display: inline-block;
@@ -121,23 +109,19 @@
         box-shadow: 0 10px 30px rgba(230, 0, 126, 0.25),
           0 10px 30px rgba(90, 0, 255, 0.25);
       }
-
       .cta-button:hover {
         transform: scale(1.05) translateY(-2px);
         box-shadow: 0 15px 40px rgba(230, 0, 126, 0.4),
           0 15px 40px rgba(90, 0, 255, 0.4);
       }
-
-      /* --- SECTION STYLING --- */
       .page-section {
-        padding: 1px 0; /* Fix margin collapse */
+        padding: 1px 0;
         position: relative;
         overflow: hidden;
       }
-
       .intro-section {
         min-height: 100vh;
-        display: flex;
+        display: none; /* Se controla con JS */
         align-items: center;
         justify-content: center;
         background: radial-gradient(
@@ -146,35 +130,31 @@
           var(--color-bg-dark) 70%
         );
       }
-
       .loading-section {
         background-color: var(--color-bg-medium);
-        display: none; /* Initially hidden */
+        display: none; /* Se controla con JS */
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
       }
-
       .results-section,
       .cta-section {
         background-color: var(--color-bg-dark);
-        display: none; /* Initially hidden */
+        display: none; /* Se controla con JS */
         border-top: 1px solid var(--color-border);
       }
-
-      /* --- ENHANCED LOADER --- */
       .loader-container {
         margin: 40px auto;
       }
-
       #loader-svg {
         width: 150px;
         height: 150px;
         animation: gentleRotate 20s linear infinite;
       }
-
       #loader-svg .pulse-circle {
         animation: pulse 2s ease-in-out infinite;
         transform-origin: center;
       }
-
       @keyframes pulse {
         0% {
           transform: scale(0.95);
@@ -189,7 +169,6 @@
           opacity: 0.7;
         }
       }
-
       @keyframes gentleRotate {
         from {
           transform: rotate(0deg);
@@ -198,7 +177,6 @@
           transform: rotate(360deg);
         }
       }
-
       .progress-bar-container {
         width: 80%;
         max-width: 400px;
@@ -208,7 +186,6 @@
         margin: 30px auto 0;
         overflow: hidden;
       }
-
       .progress-bar {
         width: 0%;
         height: 100%;
@@ -220,8 +197,6 @@
         );
         transition: width 0.5s ease-out;
       }
-
-      /* --- RESULTS CARD --- */
       .results-card {
         background: var(--color-bg-light-translucent);
         backdrop-filter: blur(15px);
@@ -235,11 +210,9 @@
         transform: perspective(1000px) rotateX(-5deg);
         transition: transform 0.5s ease;
       }
-
       .results-card:hover {
         transform: perspective(1000px) rotateX(0deg);
       }
-
       .results-card h3 {
         font-family: var(--font-headings);
         font-size: 1.8rem;
@@ -249,20 +222,13 @@
         display: flex;
         align-items: center;
       }
-
       .results-card .results-text {
         font-size: 1.15rem;
         color: var(--color-text-medium);
         line-height: 1.8;
         margin-bottom: 20px;
-      }
-
-      .typewriter {
-        overflow: hidden;
         white-space: pre-wrap;
       }
-
-      /* --- FOOTER --- */
       .footer {
         padding: 50px 20px;
         background-color: #000;
@@ -270,7 +236,6 @@
         color: var(--color-text-medium);
         border-top: 1px solid var(--color-border);
       }
-
       .footer p {
         margin: 0 0 15px;
       }
@@ -282,20 +247,17 @@
       .footer a:hover {
         color: var(--color-primary);
       }
-
-      /* --- ANIMATION --- */
       .fade-in-up {
         opacity: 0;
         transform: translateY(40px);
-        transition: opacity 1s ease-out, transform 1s ease-out;
+        animation: fadeInUpAnimation 1s ease-out forwards;
       }
-
-      .fade-in-up.visible {
-        opacity: 1;
-        transform: translateY(0);
+      @keyframes fadeInUpAnimation {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-
-      /* --- MEDIA QUERIES --- */
       @media (max-width: 768px) {
         .container {
           padding: 80px 20px;
@@ -312,28 +274,15 @@
       }
     </style>
   </head>
-
   <body>
     <canvas id="particle-canvas"></canvas>
 
-    <!-- 1. INTRO SECTION -->
+    <!-- Estas secciones están ocultas por defecto y se mostrarán con JS -->
     <section id="intro" class="page-section intro-section">
       <div class="container fade-in-up">
         <h1 class="main-heading">
           ✨ Gracias por <span class="highlight">abrir esta puerta</span>
         </h1>
-        <p class="body-text">
-          Lo que estás a punto de leer no es un análisis común. Es una lectura
-          profunda, inspirada en la sabiduría de décadas de estudio sobre
-          psicología sistémica, constelaciones familiares, heridas emocionales y
-          aromaterapia.
-        </p>
-        <p class="body-text">
-          Esta carta fue creada con una herramienta que combina el conocimiento
-          de más de 40 libros y escuelas sistémicas con la voz terapéutica de
-          Carmen Rascón, quien ha guiado a cientos de personas a liberar sus
-          lealtades invisibles.
-        </p>
         <p class="body-text">
           No sustituye una terapia personalizada, pero es una
           <strong>guía poderosa</strong> para entender tu historia desde una
@@ -342,15 +291,13 @@
       </div>
     </section>
 
-    <!-- 2. LOADING SECTION -->
     <section id="loading" class="page-section loading-section">
       <div class="container fade-in-up">
         <h2 class="section-heading">
           Tu historia fue escuchada.<br />Y esta es su respuesta.
         </h2>
         <p class="body-text" style="font-size: 1.1rem">
-          🕊️ Dale unos segundos al sistema para preparar tu resultado. Essi está
-          reuniendo lo necesario para devolverte tu reflejo más profundo.
+          🕊️ Dale unos segundos al sistema para preparar tu resultado.
         </p>
         <div class="loader-container">
           <svg id="loader-svg" viewBox="0 0 100 100">
@@ -386,51 +333,24 @@
         <div class="progress-bar-container">
           <div id="progressBar" class="progress-bar"></div>
         </div>
-        <p class="body-text" style="margin-top: 30px; font-weight: bold">
-          Respira profundo. Este proceso es más poderoso de lo que imaginas.
-        </p>
       </div>
     </section>
-
-    <!-- 3. RESULTS SECTION -->
 
     <section id="results" class="page-section results-section">
       <div class="container fade-in-up">
         <h2 class="section-heading">📩 Tu resultado está listo</h2>
-
         <p class="body-text" style="font-style: italic">
           “A veces lo que más nos duele... no empezó con nosotros.”
         </p>
-
         <div class="results-card">
           <h3>Este es tu reflejo sistémico personalizado:</h3>
-          <!-- PRUEBA-->
-          <div id="respuesta">Cargando...</div>
-          <script>
-            async function cargarRespuesta() {
-              try {
-                const res = await fetch(
-                  "://hook.us2.make.com/tnz1ckj8qgepwrwmxjc0wjfjimo501ml"
-                ); // tu Webhook Response
-                const data = await res.json();
-                document.getElementById("respuesta").innerHTML = data.respuesta;
-              } catch (e) {
-                document.getElementById("respuesta").textContent =
-                  "Error al obtener respuesta.";
-                console.error(e);
-              }
-            }
-
-            cargarRespuesta();
-          </script>
-          <!-- PRUEBA-->
+          <div id="respuesta" class="results-text"></div>
         </div>
       </div>
     </section>
 
-    <!-- 4. CTA SECTION -->
     <section id="cta" class="page-section cta-section">
-      <div class="container fade-in-up">
+      <div class="container fade-in-up" style="animation-delay: 0.2s">
         <h2 class="section-heading">🎯 Y ahora, ¿qué haces con esto?</h2>
         <p class="body-text">
           Lo que descubriste hoy no es casualidad. Hay algo que quiere ser
@@ -442,7 +362,12 @@
         </p>
         <p class="body-text">
           ¿Sientes que esto es más grande de lo que imaginabas? Eso es normal.
-          Cuando por fin miramos el origen, <strong>el alma se mueve.</strong>
+          Cuando por fin miramos el origen,
+          <span
+            class="body-text"
+            style="font-weight: bold; text-align: underline; color: #fff"
+            >el alma se mueve.</span
+          >
         </p>
         <p
           class="body-text"
@@ -455,11 +380,10 @@
         >
           🔸 Conoce cómo continuar este proceso con Carmen Rascón
         </p>
-        <a href="#" class="cta-button"> Quiero seguir mi proceso → </a>
+        <a href="" class="cta-button">🔗 Quiero seguir mi proceso →</a>
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
       <p>
         Carmen Rascón, creadora de las AromaConstelaciones, ha acompañado por
@@ -473,140 +397,67 @@
       </p>
     </footer>
 
+    <!-- ===== INICIO DEL SCRIPT FINAL Y CORREGIDO ===== -->
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        // --- Particle Animation Script ---
-        const canvas = document.getElementById("particle-canvas");
-        const ctx = canvas.getContext("2d");
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        let particles = [];
-        const particleCount = 70;
-
-        class Particle {
-          constructor(x, y) {
-            this.x = x || Math.random() * canvas.width;
-            this.y = y || Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = Math.random() * 2 - 1;
-            this.speedY = Math.random() * 2 - 1;
-            this.color = `rgba(230, 0, 126, ${Math.random()})`;
-          }
-          update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-
-            if (this.size > 0.2) this.size -= 0.01;
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-          }
-          draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
-
-        function initParticles() {
-          for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-          }
-        }
-
-        function animateParticles() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
-          }
-          requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
-
-        window.addEventListener("resize", () => {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-          particles = [];
-          initParticles();
-        });
-
-        // --- Fade-in on Scroll ---
-        const elementsToAnimate = document.querySelectorAll(".fade-in-up");
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.1 }
-        );
-        elementsToAnimate.forEach((el) => observer.observe(el));
-
-        // --- Typewriter Effect ---
-        function typeWriter(element, text, speed, onComplete) {
-          let i = 0;
-          element.innerHTML = "";
-          function type() {
-            if (i < text.length) {
-              element.innerHTML += text.charAt(i);
-              i++;
-              setTimeout(type, speed);
-            } else if (onComplete) {
-              onComplete();
-            }
-          }
-          type();
-        }
-
-        // --- Loading Process Simulation ---
+      window.addEventListener("load", () => {
+        const introSection = document.getElementById("intro");
         const loadingSection = document.getElementById("loading");
         const resultsSection = document.getElementById("results");
         const ctaSection = document.getElementById("cta");
+        const footer = document.querySelector(".footer");
+        const contenedorRespuesta = document.getElementById("respuesta");
         const progressBar = document.getElementById("progressBar");
 
-        setTimeout(() => {
-          document.getElementById("intro").style.display = "none";
-          loadingSection.style.display = "block";
-          loadingSection.scrollIntoView({ behavior: "smooth" });
+        if (
+          !introSection ||
+          !loadingSection ||
+          !resultsSection ||
+          !ctaSection ||
+          !contenedorRespuesta
+        ) {
+          console.error(
+            "Error crítico: Falta uno o más contenedores de sección. Revisa los IDs."
+          );
+          return;
+        }
 
-          // Animate progress bar
+        const resultadoGuardado = localStorage.getItem("resultadoSistemico");
+
+        if (resultadoGuardado) {
+          // CASO 1: El usuario viene del quiz.
+          introSection.style.display = "none";
+          loadingSection.style.display = "flex"; // Usamos flex para centrar verticalmente
+
+          // Simular un tiempo de carga de 2.5 segundos
           let progress = 0;
           const interval = setInterval(() => {
-            progress += 1;
-            progressBar.style.width = progress + "%";
+            progress += 2;
+            if (progressBar) progressBar.style.width = progress + "%";
             if (progress >= 100) clearInterval(interval);
-          }, 40); // 40ms * 100 = 4 seconds
-        }, 3000); // Show loading after 3 seconds
+          }, 50);
 
-        setTimeout(() => {
+          setTimeout(() => {
+            loadingSection.style.display = "none";
+
+            // Inyectar el resultado personalizado
+            contenedorRespuesta.innerHTML = resultadoGuardado.replace(
+              /\n/g,
+              "<br />"
+            );
+
+            // Mostrar la sección de resultados y el CTA final
+            resultsSection.style.display = "block";
+            ctaSection.style.display = "block";
+
+            localStorage.removeItem("resultadoSistemico");
+          }, 2500);
+        } else {
+          // CASO 2: El usuario llegó directamente a esta página.
+          introSection.style.display = "flex";
           loadingSection.style.display = "none";
-          resultsSection.style.display = "block";
-          ctaSection.style.display = "block";
-          resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-
-          // Start typewriter after showing results
-          // This is a placeholder for the personalized result from the PDF/GPT
-          const text1 = `Hola, [Nombre del Usuario],\n\nAl mirar tu historia, emerge con fuerza un patrón de <strong>lealtad hacia el sacrificio femenino en tu linaje</strong>. Esto se manifiesta en tu vida como una tendencia a poner las necesidades de otros antes que las tuyas, lo que bloquea tu capacidad para recibir abundancia.`;
-          const text2 = `La dificultad que describes en tu relación con el dinero no es una falta de capacidad, sino un eco de la historia de tu abuela materna, quien vivió una gran pérdida económica. Inconscientemente, podrías estar diciéndote: <strong>"Si a ella le costó tanto, ¿quién soy yo para tenerlo fácil?"</strong>.`;
-          const text3 = `Sanar esto no significa culpar al pasado, sino honrarlo. Significa darle un lugar a ese dolor ancestral para que tú, finalmente, puedas escribir tu propia historia de merecimiento y plenitud.\n\nCon amor y respeto a tu sistema,\nCarmen Rascón`;
-
-          const el1 = document.getElementById("result-text-1");
-          const el2 = document.getElementById("result-text-2");
-          const el3 = document.getElementById("result-text-3");
-
-          typeWriter(el1, text1, 20, () => {
-            typeWriter(el2, text2, 20, () => {
-              typeWriter(el3, text3, 20);
-            });
-          });
-        }, 7500); // 3s delay + 4.5s loading = 7.5s total
+          resultsSection.style.display = "none";
+          ctaSection.style.display = "none";
+        }
       });
     </script>
   </body>

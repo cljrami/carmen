@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tu Reflejo Sistémico - Carmen Rascón</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --color-primary: #e6007e;
+        --color-accent: #5a00ff;
+        --color-bg-dark: #02000a;
+        --color-bg-medium: #100f1c;
+        --color-bg-light-translucent: rgba(16, 15, 28, 0.7);
+        --color-border: rgba(255, 255, 255, 0.1);
+        --color-text-light: #f5f5f5;
+        --color-text-medium: #b3b3b3;
+        --font-headings: "Montserrat", sans-serif;
+        --font-body: "Lato", sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font-body);
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
+        line-height: 1.7;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      .container {
+        width: 90%;
+        max-width: 800px;
+        margin: auto;
+        padding: 60px 20px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+      }
+      .section-heading {
+        font-family: var(--font-headings);
+        font-weight: 800;
+        font-size: 2.8rem;
+        margin-bottom: 25px;
+      }
+      .body-text {
+        max-width: 700px;
+        margin: 0 auto 25px auto;
+        color: var(--color-text-medium);
+        font-size: 1.2rem;
+      }
+      .cta-button {
+        position: relative;
+        display: inline-block;
+        padding: 18px 42px;
+        background: linear-gradient(
+          45deg,
+          var(--color-primary),
+          var(--color-accent)
+        );
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 1.1em;
+        font-family: var(--font-headings);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        z-index: 1;
+        margin-top: 30px;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(230, 0, 126, 0.25),
+          0 10px 30px rgba(90, 0, 255, 0.25);
+      }
+      .cta-button:hover {
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 15px 40px rgba(230, 0, 126, 0.4),
+          0 15px 40px rgba(90, 0, 255, 0.4);
+      }
+      .page-section {
+        padding: 1px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .results-card {
+        background: var(--color-bg-light-translucent);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 40px 50px;
+        text-align: left;
+        border: 1px solid var(--color-border);
+        margin-top: 50px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+      }
+      .results-card h3 {
+        font-family: var(--font-headings);
+        font-size: 1.8rem;
+        color: var(--color-primary);
+        margin-bottom: 25px;
+        line-height: 1.4;
+      }
+      .results-text {
+        font-size: 1.15rem;
+        color: var(--color-text-medium);
+        line-height: 1.8;
+        margin-bottom: 20px;
+        white-space: pre-wrap;
+      }
+      .footer {
+        padding: 50px 20px;
+        background-color: #000;
+        text-align: center;
+        color: var(--color-text-medium);
+        border-top: 1px solid var(--color-border);
+      }
+      .footer p {
+        margin: 0 0 15px;
+      }
+      .footer a {
+        color: var(--color-text-light);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .footer a:hover {
+        color: var(--color-primary);
+      }
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(40px);
+        animation: fadeInUpAnimation 1s ease-out forwards;
+      }
+      @keyframes fadeInUpAnimation {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (max-width: 768px) {
+        .container {
+          padding: 80px 20px;
+        }
+        .section-heading {
+          font-size: 2.2rem;
+        }
+        .results-card {
+          padding: 30px 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section id="results" class="page-section">
+      <div class="container fade-in-up">
+        <h2 class="section-heading">📩 Tu resultado está listo</h2>
+        <p class="body-text" style="font-style: italic">
+          “A veces lo que más nos duele... no empezó con nosotros.”
+        </p>
+        <div class="results-card">
+          <h3>Este es tu reflejo sistémico personalizado:</h3>
+          <div id="respuesta" class="results-text">Cargando...</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="page-section">
+      <div class="container fade-in-up" style="animation-delay: 0.2s">
+        <h2 class="section-heading">🎯 Y ahora, ¿qué haces con esto?</h2>
+        <p class="body-text">
+          Lo que descubriste hoy no es casualidad. Hay algo que quiere ser
+          liberado. Está justo a tiempo.
+        </p>
+        <p class="body-text">
+          Para muchas personas, esta carta confirma algo que han sentido toda la
+          vida. Pero ahora no estás sola.
+        </p>
+        <p class="body-text">
+          <b
+            >¿Sientes que esto es más grande de lo que imaginabas? Eso es
+            normal. Cuando por fin miramos el origen,</b
+          >
+          <span
+            style="font-weight: bold; color: #fff; text-decoration: underline"
+            >el alma se mueve</span
+          >
+        </p>
+        <p
+          class="body-text"
+          style="
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-top: 30px;
+            color: var(--color-text-light);
+          "
+        >
+          🔸 Conoce cómo continuar este proceso con Carmen Rascón
+        </p>
+        <a
+          href="https://l.instagram.com/?u=https%3A%2F%2Fpay.hotmart.com%2FP93340026X%3Foff%3D49uag2l1&e=AT1b_yKzJ2d1A6B3P74LgC0Qv04o0226hM_r6K1iL226W-g2d0f5u4n2W-p7w-H0a-j2v-H2q-t3b-g3j&s=1"
+          class="cta-button"
+          >🔗 Quiero seguir mi proceso →</a
+        >
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>
+        Carmen Rascón, creadora de las AromaConstelaciones, ha acompañado por
+        más de 10 años a quienes cargan con historias que no les pertenecen.
+      </p>
+      <p>
+        <strong>Gracias por abrir esta puerta. Tu proceso ha comenzado.</strong>
+      </p>
+      <p style="margin-top: 30px">
+        &copy; 2024 doPRANA | <a href="#">Aviso de Privacidad</a>
+      </p>
+    </footer>
+
+    <script>
+      // Esperamos a que todo el contenido de la página esté listo
+      document.addEventListener("DOMContentLoaded", function () {
+        // --- SIMULACIÓN PARA LA DEMOSTRACIÓN ---
+        // En un caso real, esta línea no existiría. El dato vendría de la página anterior.
+        // Para que este ejemplo funcione, simulamos que hemos guardado un resultado.
+        const textoDeEjemplo =
+          '🌟 **Bienvenida terapéutica**\n\n¡Hola! Soy Carmen Rascón. Lo que tienes aquí no es un diagnóstico, sino una mirada compasiva a tu sistema familiar. \n\n1. 🌱 **Lo que viviste… deja huellas**\n\nHas cargado desde la infancia la sensación de no ser suficiente, posiblemente vinculada a un antecedente familiar donde alguien querido padeció carencias. Esa voz interna que te dice "cuidado, no te arriesgues" nace de esa lealtad profunda. \n\n2. 🔁 **Ciclos que podrías estar repitiendo**\n\nEn tus relaciones, tiendes a asumir el rol de salvador/a, dando todo sin recibir lo suficiente. Esto refuerza un ciclo de sacrificio que resuena con patrones ancestrales.';
+        localStorage.setItem("resultadoSistemico", textoDeEjemplo);
+        // --- FIN DE LA SIMULACIÓN ---
+
+        const contenedorRespuesta = document.getElementById("respuesta");
+        const resultadoGuardado = localStorage.getItem("resultadoSistemico");
+
+        if (resultadoGuardado) {
+          // Si encontramos el resultado, lo mostramos.
+          // Reemplazamos los saltos de línea (\n) por etiquetas <br> para que el HTML los respete.
+          contenedorRespuesta.innerHTML = resultadoGuardado.replace(
+            /\n/g,
+            "<br />"
+          );
+
+          // Limpiamos el dato para que no se vuelva a mostrar si el usuario recarga la página.
+          localStorage.removeItem("resultadoSistemico");
+        } else {
+          // Si el usuario llega a esta página sin haber hecho el test, mostramos un mensaje de error.
+          console.error("No se encontró 'resultadoSistemico' en localStorage.");
+          contenedorRespuesta.innerHTML =
+            "No se pudo cargar el resultado. Por favor, vuelve a la página anterior y completa el test de nuevo.";
+        }
+      });
+    </script>
+  </body>
+</html>

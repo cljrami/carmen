@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Sistémico - Carmen Rascón</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --color-primary: #e6007e;
+        --color-accent: #007bff;
+        --color-bg-dark: #050505;
+        --color-bg-medium: #111111;
+        --color-bg-light-translucent: rgba(26, 26, 26, 0.6);
+        --color-border: rgba(255, 255, 255, 0.1);
+        --color-text-light: #f5f5f5;
+        --color-text-medium: #b3b3b3;
+        --font-headings: "Montserrat", sans-serif;
+        --font-body: "Lato", sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font-body);
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
+        line-height: 1.7;
+        scroll-behavior: smooth;
+        background-image: linear-gradient(
+            rgba(5, 5, 5, 0.97),
+            rgba(5, 5, 5, 0.97)
+          ),
+          url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3d3dtbW17e3t1dXVAAAAacXBgYGBgYGCopKQUExRrZ2c8Pj4SKCgoJCRlYWEjHyAZGhsLCwstLCw6Ojo5ODg2NjYwMDAwMTAvLi8/Pz9RNwE6AAAAUXRSTlMAEREBIwIiKBMcHCEgHw4MEw8KCQkJEAcHCAgFgYODgoGdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2d7KOwOAAAAWZJREFUeNpiYAAEBhoQhmBjYGRgYGBkYAZkY2BgYGDkYEhkYgAATgQGAAaQyeC1AFmYgBQJc2FjZgKDAwsgAQ0AAgAAgAF2ZkU3ZAKHgwNfBwLgAEMeAWIgAAbQ4CEAFmABgAAGePCx8gCwAAa8CjAAMeBAwACGhQMEAwQGBAcECgwkBgYSEgA0QAYsAFjAAsgAFjAbsAF0gFzAAhgAbMgAFkAA2YAGYAGzYAEsAFwAAcAA4SgAzQAUYAGYAGTYAEsAJoAChgAIgAFkAA2YAGYAGTYAEsAJoAChgAIgAFkAA2YAGYAGTYAEsAJoAChgAIgAFkAA2YAGYAGTYAEsAJoAChgAIgAFkAA2YAGYAGTYAEsAJoAChgAIgAFkAA2YAGYAGTYAEsAJoAChgAIgAFTALAaBAAAAKJAn3D59b9ZAAAAAElFTkSuQmCC);
+      }
+      .container {
+        width: 90%;
+        max-width: 1100px;
+        margin: auto;
+        padding: 120px 20px;
+        text-align: center;
+      }
+      .landing-h1,
+      .landing-h2,
+      .landing-h3 {
+        font-family: var(--font-headings);
+        font-weight: 700;
+      }
+      .landing-h1 {
+        font-size: 3.5rem;
+        line-height: 1.2;
+        margin-bottom: 25px;
+        font-weight: 800;
+      }
+      .landing-h2 {
+        font-size: 3rem;
+        margin-bottom: 25px;
+      }
+      .landing-p {
+        max-width: 800px;
+        margin: 0 auto 20px auto;
+        color: var(--color-text-medium);
+        font-size: 1.1rem;
+      }
+      .cta-button {
+        position: relative;
+        display: inline-block;
+        padding: 16px 38px;
+        background: linear-gradient(45deg, var(--color-primary), #c4006c);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1.1em;
+        font-family: var(--font-headings);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        z-index: 1;
+        margin-top: 25px;
+        cursor: pointer;
+      }
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -50px;
+        transform: skewX(-45deg);
+        transition: all 0.6s ease;
+        width: 0;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0.4),
+          rgba(255, 255, 255, 0)
+        );
+      }
+      .cta-button:hover::before {
+        width: 250%;
+      }
+      .cta-button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 40px rgba(230, 0, 126, 0.4);
+      }
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        overflow: hidden;
+      }
+      .hero-background-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translate(-50%, -50%);
+        z-index: -1;
+        opacity: 0.1;
+      }
+      .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(5, 5, 5, 0.4) 0%,
+          var(--color-bg-dark) 80%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+        text-align: center;
+      }
+      .hero-content .subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        color: var(--color-text-medium);
+        font-weight: 400;
+        line-height: 1.6;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .video-player {
+        position: relative;
+        max-width: 720px;
+        margin: 40px auto;
+        aspect-ratio: 16/9;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--color-border);
+        transition: transform 0.3s ease;
+      }
+      .video-player:hover {
+        transform: scale(1.02);
+      }
+      .video-player video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .about-carmen {
+        background-color: var(--color-bg-dark);
+      }
+      .about-carmen .container {
+        text-align: left;
+      }
+      .about-grid {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+      .about-photo-wrapper {
+        flex: 1;
+        min-width: 250px;
+      }
+      .carmen-photo {
+        width: 100%;
+        max-width: 300px;
+        aspect-ratio: 1/1;
+        border-radius: 24px;
+        margin: 0 auto;
+        border: 3px solid var(--color-primary);
+        overflow: hidden;
+        box-shadow: 0 0 50px rgba(230, 0, 126, 0.2);
+        transform: rotate(-3deg);
+        transition: transform 0.3s ease;
+      }
+      .carmen-photo:hover {
+        transform: rotate(0deg) scale(1.05);
+      }
+      .carmen-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .about-text-wrapper {
+        flex: 2;
+        min-width: 300px;
+      }
+      .about-text-wrapper .landing-h2 {
+        text-align: left;
+        margin-bottom: 15px;
+      }
+      .about-text-wrapper .landing-p {
+        text-align: left;
+        margin: 0 0 20px 0;
+      }
+      .what-is-section {
+        background-color: var(--color-bg-medium);
+      }
+      .what-is-section ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        max-width: 600px;
+        margin: 40px auto 0 auto;
+      }
+      .what-is-section li {
+        font-size: 1.1em;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 12px 20px;
+        border-radius: 8px;
+        width: 100%;
+        text-align: left;
+      }
+      .what-is-section .li-icon {
+        color: var(--color-primary);
+        font-size: 1.5em;
+      }
+      .familiar-section {
+        position: relative;
+        overflow: hidden;
+        background-color: var(--color-bg-dark);
+      }
+      .familiar-section::before,
+      .familiar-section::after {
+        content: "";
+        position: absolute;
+        z-index: 0;
+        border-radius: 50%;
+        filter: blur(120px);
+      }
+      .familiar-section::before {
+        width: 400px;
+        height: 400px;
+        background: rgba(230, 0, 126, 0.15);
+        top: 10%;
+        left: -150px;
+      }
+      .familiar-section::after {
+        width: 350px;
+        height: 350px;
+        background: rgba(0, 123, 255, 0.15);
+        bottom: 10%;
+        right: -150px;
+      }
+      .familiar-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-top: 60px;
+        position: relative;
+        z-index: 1;
+      }
+      .familiar-card {
+        background: var(--color-bg-light-translucent);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        padding: 30px;
+        text-align: left;
+        border: 1px solid var(--color-border);
+        transition: transform 0.4s ease, box-shadow 0.4s ease,
+          border-color 0.4s ease;
+      }
+      .familiar-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        border-color: rgba(230, 0, 126, 0.5);
+      }
+      .familiar-card h3 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        color: var(--color-primary);
+        line-height: 1.4;
+      }
+      .familiar-card .landing-p {
+        font-size: 1em;
+        margin: 0;
+        color: var(--color-text-medium);
+      }
+      .cta-final {
+        background-color: var(--color-bg-medium);
+      }
+      .cta-final .landing-h2 {
+        font-size: 2.5rem;
+      }
+      .footer {
+        padding: 40px 20px;
+        background-color: #000;
+        text-align: center;
+        color: var(--color-text-medium);
+      }
+      .footer a {
+        color: var(--color-text-light);
+        text-decoration: none;
+        margin: 0 15px;
+        transition: color 0.3s;
+      }
+      .footer a:hover {
+        color: var(--color-primary);
+      }
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 9999;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .quiz-container {
+        position: relative;
+        max-width: 500px;
+        margin: 0 16px;
+        background: rgba(30, 30, 40, 0.95);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        padding: 48px 24px 24px;
+        animation: fadeInQuiz 1s;
+        overflow: hidden;
+      }
+      @keyframes fadeInQuiz {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .quiz-header h1 {
+        margin: 0;
+        font-size: 1.8em;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #fff;
+      }
+      .quiz-header .subtitle {
+        margin-top: 4px;
+        color: #ff512f;
+        font-size: 1em;
+      }
+      .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: #333;
+        border-radius: 4px;
+        margin: 24px 0;
+        overflow: hidden;
+      }
+      .progress {
+        height: 100%;
+        background: linear-gradient(90deg, #ff512f, #dd2476);
+        width: 0;
+        transition: width 0.4s cubic-bezier(0.4, 2, 0.6, 1);
+      }
+      .question-section {
+        min-height: 120px;
+        margin-bottom: 18px;
+        animation: fadeInQuiz 0.7s;
+        color: #fff;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .question-section p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: #fff;
+      }
+      .answers {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .input-field {
+        background: #232526;
+        color: #fff;
+        border: 2px solid #ff512f;
+        border-radius: 8px;
+        padding: 14px 10px;
+        font-size: 1.1em;
+        width: 100%;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .input-field:focus {
+        outline: none;
+        border-color: #ff512f;
+      }
+      .answer-btn {
+        background: #232526;
+        color: #fff;
+        border: 2px solid #ff512f;
+        border-radius: 8px;
+        padding: 14px 10px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, border 0.2s;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .answer-btn:hover,
+      .answer-btn.selected {
+        background: #ff512f;
+        border-color: #fff;
+      }
+      .nav-btns {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 18px;
+      }
+      .nav-btn {
+        background: #dd2476;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px 28px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background 0.2s;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .nav-btn:hover {
+        background: #ff512f;
+      }
+      .nav-btn:disabled {
+        background: #555;
+        cursor: not-allowed;
+      }
+      .completion-message {
+        text-align: center;
+        padding: 30px 20px;
+        animation: fadeInQuiz 1s;
+      }
+      .completion-message h2 {
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: #fff;
+      }
+      .completion-message p {
+        color: #ccc;
+      }
+      .section-title {
+        color: #ff512f;
+        font-size: 1.2em;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .redirect-btn {
+        background: linear-gradient(90deg, #ff512f, #dd2476);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        margin: 20px 10px;
+        font-weight: bold;
+      }
+      .redirect-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 81, 47, 0.3);
+      }
+      .popup-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        z-index: 10000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .popup-step {
+        display: none;
+        text-align: center;
+        margin: 0 16px;
+        max-width: 500px;
+        width: 90%;
+        background: rgba(30, 30, 40, 0.95);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        padding: 48px 24px 24px;
+        animation: fadeInQuiz 1s;
+        overflow: hidden;
+        position: relative;
+        color: #fff;
+      }
+      .popup-step.active {
+        display: block;
+      }
+      .popup-step h2 {
+        margin-bottom: 18px;
+        font-size: 1.5em;
+        color: #ff512f;
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+      .popup-step p {
+        margin-bottom: 24px;
+        font-size: 1.1em;
+        color: #ccc;
+        line-height: 1.6;
+      }
+      .popup-step .input-field {
+        margin-bottom: 15px;
+      }
+      .popup-step button {
+        margin-top: 10px;
+      }
+      @media (max-width: 992px) {
+        .landing-h1 {
+          font-size: 3rem;
+        }
+        .landing-h2 {
+          font-size: 2.5rem;
+        }
+      }
+      @media (max-width: 768px) {
+        .container {
+          padding: 80px 20px;
+        }
+        .about-grid {
+          gap: 40px;
+        }
+        .about-text-wrapper .landing-h2,
+        .about-text-wrapper .landing-p {
+          text-align: center;
+        }
+        .carmen-photo {
+          transform: rotate(0deg);
+        }
+        .landing-h1 {
+          font-size: 2.8rem;
+        }
+        .landing-h2 {
+          font-size: 2.2rem;
+        }
+      }
+      @media (max-width: 576px) {
+        .landing-h1 {
+          font-size: 2.2rem;
+        }
+        .landing-h2 {
+          font-size: 2rem;
+        }
+        .question-section p {
+          font-size: 1.1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <video class="hero-background-video" autoplay muted loop playsinline>
+        <source
+          src="https://storage.googleapis.com/msgsndr/B2lEzXaDqgTbqj7AqqWN/media/681ccc6c02d0206f8c00b4e7.mp4"
+          type="video/mp4"
+        />
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content fade-in">
+        <h1 class="landing-h1">
+          ¿Por qué sigues esforzándote tanto… y aún así el amor o el dinero se
+          te escapan?
+        </h1>
+        <p class="subtitle landing-p">
+          Te esfuerzas. Lo has intentado varias veces.<br />Pero el dinero no
+          alcanza, aunque trabajas sin parar.<br />Las relaciones llegan… pero
+          no se quedan, dañan o separan.<br />Y por dentro, una voz te dice que
+          algo está mal contigo.<br /><strong>¿Y si no fuera tu culpa?</strong
+          ><br />Tal vez estás repitiendo historias que no empezaron contigo.
+        </p>
+        <div class="video-player">
+          <video
+            controls
+            src="https://storage.googleapis.com/msgsndr/B2lEzXaDqgTbqj7AqqWN/media/681ccc6c02d0206f8c00b4e7.mp4"
+          ></video>
+        </div>
+        <button class="cta-button" onclick="openIntroPopup()">
+          ✨ Haz el test sistémico gratuito
+        </button>
+      </div>
+    </section>
+    <section class="what-is-section">
+      <div class="container fade-in">
+        <h2 class="landing-h2">¿Qué es este test?</h2>
+        <p class="landing-p">
+          Este no es un test común. Es una herramienta terapéutica creada a
+          partir de la experiencia de Carmen Rascón, Maestra en Psicología
+          Sistémica, formada con Bert Hellinger y creadora de las
+          AromaConstelaciones. <br />A través de tus respuestas, podrás
+          identificar las lealtades invisibles que podrías estar repitiendo en
+          tu vida afectiva y económica.
+        </p>
+        <ul>
+          <li><span class="li-icon">✅</span> Confidencial</li>
+          <li>
+            <span class="li-icon">✅</span> Basado en psicología sistémica real
+          </li>
+          <li>
+            <span class="li-icon">✅</span> Respuesta inmediata y personalizada
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="about-carmen">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-photo-wrapper fade-in">
+            <div class="carmen-photo">
+              <img
+                src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop"
+                alt="Foto de Carmen Rascón"
+              />
+            </div>
+          </div>
+          <div class="about-text-wrapper fade-in">
+            <h2 class="landing-h2">Sobre Carmen Rascón</h2>
+            <p class="landing-p">
+              Carmen Rascón es Maestra en Psicología Sistémica y facilitadora
+              internacional de Constelaciones Familiares.
+            </p>
+            <p class="landing-p">
+              Fue constelada por el mismo Bert Hellinger y ha ayudado a miles de
+              personas a transformar patrones transgeneracionales a través de su
+              método integrativo: AromaConstelaciones, una fusión única entre
+              constelaciones familiares y aromaterapia emocional.
+            </p>
+            <button class="cta-button" onclick="openIntroPopup()">
+              ✨ Haz el test sistémico gratuito
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="familiar-section">
+      <div class="container">
+        <h2 class="landing-h2 fade-in">¿Te suena familiar?</h2>
+        <p class="landing-p fade-in">
+          💔 Para quienes sienten que algo no encaja… aunque todo “debería estar
+          bien”.
+        </p>
+        <div class="familiar-list">
+          <div class="familiar-card fade-in">
+            <h3 class="landing-h3">
+              🔹 Te esfuerzas mucho… pero nunca alcanza.
+            </h3>
+            <p class="landing-p">
+              Trabajas duro, pero el dinero no rinde, se va en deudas o
+              imprevistos. Aunque ganas bien, sientes escasez constante.
+            </p>
+          </div>
+          <div class="familiar-card fade-in">
+            <h3 class="landing-h3">
+              🔹 Te ilusionas en el amor… pero terminas sola(o) o dañada(o).
+            </h3>
+            <p class="landing-p">
+              Las relaciones llegan, pero algo siempre falla: abandono,
+              infidelidad, dependencia o simplemente “no fluye”.
+            </p>
+          </div>
+          <div class="familiar-card fade-in">
+            <h3 class="landing-h3">
+              🔹 Repites historias que ya viviste… o que otros en tu familia
+              vivieron.
+            </h3>
+            <p class="landing-p">
+              Madres solas, hombres ausentes, hijos que cuidan a sus padres,
+              secretos que duelen. Y aunque no quieres repetir… ahí estás otra
+              vez.
+            </p>
+          </div>
+          <div class="familiar-card fade-in">
+            <h3 class="landing-h3">🔹 Sientes culpa por querer más.</h3>
+            <p class="landing-p">
+              Como si avanzar, tener éxito o ser feliz fuera traicionar a tu
+              familia.
+            </p>
+          </div>
+          <div class="familiar-card fade-in">
+            <h3 class="landing-h3">
+              🔹 Sabes que algo pasa… pero no entiendes qué.
+            </h3>
+            <p class="landing-p">
+              Una sensación sutil de desorden, de vacío, de estar cargando con
+              más de lo que te toca.
+            </p>
+          </div>
+        </div>
+        <p
+          class="landing-p fade-in"
+          style="margin-top: 40px; font-weight: bold"
+        >
+          Si algo de esto te resuena, este test puede ayudarte a ver lo que no
+          se ve.
+        </p>
+      </div>
+    </section>
+    <section class="cta-final">
+      <div class="container fade-in">
+        <h2 class="landing-h2">
+          Las heridas que no ves… son las que más pesan.
+        </h2>
+        <p class="landing-p">
+          Descubre lo que está condicionando tu presente desde lo más profundo
+          de tu historia.
+        </p>
+        <button class="cta-button" onclick="openIntroPopup()">
+          Empezar el test ahora
+        </button>
+      </div>
+    </section>
+    <footer class="footer">
+      <p>&copy; 2024 doPRANA | <a href="#">Aviso de Privacidad</a></p>
+    </footer>
+
+    <div class="popup-container" id="popupContainer">
+      <div class="popup-step active" id="popupStep1">
+        <h2>🌿 Este no es un test cualquiera.</h2>
+        <p>
+          Es una herramienta terapéutica basada en psicología sistémica que
+          puede ayudarte a descubrir por qué el amor, el dinero o tu paz
+          interior parecen escaparse… incluso cuando haces todo bien.
+        </p>
+        <p>
+          Si estás lista/o para mirar con amor lo que no habías podido ver
+          responde
+        </p>
+        <p style="margin-top: 15px; font-weight: bold">
+          ¿Cuál es tu nombre completo?
+        </p>
+        <input
+          type="text"
+          id="introName"
+          class="input-field"
+          placeholder="Tu nombre completo"
+          oninput="updateIntroButtonState(1)"
+        />
+        <button
+          class="nav-btn"
+          id="introNextBtn1"
+          onclick="showNextPopup()"
+          disabled
+        >
+          Siguiente
+        </button>
+      </div>
+      <div class="popup-step" id="popupStep2">
+        <h2>¿Cómo funciona?</h2>
+        <p>
+          Cada pregunta que verás ha sido construida desde el enfoque de las
+          Constelaciones Familiares, la aromaterapia emocional y la psicología
+          transgeneracional. Tus respuestas serán analizadas con base en más de
+          10 años de experiencia terapéutica y un compendio de conocimiento
+          extraído de libros, técnicas y vivencias de miles de personas. Entre
+          más intención y consciencia tengas al responder, recibirás una mejor
+          lectura profunda y reflexiva totalmente personalizada.
+        </p>
+        <p style="margin-top: 15px; font-weight: bold">
+          ¿Cuál es tu correo electrónico favorito?
+        </p>
+        <input
+          type="email"
+          id="introEmail"
+          class="input-field"
+          placeholder="Tu correo electrónico"
+          oninput="updateIntroButtonState(2)"
+        />
+        <button
+          class="nav-btn"
+          id="introNextBtn2"
+          onclick="showNextPopup()"
+          disabled
+        >
+          Siguiente
+        </button>
+      </div>
+      <div class="popup-step" id="popupStep3">
+        <h2>Antes de comenzar</h2>
+        <p>
+          🧘‍♀️ Respira. Este momento es solo para ti. Tómate tu tiempo, escribe
+          sin apuro y deja que tu historia se revele.
+        </p>
+        <p>
+          💬 “Lo que no se nombra… se repite. Pero lo que se comprende, se
+          transforma.”
+        </p>
+        <p style="margin-top: 15px; font-weight: bold">¿Cuál es tu Edad?</p>
+        <input
+          type="number"
+          id="introAge"
+          class="input-field"
+          placeholder="Tu edad"
+          oninput="updateIntroButtonState(3)"
+        />
+        <button
+          class="nav-btn"
+          id="startQuizBtn"
+          onclick="startQuizFromIntro()"
+          disabled
+        >
+          Empezar el test ahora
+        </button>
+      </div>
+    </div>
+    <div class="popup-overlay" id="popupQuizOverlay">
+      <div class="quiz-container" id="popupQuizContainer"></div>
+    </div>
+    <script>
+      // --- Script principal ---
+      document.addEventListener("DOMContentLoaded", () => {
+        const elementsToAnimate = document.querySelectorAll(".fade-in");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        elementsToAnimate.forEach((el) => {
+          observer.observe(el);
+        });
+      });
+
+      let currentPopup = 1;
+      let introData = {};
+      let current = 0;
+      let answers = {}; // CAMBIO: Usamos un objeto para mayor robustez
+
+      const quiz = [
+        {
+          id: "tiene_pareja",
+          section: "👤 RELACIONES PERSONALES",
+          question: "¿Actualmente tienes una relación de pareja?",
+          type: "radio",
+          options: ["Sí", "No"],
+        },
+        {
+          id: "tiene_hijos",
+          section: "👤 RELACIONES PERSONALES",
+          question: "¿Tienes hijos? ¿Qué edades tienen?",
+          type: "text",
+        },
+        {
+          id: "relacion_madre",
+          section: "🌳 HABLEMOS DE TU SISTEMA FAMILIAR",
+          question: "¿Cómo describirías tu relación con tu madre?",
+          type: "text",
+        },
+        {
+          id: "relacion_padre",
+          section: "🌳 HABLEMOS DE TU SISTEMA FAMILIAR",
+          question: "¿Cómo describirías tu relación con tu padre?",
+          type: "text",
+        },
+        {
+          id: "separacion_dificil",
+          section: "🌳 HABLEMOS DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Hubo alguna separación difícil que marcó a tu familia (divorcio, fallecimiento, abandono)? ¿Qué edad tenías?",
+          type: "text",
+        },
+        {
+          id: "temas_no_hablados",
+          section: "🌳 HABLEMOS DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Cuáles son los temas en tu familia de los que no se hablan? (Ej.: infidelidades, abortos, adicciones, enfermedades, abusos, etc.)",
+          type: "text",
+        },
+        {
+          id: "ambiente_infancia",
+          section: "🌳 HABLEMOS DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Cómo recuerdas el ambiente en tu hogar durante tu infancia? (Ej.: amoroso, distante, tenso, violento…)",
+          type: "text",
+        },
+        {
+          id: "familiar_rechazado",
+          section: "🌳 HABLEMOS DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Hay alguien en tu familia a quien nadie quiere parecerse? ¿Por qué?",
+          type: "text",
+        },
+        {
+          id: "familiar_admirado",
+          section: "🌳 HABLEMOS DE TU SISTEMA FAMILIAR",
+          question:
+            "¿Hay alguien en tu familia a quienes todos admiran? ¿Por qué?",
+          type: "text",
+        },
+        {
+          id: "situaciones_repetitivas",
+          section: "🔁 DINÁMICAS Y PATRONES REPETITIVOS",
+          question:
+            "¿Qué situaciones has notado que se repiten en tu familia? (Ej.: dificultades económicas, relaciones conflictivas, divorcios, enfermedades)",
+          type: "text",
+        },
+        {
+          id: "responsable_de_quien",
+          section: "🔁 DINÁMICAS Y PATRONES REPETITIVOS",
+          question: "¿De qué miembros de tu familia te sientes responsable?",
+          type: "text",
+        },
+        {
+          id: "rol_diferente",
+          section: "🔁 DINÁMICAS Y PATRONES REPETITIVOS",
+          question:
+            "¿Has sentido que ocupas un rol diferente al de tu lugar de nacimiento? (Ej.: actuar como padre/madre de tus hermanos o de tus propios padres)",
+          type: "radio",
+          options: ["Sí", "No"],
+        },
+        {
+          id: "propension_dar_recibir",
+          section: "🔁 DINÁMICAS Y PATRONES REPETITIVOS",
+          question:
+            "¿Eres más propenso/a a dar o a recibir en tus relaciones familiares?",
+          type: "radio",
+          options: ["Dar", "Recibir"],
+        },
+        {
+          id: "patron_sentimental",
+          section: "💔 RELACIONES DE PAREJA",
+          question: "¿Qué patrón identificas en tus relaciones sentimentales?",
+          type: "text",
+        },
+        {
+          id: "creencias_amor",
+          section: "💔 RELACIONES DE PAREJA",
+          question: "¿Qué creencias aprendiste sobre el amor en tu infancia?",
+          type: "text",
+        },
+        {
+          id: "parecido_familiar",
+          section: "💔 RELACIONES DE PAREJA",
+          question:
+            "¿Te pareces o te dicen que te pareces a alguien de tu familia, incluso si no lo conociste? (Ej.: abuelos, tíos, exparejas) ¿En qué te pareces?",
+          type: "text",
+        },
+        {
+          id: "relacion_padres_dinero",
+          section: "💰 RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question: "¿Cómo era la relación de tus padres con el dinero?",
+          type: "text",
+        },
+        {
+          id: "frases_dinero",
+          section: "💰 RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question: "¿Qué frases familiares recuerdas sobre el dinero?",
+          type: "text",
+        },
+        {
+          id: "emocion_mas_dinero_padres",
+          section: "💰 RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question:
+            "¿Qué emociones sientes al pensar en tener más dinero que tus padres?",
+          type: "text",
+        },
+        {
+          id: "miedo_exito",
+          section: "💰 RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question:
+            "¿Tienes miedo a que, si te va bien, algo malo pueda pasar?",
+          type: "radio",
+          options: ["Sí", "No"],
+        },
+        {
+          id: "excluido_por_dinero",
+          section: "💰 RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question:
+            "¿Quién en tu familia fue rechazado o excluido por tener mucho o poco dinero?",
+          type: "text",
+        },
+        {
+          id: "comparacion_familiar_exito",
+          section: "💰 RELACIÓN CON EL DINERO Y LA ABUNDANCIA",
+          question:
+            "¿Sientes que, sin importar lo que hagas, nunca serás tan bueno/a o exitoso/a como cierto familiar? ¿Con quién te comparas y por qué?",
+          type: "text",
+        },
+        {
+          id: "sintoma_fisico",
+          section: "🧠 CUERPO Y EMOCIÓN",
+          question:
+            "¿Sufres actualmente de algún síntoma físico o problema de salud que te preocupe o se repita constantemente? (Ej.: ansiedad, insomnio, sobrepeso, enfermedades autoinmunes, fatiga crónica…)",
+          type: "text",
+        },
+        {
+          id: "emociones_multiples",
+          section: "🧠 CUERPO Y EMOCIÓN",
+          question:
+            "¿Cuáles de estas emociones sientes con frecuencia? (Puedes marcar varias)",
+          type: "checkbox",
+          options: ["Tristeza", "Enojo", "Miedo", "Ansiedad", "Alegría"],
+        },
+        {
+          id: "anhelo_sanar",
+          section: "✨ TU MOMENTO ACTUAL",
+          question:
+            "¿Qué es lo que más anhelas sanar o transformar en tu vida en este momento?",
+          type: "text",
+        },
+      ];
+
+      function openIntroPopup() {
+        document.getElementById("popupContainer").style.display = "flex";
+        document.getElementById("popupStep1").classList.add("active");
+        document.getElementById("popupStep2").classList.remove("active");
+        document.getElementById("popupStep3").classList.remove("active");
+        currentPopup = 1;
+        introData = {};
+        updateIntroButtonState(1);
+      }
+
+      function updateIntroButtonState(step) {
+        if (step === 1) {
+          const nameInput = document.getElementById("introName");
+          document.getElementById("introNextBtn1").disabled =
+            nameInput.value.trim() === "";
+        } else if (step === 2) {
+          const emailInput = document.getElementById("introEmail");
+          const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          document.getElementById("introNextBtn2").disabled =
+            !emailPattern.test(emailInput.value);
+        } else if (step === 3) {
+          const ageInput = document.getElementById("introAge");
+          document.getElementById("startQuizBtn").disabled =
+            ageInput.value.trim() === "" ||
+            isNaN(ageInput.value) ||
+            parseInt(ageInput.value) <= 0;
+        }
+      }
+
+      function showNextPopup() {
+        const currentStepEl = document.getElementById(
+          `popupStep${currentPopup}`
+        );
+        if (currentPopup === 1)
+          introData.nombre_completo =
+            document.getElementById("introName").value;
+        if (currentPopup === 2)
+          introData.email = document.getElementById("introEmail").value;
+        currentStepEl.classList.remove("active");
+        currentPopup++;
+        const nextStep = document.getElementById(`popupStep${currentPopup}`);
+        if (nextStep) {
+          nextStep.classList.add("active");
+          updateIntroButtonState(currentPopup);
+        }
+      }
+
+      // --- CAMBIO #1: Aseguramos que los datos iniciales se pasen al objeto principal de respuestas ---
+      function startQuizFromIntro() {
+        introData.edad = document.getElementById("introAge").value;
+
+        // Copiamos los datos iniciales al objeto principal de respuestas
+        answers["nombre_completo"] = introData.nombre_completo;
+        answers["email"] = introData.email;
+        answers["edad"] = introData.edad;
+
+        document.getElementById("popupContainer").style.display = "none";
+        document.getElementById("popupQuizOverlay").style.display = "flex";
+        renderQuiz();
+      }
+
+      function renderQuiz() {
+        const container = document.getElementById("popupQuizContainer");
+        if (current >= quiz.length) {
+          container.innerHTML = `<div class="completion-message"><h2>¡Gracias por abrir tu historia!</h2><p>✨ Has hecho algo poderoso: nombrar lo que antes no tenía forma.</p><p>Tus respuestas ya están siendo procesadas con base en un enfoque profundo y compasivo.</p><div style="margin-top: 30px;"><button class="redirect-btn" id="finalSubmitBtn" onclick="sendAnswersToMake()">Enviar y ver mi resultado</button></div></div>`;
+          return;
+        }
+
+        const q = quiz[current];
+        const progress = Math.round(((current + 1) / quiz.length) * 100);
+        let sectionTitle =
+          current === 0 || quiz[current].section !== quiz[current - 1].section
+            ? `<div class="section-title">${q.section}</div>`
+            : "";
+        let optionsHTML = "";
+
+        if (q.type === "radio") {
+          optionsHTML = q.options
+            .map(
+              (opt) =>
+                `<button class="answer-btn ${
+                  answers[q.id] === opt ? "selected" : ""
+                }" onclick="selectAnswer('${q.id}', '${opt}')">${opt}</button>`
+            )
+            .join("");
+        } else if (q.type === "checkbox") {
+          const currentAnswers = answers[q.id] || [];
+          optionsHTML = q.options
+            .map(
+              (opt) =>
+                `<button class="answer-btn ${
+                  currentAnswers.includes(opt) ? "selected" : ""
+                }" onclick="toggleCheckboxAnswer('${
+                  q.id
+                }', '${opt}')">${opt}</button>`
+            )
+            .join("");
+        } else {
+          optionsHTML = `<textarea class="input-field" rows="4" oninput="updateQuizButtonState()" placeholder="Escribe tu respuesta...">${
+            answers[q.id] || ""
+          }</textarea>`;
+        }
+
+        container.innerHTML = `
+            <div class="quiz-header"><h1>Test de Lealtades Invisibles</h1></div>
+            <div class="progress-bar"><div class="progress" style="width:${progress}%"></div></div>
+            ${sectionTitle}
+            <div class="question-section"><p>${q.question}</p></div>
+            <div class="answers">${optionsHTML}</div>
+            <div class="nav-btns">
+                <button class="nav-btn" onclick="prevStep()" ${
+                  current === 0 ? "disabled" : ""
+                }>Anterior</button>
+                <button class="nav-btn" onclick="nextStep()" id="nextBtn" disabled>Siguiente</button>
+            </div>
+            <div style="text-align:center; margin-top:10px; font-size:0.9em; color:#aaa;">Pregunta ${
+              current + 1
+            } de ${quiz.length}</div>`;
+        updateQuizButtonState();
+      }
+
+      // --- CAMBIO #2: Lógica de respuestas modificada para usar IDs ---
+      function updateQuizButtonState() {
+        if (current >= quiz.length) return;
+        const q = quiz[current];
+        let isAnswered = false;
+
+        if (q.type === "text") {
+          const input = document.querySelector(
+            "#popupQuizContainer .input-field"
+          );
+          if (input && input.value.trim() !== "") {
+            answers[q.id] = input.value;
+            isAnswered = true;
+          }
+        } else {
+          if (answers[q.id] !== undefined && answers[q.id].length !== 0) {
+            isAnswered = true;
+          }
+        }
+        const nextButton = document.getElementById("nextBtn");
+        if (nextButton) nextButton.disabled = !isAnswered;
+      }
+
+      function selectAnswer(questionId, answer) {
+        answers[questionId] = answer;
+        nextStep();
+      }
+
+      function toggleCheckboxAnswer(questionId, option) {
+        if (!Array.isArray(answers[questionId])) {
+          answers[questionId] = [];
+        }
+        const selection = answers[questionId];
+        const indexInSelection = selection.indexOf(option);
+        if (indexInSelection === -1) {
+          selection.push(option);
+        } else {
+          selection.splice(indexInSelection, 1);
+        }
+        renderQuiz(); // Re-render para mostrar el cambio visual
+      }
+
+      function nextStep() {
+        const q = quiz[current];
+        if (q.type === "text") {
+          const input = document.querySelector(
+            "#popupQuizContainer .input-field"
+          );
+          if (input) answers[q.id] = input.value;
+        }
+        if (current < quiz.length) {
+          current++;
+          renderQuiz();
+        }
+      }
+
+      function prevStep() {
+        if (current > 0) {
+          current--;
+          renderQuiz();
+        }
+      }
+
+      // --- CAMBIO #3: FUNCIÓN DE ENVÍO FINAL Y CORRECTA ---
+      function sendAnswersToMake() {
+        const button = document.getElementById("finalSubmitBtn");
+        if (button) {
+          button.innerHTML = "Procesando...";
+          button.disabled = true;
+        }
+
+        const formData = {};
+        quiz.forEach((q) => {
+          if (Array.isArray(answers[q.id])) {
+            formData[q.id] = answers[q.id].join(", ");
+          } else {
+            formData[q.id] = answers[q.id] || "";
+          }
+        });
+
+        // Añadimos los datos del popup inicial al objeto final
+        formData.nombre_completo = introData.nombre_completo;
+        formData.email = introData.email;
+        formData.edad = introData.edad;
+        formData.timestamp = new Date().toISOString();
+
+        console.log("Enviando datos finales:", formData);
+
+        fetch("https://hook.us2.make.com/ql9bnmilwb8e63h6ndtsys37po68gurn", {
+          // <-- **REEMPLAZA CON TU NUEVA URL DEL WEBHOOK**
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              return response.text().then((text) => {
+                throw new Error(
+                  `Error del Servidor: ${response.status} - ${text}`
+                );
+              });
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Respuesta de la IA recibida:", data.respuesta);
+            localStorage.setItem("resultadoSistemico", data.respuesta);
+            window.location.href =
+              "https://app.ndefi.io/v2/preview/2oAuoaq9tGRpcYe9918W"; // <-- URL DE TU PÁGINA DE RESULTADOS
+          })
+          .catch((err) => {
+            console.error("Error en el proceso de fetch:", err);
+            if (button) {
+              button.innerText = "Error. Reintentar";
+              button.disabled = false;
+            }
+          });
+      }
+    </script>
+  </body>
+</html>
