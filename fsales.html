@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sesión de AromaConstelación - Carmen Rascón</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --color-primary: #e6007e;
+        --color-accent: #5a00ff;
+        --color-bg-dark: #02000a;
+        --color-bg-medium: #100f1c;
+        --color-border: rgba(255, 255, 255, 0.1);
+        --color-text-light: #f5f5f5;
+        --color-text-medium: #b3b3b3;
+        --font-headings: "Montserrat", sans-serif;
+        --font-body: "Lato", sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: var(--font-body);
+        background-color: var(--color-bg-dark);
+        color: var(--color-text-light);
+        line-height: 1.7;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      .container {
+        width: 90%;
+        max-width: 900px;
+        margin: auto;
+        padding: 100px 20px;
+        text-align: center;
+      }
+      .section-heading {
+        font-family: var(--font-headings);
+        font-weight: 800;
+        font-size: 2.8rem;
+        line-height: 1.3;
+        margin-bottom: 25px;
+      }
+      .section-subheading {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        color: var(--color-text-medium);
+      }
+      .cta-button {
+        display: inline-block;
+        padding: 18px 42px;
+        background: linear-gradient(
+          45deg,
+          var(--color-primary),
+          var(--color-accent)
+        );
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 1.2em;
+        font-family: var(--font-headings);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        transition: all 0.4s ease;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(230, 0, 126, 0.3);
+      }
+      .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(230, 0, 126, 0.5);
+      }
+      .page-section {
+        padding: 50px 0;
+        position: relative;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .hero-section {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .hero-section .section-heading {
+        font-size: 3.5rem;
+      }
+      .hero-section .cupo-limitado {
+        margin-top: 15px;
+        color: var(--color-primary);
+        font-weight: bold;
+      }
+      .impact-section {
+        background-color: var(--color-bg-medium);
+      }
+      .features-section ul {
+        list-style: none;
+        padding: 0;
+        max-width: 600px;
+        margin: 40px auto 0;
+        text-align: left;
+      }
+      .features-section li {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: transform 0.3s, background-color 0.3s;
+      }
+      .features-section li:hover {
+        transform: translateY(-5px);
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      .features-section .li-icon {
+        font-size: 1.5rem;
+        color: var(--color-primary);
+      }
+      .offer-section {
+        background: radial-gradient(
+          ellipse at 50% 100%,
+          var(--color-bg-medium) 0%,
+          var(--color-bg-dark) 80%
+        );
+      }
+      .offer-card {
+        background: var(--color-bg-light-translucent);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--color-border);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 500px;
+        margin: auto;
+      }
+      .offer-card .price {
+        font-size: 4rem;
+        font-weight: 800;
+        color: var(--color-primary);
+        margin: 10px 0;
+      }
+      .offer-card .original-price {
+        text-decoration: line-through;
+        opacity: 0.7;
+      }
+      .offer-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+      }
+      .offer-card li {
+        margin-bottom: 10px;
+      }
+      .about-section {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 50px;
+        text-align: left;
+      }
+      .about-photo {
+        flex: 1;
+        min-width: 250px;
+        text-align: center;
+      }
+      .about-photo img {
+        width: 100%;
+        max-width: 350px;
+        border-radius: 50%;
+        border: 4px solid var(--color-primary);
+        box-shadow: 0 0 40px rgba(230, 0, 126, 0.3);
+      }
+      .about-text {
+        flex: 2;
+        min-width: 300px;
+      }
+      .about-text .quote {
+        font-style: italic;
+        font-size: 1.3rem;
+        margin-top: 20px;
+        padding-left: 20px;
+        border-left: 3px solid var(--color-accent);
+      }
+      .video-section .video-container {
+        position: relative;
+        max-width: 800px;
+        margin: auto;
+        aspect-ratio: 16/9;
+        border-radius: 16px;
+        overflow: hidden;
+        background-color: #000;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      }
+      .video-section .video-container iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+      }
+      .testimonials-section {
+        background-color: var(--color-bg-medium);
+      }
+      .testimonial-card {
+        background: var(--color-bg-dark);
+        padding: 30px;
+        border-radius: 12px;
+        border: 1px solid var(--color-border);
+        max-width: 650px;
+        margin: 20px auto;
+      }
+      .testimonial-card p {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+      }
+      .testimonial-card footer {
+        font-weight: bold;
+        color: var(--color-primary);
+      }
+      .faq-section .faq-item {
+        max-width: 700px;
+        margin: 30px auto;
+        text-align: left;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 20px;
+      }
+      .faq-section .faq-question {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      @media (max-width: 768px) {
+        .section-heading {
+          font-size: 2.2rem;
+        }
+        .hero-section .section-heading {
+          font-size: 2.5rem;
+        }
+        .about-section {
+          text-align: center;
+        }
+        .about-text {
+          text-align: center;
+        }
+        .about-text .section-heading {
+          text-align: center;
+        }
+        .about-text .quote {
+          margin: 20px auto;
+        }
+      }
+
+      /* --- ESTILOS DEL FOOTER MEJORADO --- */
+      .site-footer {
+        background-color: #000000;
+        color: var(--color-text-medium);
+        padding: 60px 0 20px 0;
+        border-top: 1px solid var(--color-border);
+      }
+      .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 40px;
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto 40px auto;
+        text-align: left;
+      }
+      .footer-column h4 {
+        font-family: var(--font-headings);
+        color: var(--color-text-light);
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+      .footer-column h4::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--color-primary),
+          var(--color-accent)
+        );
+      }
+      .footer-column p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+      }
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-column ul li {
+        margin-bottom: 12px;
+      }
+      .footer-column ul a {
+        color: var(--color-text-medium);
+        text-decoration: none;
+        transition: color 0.3s ease, padding-left 0.3s ease;
+      }
+      .footer-column ul a:hover {
+        color: var(--color-primary);
+        padding-left: 5px;
+      }
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      .social-icons a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+      .social-icons a:hover {
+        background-color: var(--color-primary);
+        transform: scale(1.1);
+      }
+      .social-icons svg {
+        width: 20px;
+        height: 20px;
+        fill: var(--color-text-light);
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--color-border);
+        padding-top: 20px;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- HERO SECTION -->
+      <section class="page-section hero-section">
+        <div class="container">
+          <h1 class="section-heading">
+            Lo que descubriste no fue casualidad.<br />Ahora puedes liberarlo,
+            con amor y en consciencia.
+          </h1>
+          <p class="section-subheading">
+            Agenda tu AromaConstelación con la Maestra Carmen Rascón e incluye
+            tu aceite esencial terapéutico de regalo.
+          </p>
+          <a href="#" class="cta-button">Quiero mi sesión con Aroma</a>
+          <p class="cupo-limitado">
+            ⬆️ Cupo limitado — sólo por tiempo y existencias limitadas.
+          </p>
+        </div>
+      </section>
+
+      <!-- IMPACT SECTION -->
+      <section class="page-section impact-section">
+        <div class="container">
+          <h2 class="section-heading">
+            Has visto con claridad lo que podrías estar cargando.
+          </h2>
+          <p class="section-subheading">
+            Y ahora tienes la oportunidad de dejar de repetirlo, liberarlo con
+            respeto, y anclar una nueva historia. Las AromaConstelaciones son
+            sesiones individuales por Zoom donde Carmen Rascón te guía para
+            resignificar tu herencia emocional y reescribir tu destino.
+          </p>
+          <p
+            style="
+              font-size: 1.5rem;
+              font-weight: bold;
+              color: var(--color-primary);
+            "
+          >
+            🌀 La diferencia: trabajamos con tu linaje… y también con tu cuerpo
+            a través de la Aromaterapia.
+          </p>
+        </div>
+      </section>
+
+      <!-- WHAT IS SECTION -->
+      <section class="page-section features-section">
+        <div class="container">
+          <h2 class="section-heading">� ¿QUÉ ES UNA AROMACONSTELACIÓN?</h2>
+          <p class="section-subheading">
+            Una terapia breve, amorosa y sin juicio.
+          </p>
+          <ul>
+            <li><span class="li-icon">🔹</span> 60–75 minutos por Zoom.</li>
+            <li>
+              <span class="li-icon">🔹</span> Partimos de tu resultado sistémico
+              personalizado.
+            </li>
+            <li>
+              <span class="li-icon">🔹</span> Usamos aceites esenciales para
+              activar memorias profundas.
+            </li>
+            <li>
+              <span class="li-icon">🔹</span> Te vas con una tarea y un anclaje
+              emocional en casa.
+            </li>
+          </ul>
+          <p style="font-size: 1.3rem; margin-top: 30px">
+            🧦 Constelación + Aroma = integración emocional real.
+          </p>
+        </div>
+      </section>
+
+      <!-- OFFER SECTION -->
+      <section class="page-section offer-section">
+        <div class="container">
+          <h2 class="section-heading">🎁 ¿QUÉ INCLUYE TU SESIÓN?</h2>
+          <div class="offer-card">
+            <ul>
+              <li>🎟️ 1 sesión de AromaConstelación (valor real: $150 USD)</li>
+              <li>
+                🌿 1 aceite esencial terapéutico de regalo (valor real: $40 USD)
+              </li>
+              <li>
+                📄 Acceso a comunidad de sanación y formación internacional
+              </li>
+            </ul>
+            <p>🔥 OFERTA ESPECIAL DE LANZAMIENTO</p>
+            <p class="price">Solo hoy: $75 USD</p>
+            <p>(50% de descuento + regalo incluido)</p>
+            <a href="#" class="cta-button">Quiero mi sesión + mi aceite</a>
+            <p style="margin-top: 15px; font-size: 0.9rem">
+              🕒 Hasta agotar stock de aceites disponibles.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section class="page-section">
+        <div class="container about-section">
+          <div class="about-photo">
+            <img
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop"
+              alt="Foto de Carmen Rascón"
+            />
+          </div>
+          <div class="about-text">
+            <h2 class="section-heading" style="text-align: left">
+              👩‍🏫 Sobre Carmen Rascón
+            </h2>
+            <p>
+              Maestra en Psicología Sistémica, formada directamente por Bert
+              Hellinger. Creadora de las AromaConstelaciones y formadora
+              internacional de terapeutas.
+            </p>
+            <p class="quote">
+              "Estoy aquí para acompañarte con respeto, sin juicio... y con todo
+              mi corazón."
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIDEO SECTION -->
+      <section
+        class="page-section video-section"
+        style="background-color: var(--color-bg-medium)"
+      >
+        <div class="container">
+          <h2 class="section-heading">🎥 ¿Por qué una AromaConstelación?</h2>
+          <p class="section-subheading">
+            Ya descubriste el patrón… ahora escucha cómo puedes liberarlo. La
+            creadora del método te habla directo al corazón.
+          </p>
+          <div class="video-container">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <p class="section-subheading" style="margin-top: 40px">
+            Ahora lo sabes: no estás roto. Solo has estado mirando con las gafas
+            de tu historia familiar. Y eso puede cambiar. Tu cuerpo también
+            merece sanar lo que tu mente ya comprendió.
+          </p>
+          <a href="#" class="cta-button">Quiero mi sesión + mi aceite</a>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS SECTION -->
+      <section class="page-section testimonials-section">
+        <div class="container">
+          <h2 class="section-heading">💬 Testimonios Reales</h2>
+          <div class="testimonial-card">
+            <p>
+              “Nunca había hecho una constelación tan profunda. El aroma me
+              llevó a recuerdos que ni sabía que estaban.”
+            </p>
+            <footer>– Lucía B.</footer>
+          </div>
+          <div class="testimonial-card">
+            <p>
+              “Todo cobró sentido. Por fin supe qué me frenaba, y cómo soltarlo
+              con amor.”
+            </p>
+            <footer>– Alejandro E.</footer>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ SECTION -->
+      <section class="page-section faq-section">
+        <div class="container">
+          <h2 class="section-heading">❓ Preguntas Frecuentes</h2>
+          <div class="faq-item">
+            <h3 class="faq-question">¿Funciona si nunca he constelado?</h3>
+            <p>
+              Sí. Carmen te acompaña paso a paso. No necesitas experiencia
+              previa.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">¿Cómo me llega el aceite?</h3>
+            <p>Por paquetería a tu domicilio tras agendar la sesión.</p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">¿Por qué cuesta menos de lo que vale?</h3>
+            <p>
+              Es una oferta especial de lanzamiento. Queremos que más personas
+              accedan sin barreras.
+            </p>
+          </div>
+          <div class="faq-item">
+            <h3 class="faq-question">¿Y si no puedo pagar con tarjeta?</h3>
+            <p>
+              Ofrecemos otras opciones de pago internacional.
+              <a href="#" style="color: var(--color-primary)">Consulta aquí.</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA SECTION -->
+      <section
+        class="page-section"
+        style="background-color: var(--color-bg-medium)"
+      >
+        <div class="container">
+          <h2 class="section-heading">🚀 Llamado Final al Movimiento</h2>
+          <p class="section-subheading">
+            Esta sesión no es solo para ti. Es para tu linaje.<br />Para dejar
+            de repetir. Para empezar a crear.
+          </p>
+          <p class="body-text" style="font-size: 1.4rem; font-weight: bold">
+            Tu historia empieza a transformarse ahora.
+          </p>
+          <a href="#" class="cta-button"
+            >SÍ, QUIERO MI AROMACONSTELACIÓN + MI ACEITE DE REGALO</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <!-- INICIO DEL FOOTER MEJORADO -->
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h4>CARMEN RASCÓN</h4>
+          <p>AromaConstelaciones®</p>
+          <div class="social-icons">
+            <a href="#" title="Instagram"
+              ><svg viewBox="0 0 448 512">
+                <path
+                  d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8z"
+                /></svg
+            ></a>
+            <a href="#" title="Facebook"
+              ><svg viewBox="0 0 512 512">
+                <path
+                  d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"
+                /></svg
+            ></a>
+            <a href="#" title="YouTube"
+              ><svg viewBox="0 0 576 512">
+                <path
+                  d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 42.276 48.284 48.597C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.322 42.003-24.947 48.284-48.597 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zM232.615 355.732V156.268L384.07 256l-151.455 99.732z"
+                /></svg
+            ></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h4>Enlaces Rápidos</h4>
+          <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Sobre Carmen</a></li>
+            <li><a href="#">Testimonios</a></li>
+            <li><a href="#">Preguntas Frecuentes</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Aviso Legal</h4>
+          <p>
+            Este servicio no reemplaza la consulta médica o psicológica
+            profesional. Es una herramienta de acompañamiento para el
+            autoconocimiento y crecimiento personal.
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2024 doPRANA. Todos los derechos reservados. |
+          <a href="#">Aviso de Privacidad</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+�
