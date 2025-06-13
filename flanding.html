@@ -182,6 +182,20 @@
         object-fit: cover;
         display: block;
       }
+
+      .pre-cta-note {
+        background: rgba(230, 0, 126, 0.05);
+        border: 1px solid rgba(230, 0, 126, 0.2);
+        border-radius: 12px;
+        padding: 25px;
+        max-width: 600px;
+        margin: 40px auto 0;
+        color: var(--color-text-medium);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        line-height: 1.8;
+      }
+
       .about-carmen {
         background-color: var(--color-bg-dark);
       }
@@ -238,11 +252,13 @@
         padding: 0;
         margin-top: 40px;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
         gap: 15px;
-        max-width: 600px;
+        max-width: 1100px;
         margin: 40px auto 0 auto;
+        flex-wrap: wrap;
       }
       .what-is-section li {
         font-size: 1.1em;
@@ -252,7 +268,7 @@
         background-color: rgba(255, 255, 255, 0.05);
         padding: 12px 20px;
         border-radius: 8px;
-        width: 100%;
+        width: auto;
         text-align: left;
       }
       .what-is-section .li-icon {
@@ -599,6 +615,14 @@
         .landing-h2 {
           font-size: 2.2rem;
         }
+        .what-is-section ul {
+          flex-direction: column;
+          align-items: center;
+        }
+        .what-is-section li {
+          width: 100%;
+          max-width: 500px;
+        }
       }
       @media (max-width: 576px) {
         .landing-h1 {
@@ -640,21 +664,32 @@
             src="https://storage.googleapis.com/msgsndr/B2lEzXaDqgTbqj7AqqWN/media/681ccc6c02d0206f8c00b4e7.mp4"
           ></video>
         </div>
+        <div class="pre-cta-note">
+          🌿 Prepárate para mirar tu historia con amor. Este test no es una
+          simple encuesta. Cada respuesta será un paso en tu propio proceso de
+          sanación. Incluso el acto de escribir lo que llevas dentro puede ser
+          ya el inicio de una liberación. Tómate el tiempo. Respira. Este es un
+          regalo para ti.
+        </div>
         <button class="cta-button" onclick="openIntroPopup()">
           ✨ Haz el test sistémico gratuito
         </button>
       </div>
     </section>
+
+    <!-- SECCIÓN MODIFICADA -->
     <section class="what-is-section">
       <div class="container fade-in">
         <h2 class="landing-h2">¿Qué es este test?</h2>
         <p class="landing-p">
-          Este no es un test común. Es una herramienta terapéutica creada a
-          partir de la experiencia de Carmen Rascón, Maestra en Psicología
-          Sistémica, formada con Bert Hellinger y creadora de las
-          AromaConstelaciones. <br />A través de tus respuestas, podrás
-          identificar las lealtades invisibles que podrías estar repitiendo en
-          tu vida afectiva y económica.
+          Es una herramienta terapéutica en tiempo real creada a partir de la
+          experiencia de Carmen Rascón, Maestra en Psicología Sistémica, formada
+          con Bert Hellinger y creadora de las AromaConstelaciones.
+          <br /><br />
+          A través de tus respuestas identificaremos las lealtades invisibles
+          que podrías estar repitiendo en tu vida afectiva y económica para
+          entregarte un resultado gratuito que te permita iniciar o continuar
+          con tu proceso de autoconocimiento.
         </p>
         <ul>
           <li><span class="li-icon">✅</span> Confidencial</li>
@@ -667,6 +702,8 @@
         </ul>
       </div>
     </section>
+    <!-- FIN DE SECCIÓN MODIFICADA -->
+
     <section class="about-carmen">
       <div class="container">
         <div class="about-grid">
@@ -775,11 +812,23 @@
       </div>
     </section>
     <footer class="footer">
-      <p>&copy; 2024 doPRANA | <a href="#">Aviso de Privacidad</a></p>
+      <p>
+        &copy; 2025 AromaConstelaciones | <a href="#">Aviso de Privacidad</a>
+      </p>
     </footer>
 
     <div class="popup-container" id="popupContainer">
       <div class="popup-step active" id="popupStep1">
+        <h2>🌿 Este es tu espacio seguro.</h2>
+        <p>
+          Responde con libertad y sinceridad. Entre más detalles compartas, más
+          profundo será tu reflejo.
+        </p>
+        <button class="nav-btn" id="introNextBtn1" onclick="showNextPopup()">
+          Siguiente
+        </button>
+      </div>
+      <div class="popup-step" id="popupStep2">
         <h2>🌿 Este no es un test cualquiera.</h2>
         <p>
           Es una herramienta terapéutica basada en psicología sistémica que
@@ -798,18 +847,18 @@
           id="introName"
           class="input-field"
           placeholder="Tu nombre completo"
-          oninput="updateIntroButtonState(1)"
+          oninput="updateIntroButtonState(2)"
         />
         <button
           class="nav-btn"
-          id="introNextBtn1"
+          id="introNextBtn2"
           onclick="showNextPopup()"
           disabled
         >
           Siguiente
         </button>
       </div>
-      <div class="popup-step" id="popupStep2">
+      <div class="popup-step" id="popupStep3">
         <h2>¿Cómo funciona?</h2>
         <p>
           Cada pregunta que verás ha sido construida desde el enfoque de las
@@ -828,18 +877,18 @@
           id="introEmail"
           class="input-field"
           placeholder="Tu correo electrónico"
-          oninput="updateIntroButtonState(2)"
+          oninput="updateIntroButtonState(3)"
         />
         <button
           class="nav-btn"
-          id="introNextBtn2"
+          id="introNextBtn3"
           onclick="showNextPopup()"
           disabled
         >
           Siguiente
         </button>
       </div>
-      <div class="popup-step" id="popupStep3">
+      <div class="popup-step" id="popupStep4">
         <h2>Antes de comenzar</h2>
         <p>
           🧘‍♀️ Respira. Este momento es solo para ti. Tómate tu tiempo, escribe
@@ -855,7 +904,7 @@
           id="introAge"
           class="input-field"
           placeholder="Tu edad"
-          oninput="updateIntroButtonState(3)"
+          oninput="updateIntroButtonState(4)"
         />
         <button
           class="nav-btn"
@@ -893,7 +942,7 @@
       let currentPopup = 1;
       let introData = {};
       let current = 0;
-      let answers = {}; // CAMBIO: Usamos un objeto para mayor robustez
+      let answers = {}; // Usamos un objeto para mayor robustez
 
       const quiz = [
         {
@@ -1074,6 +1123,7 @@
         document.getElementById("popupStep1").classList.add("active");
         document.getElementById("popupStep2").classList.remove("active");
         document.getElementById("popupStep3").classList.remove("active");
+        document.getElementById("popupStep4").classList.remove("active");
         currentPopup = 1;
         introData = {};
         updateIntroButtonState(1);
@@ -1081,15 +1131,17 @@
 
       function updateIntroButtonState(step) {
         if (step === 1) {
-          const nameInput = document.getElementById("introName");
-          document.getElementById("introNextBtn1").disabled =
-            nameInput.value.trim() === "";
+          // No input to validate, button is always enabled
         } else if (step === 2) {
+          const nameInput = document.getElementById("introName");
+          document.getElementById("introNextBtn2").disabled =
+            nameInput.value.trim() === "";
+        } else if (step === 3) {
           const emailInput = document.getElementById("introEmail");
           const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          document.getElementById("introNextBtn2").disabled =
+          document.getElementById("introNextBtn3").disabled =
             !emailPattern.test(emailInput.value);
-        } else if (step === 3) {
+        } else if (step === 4) {
           const ageInput = document.getElementById("introAge");
           document.getElementById("startQuizBtn").disabled =
             ageInput.value.trim() === "" ||
@@ -1102,11 +1154,13 @@
         const currentStepEl = document.getElementById(
           `popupStep${currentPopup}`
         );
-        if (currentPopup === 1)
+
+        if (currentPopup === 2)
           introData.nombre_completo =
             document.getElementById("introName").value;
-        if (currentPopup === 2)
+        if (currentPopup === 3)
           introData.email = document.getElementById("introEmail").value;
+
         currentStepEl.classList.remove("active");
         currentPopup++;
         const nextStep = document.getElementById(`popupStep${currentPopup}`);
@@ -1116,7 +1170,6 @@
         }
       }
 
-      // --- CAMBIO #1: Aseguramos que los datos iniciales se pasen al objeto principal de respuestas ---
       function startQuizFromIntro() {
         introData.edad = document.getElementById("introAge").value;
 
@@ -1190,7 +1243,6 @@
         updateQuizButtonState();
       }
 
-      // --- CAMBIO #2: Lógica de respuestas modificada para usar IDs ---
       function updateQuizButtonState() {
         if (current >= quiz.length) return;
         const q = quiz[current];
@@ -1229,7 +1281,7 @@
         } else {
           selection.splice(indexInSelection, 1);
         }
-        renderQuiz(); // Re-render para mostrar el cambio visual
+        renderQuiz(); // Re-render to show visual change
       }
 
       function nextStep() {
@@ -1253,7 +1305,6 @@
         }
       }
 
-      // --- CAMBIO #3: FUNCIÓN DE ENVÍO FINAL Y CORRECTA ---
       function sendAnswersToMake() {
         const button = document.getElementById("finalSubmitBtn");
         if (button) {
@@ -1270,7 +1321,7 @@
           }
         });
 
-        // Añadimos los datos del popup inicial al objeto final
+        // Add initial popup data to the final object
         formData.nombre_completo = introData.nombre_completo;
         formData.email = introData.email;
         formData.edad = introData.edad;
@@ -1279,7 +1330,7 @@
         console.log("Enviando datos finales:", formData);
 
         fetch("https://hook.us2.make.com/ql9bnmilwb8e63h6ndtsys37po68gurn", {
-          // <-- **REEMPLAZA CON TU NUEVA URL DEL WEBHOOK**
+          // <-- **REPLACE WITH YOUR NEW WEBHOOK URL**
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
@@ -1298,7 +1349,7 @@
             console.log("Respuesta de la IA recibida:", data.respuesta);
             localStorage.setItem("resultadoSistemico", data.respuesta);
             window.location.href =
-              "https://app.ndefi.io/v2/preview/2oAuoaq9tGRpcYe9918W"; // <-- URL DE TU PÁGINA DE RESULTADOS
+              "https://app.ndefi.io/v2/preview/2oAuoaq9tGRpcYe9918W"; // <-- YOUR RESULTS PAGE URL
           })
           .catch((err) => {
             console.error("Error en el proceso de fetch:", err);
