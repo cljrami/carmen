@@ -1,0 +1,1961 @@
+{
+    "name": "CARME (copy)",
+    "flow": [
+        {
+            "id": 15,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 760544
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": -250,
+                    "y": 0
+                }
+            }
+        },
+        {
+            "id": 18,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 2652980
+            },
+            "mapper": {
+                "select": "chat",
+                "temperature": "1",
+                "top_p": "1",
+                "n_completions": "1",
+                "model": "o4-mini",
+                "max_tokens": "2048",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "{{15.edad}}{{15.miedo_exito}}{{15.tiene_hijos}}{{15.anhelo_sanar}}{{15.tiene_pareja}}{{15.frases_dinero}}{{15.rol_diferente}}{{15.creencias_amor}}{{15.relacion_madre}}{{15.relacion_padre}}{{15.sintoma_fisico}}{{15.nombre_completo}}{{15.ambiente_infancia}}{{15.familiar_admirado}}{{15.parecido_familiar}}{{15.temas_no_hablados}}{{15.familiar_rechazado}}{{15.patron_sentimental}}{{15.separacion_dificil}}{{15.emociones_multiples}}{{15.excluido_por_dinero}}{{15.responsable_de_quien}}{{15.propension_dar_recibir}}{{15.relacion_padres_dinero}}{{15.situaciones_repetitivas}}{{15.emocion_mas_dinero_padres}}{{15.comparacion_familiar_exito}}\nEres un terapeuta experto en Psicología Sistémica (enfoque Bert Hellinger), especializado en Constelaciones Familiares, Biodescodificación Emocional, Heridas de la Infancia, los Cinco Lenguajes del Amor y Aromaterapia Emocional. Tu enfoque principal son las relaciones de pareja y bloqueos relacionados con abundancia, dinero y amor.\r\nVas a elaborar un Perfil de Lealtades Invisibles completamente personalizado, basado en las respuestas detalladas del cuestionario que recibirás.\r\nEste informe será leído directamente por el usuario, como si la propia Carmen Rascón estuviera guiando el proceso. Debe estar escrito con un lenguaje:\r\nAmoroso, cálido y empático.\r\n\r\n\r\nConversacional, terapéutico y respetuoso.\r\n\r\n\r\nProfundo, pero muy claro.\r\n\r\n\r\nSin juicios ni tecnicismos innecesarios.\r\n\r\n\r\nEstructura de salida obligatoria:\r\n\r\n🌿 Bienvenida\r\nPresentación inicial de Carmen Rascón, validando el proceso personal que el usuario acaba de realizar. Recuerda:\r\nEste documento no es diagnóstico clínico, es una guía de reflexión basada en su historia familiar.\r\n\r\n1️⃣ Dinámicas familiares e historia emocional\r\nResume los aspectos principales relatados por el usuario sobre su infancia, relaciones parentales y contexto emocional familiar.\r\n\r\n\r\nCuando identifiques eventos transgeneracionales (divorcio, migración, abuso, pérdidas, secretos, enfermedades), debes:\r\n\r\n\r\nMencionar el evento.\r\n\r\n\r\nExplicar por qué dicho evento genera cargas sistémicas, usando principios de la psicología sistémica: compensación, pertenencia inconsciente, expiación, exclusiones, inversiones de rol, etc.\r\n\r\n\r\nRelacionar el evento con su posible manifestación actual.\r\n\r\n\r\nSiempre utiliza ejemplos concretos o frases textuales de las respuestas cuando sea posible, para que el usuario se sienta realmente leído.\r\n\r\n\r\n\r\n2️⃣ Patrones familiares que se repiten\r\nIdentifica y describe patrones detectados (económicos, relacionales, de salud, de exclusión o de autosacrificio).\r\n\r\n\r\nPara cada patrón identificado, debes:\r\n\r\n\r\nExplicar por qué se está repitiendo, conectando las dinámicas inconscientes del sistema familiar.\r\n\r\n\r\nRelacionar las causas transgeneracionales y cómo impactan en sus síntomas actuales.\r\n\r\n\r\nEvita explicaciones genéricas.\r\n\r\n\r\n\r\n3️⃣ Aspectos emocionales a trabajar\r\nEnumera los principales bloqueos emocionales, creencias limitantes y lealtades inconscientes encontradas.\r\n\r\n\r\nUsa el propio lenguaje o experiencias relatadas por el usuario cuando sea posible.\r\n\r\n\r\nEjemplos de aspectos a trabajar:\r\n\r\n\r\nHiperresponsabilidad.\r\n\r\n\r\nCulpa por prosperar.\r\n\r\n\r\n\nBloqueo al recibir.\r\n\r\n\r\nMiedo a superar a los ancestros.\r\n\r\n\r\nVergüenza sistémica.\r\n\r\n\r\nConflictos de merecimiento.\r\n\r\n\r\n\r\n4️⃣ Somatización emocional y biológica\r\nIdentifica posibles somatizaciones físicas actuales o potenciales, vinculadas a los bloqueos emocionales relatados.\r\n\r\n\r\nExplica con lenguaje terapéutico cómo el cuerpo puede expresar lo no resuelto, pero siempre con esperanza de transformación.\r\n\r\n\r\n\r\n5️⃣ Acciones para su proceso\r\nEjercicio terapéutico diario (mantra breve para el subconsciente).\r\n\r\n\r\nCarta simbólica (a quién dirigirla y qué intención tiene).\r\n\r\n\r\nVisualización sistémica (ejercicio de integración visual y emocional).\r\n\r\n\r\n\r\n6️⃣ Aromaterapia emocional recomendada\r\nEl aceite siempre será Abeto Siberiano.\r\n\r\n\r\nExplica de forma profesional, pero accesible, por qué este aceite es el más indicado para desbloquear cargas transgeneracionales, equilibrar el sistema emocional y anclar el nuevo orden sistémico.\r\n\r\n\r\nIndica forma de uso sugerida (difusión, tópico, inhalación).\r\n\r\n\r\n\r\n7️⃣ Cierre emocional\r\nAbre el cierre con la frase:\r\n ¿Hasta cuándo seguirás cargando con lo que no es tuyo?\r\n\r\n\r\nReafirma que lo que ha descubierto no es casualidad, sino el inicio de una transformación posible.\r\n\r\n\r\nIntegra el método de AromaConstelaciones como la vía profesional para continuar el proceso.\r\n\r\n\r\nTermina con un llamado a continuar el camino (coloca como:\r\n 👉 [LINK DE CONTINUACIÓN])\r\n\r\n\r\n\r\n🎯 INSTRUCCIÓN CRÍTICA GENERAL:\r\nNo uses lenguaje superficial ni genérico.\r\n\r\n\r\nProfundiza conectando hechos y emociones relatadas.\r\n\r\n\r\nPersonaliza usando el contexto real del usuario.\r\n\r\n\r\nPrioriza la contención emocional, la claridad terapéutica y la resonancia personal.\r\n",
+                        "imageDetail": "auto"
+                    }
+                ],
+                "response_format": "text"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "My OpenAI connection",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "select": {
+                            "label": "Create a Chat Completion (GPT and o1 models)"
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "tool_choice": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "chose",
+                            "label": "o4-mini (system)"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    },
+                                    "imageInputType": {
+                                        "mode": "chose",
+                                        "label": "Empty"
+                                    },
+                                    "imageDetail": {
+                                        "mode": "chose",
+                                        "label": "Auto"
+                                    }
+                                }
+                            ]
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "Text"
+                        },
+                        "reasoning_effort": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "type": "array",
+                        "label": "Token Probability",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "tool_choice",
+                        "type": "select",
+                        "label": "Tool Choice",
+                        "validate": {
+                            "enum": [
+                                "none",
+                                "auto",
+                                "required"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "stop",
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        },
+                        "spec": {
+                            "type": "text",
+                            "label": "Stop Sequence",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "type": "array",
+                        "label": "Other Input Parameters",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "uinteger",
+                        "label": "Max Completion Tokens"
+                    },
+                    {
+                        "name": "messages",
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true,
+                        "spec": {
+                            "label": "Message",
+                            "type": "collection",
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "required": true,
+                                    "options": {
+                                        "store": [
+                                            {
+                                                "label": "User",
+                                                "value": "user",
+                                                "nested": [
+                                                    {
+                                                        "help": "Text content of the message on behalf of the selected __Role__.",
+                                                        "name": "content",
+                                                        "type": "text",
+                                                        "label": "Text Content"
+                                                    },
+                                                    {
+                                                        "name": "imageInputType",
+                                                        "type": "select",
+                                                        "label": "Image Input Type",
+                                                        "mappable": false,
+                                                        "options": [
+                                                            {
+                                                                "value": "url",
+                                                                "label": "URL",
+                                                                "nested": [
+                                                                    {
+                                                                        "name": "imageUrl",
+                                                                        "label": "Image URL",
+                                                                        "type": "url",
+                                                                        "help": "Make sure to use a publicly accessible URL.\nYou can test if your image is publicly accessible by opening the link in an incognito tab."
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "value": "file",
+                                                                "label": "Image File",
+                                                                "nested": [
+                                                                    {
+                                                                        "name": "imageFile",
+                                                                        "label": "Image",
+                                                                        "type": "collection",
+                                                                        "spec": [
+                                                                            {
+                                                                                "name": "imageFilename",
+                                                                                "type": "filename",
+                                                                                "label": "Image Filename",
+                                                                                "semantic": "file:name",
+                                                                                "extension": [
+                                                                                    "jpg",
+                                                                                    "jpeg",
+                                                                                    "png",
+                                                                                    "webp",
+                                                                                    "gif"
+                                                                                ],
+                                                                                "help": "Accepted extensions: `.jpg`, `.jpeg`, `.png`, `.webp` and `.gif`."
+                                                                            },
+                                                                            {
+                                                                                "name": "imageData",
+                                                                                "type": "buffer",
+                                                                                "label": "Image Data",
+                                                                                "semantic": "file:data"
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "name": "imageDetail",
+                                                        "type": "select",
+                                                        "label": "Image Detail",
+                                                        "help": "Recommended value: `Auto`",
+                                                        "options": [
+                                                            {
+                                                                "value": "auto",
+                                                                "default": true,
+                                                                "label": "Auto"
+                                                            },
+                                                            {
+                                                                "value": "high",
+                                                                "label": "High"
+                                                            },
+                                                            {
+                                                                "value": "low",
+                                                                "label": "Low"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "label": "Assistant",
+                                                "value": "assistant",
+                                                "nested": [
+                                                    {
+                                                        "help": "Text content of the message on behalf of the selected __Role__.",
+                                                        "name": "content",
+                                                        "type": "text",
+                                                        "label": "Text Content"
+                                                    },
+                                                    {
+                                                        "name": "tool_calls",
+                                                        "label": "Tool Calls",
+                                                        "type": "array",
+                                                        "labels": {
+                                                            "add": "Add tool call"
+                                                        },
+                                                        "mode": "edit",
+                                                        "mappable": {
+                                                            "help": "You can map the entire `Choices[]: Message.Tool Calls` array from a previous Create a Completion module here."
+                                                        },
+                                                        "spec": {
+                                                            "label": "Tool Call",
+                                                            "type": "collection",
+                                                            "spec": [
+                                                                {
+                                                                    "name": "type",
+                                                                    "type": "hidden",
+                                                                    "default": "function"
+                                                                },
+                                                                {
+                                                                    "name": "id",
+                                                                    "type": "text",
+                                                                    "label": "Tool call ID",
+                                                                    "help": "Map this directly from the output of a previous **Create a Completion** module. Look for `Choices[]: Message.Tool Calls[]: ID`."
+                                                                },
+                                                                {
+                                                                    "name": "function",
+                                                                    "type": "collection",
+                                                                    "label": "Function",
+                                                                    "spec": [
+                                                                        {
+                                                                            "name": "name",
+                                                                            "label": "Name",
+                                                                            "type": "text",
+                                                                            "required": true,
+                                                                            "help": "The name of the function previously called."
+                                                                        },
+                                                                        {
+                                                                            "name": "arguments",
+                                                                            "label": "Arguments",
+                                                                            "type": "text",
+                                                                            "required": true,
+                                                                            "help": "The arguments previously output by the AI."
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "label": "Developer / System",
+                                                "nested": [
+                                                    {
+                                                        "help": "Text content of the message on behalf of the selected __Role__.",
+                                                        "name": "content",
+                                                        "type": "text",
+                                                        "label": "Text Content"
+                                                    }
+                                                ],
+                                                "value": "system"
+                                            },
+                                            {
+                                                "label": "Tool",
+                                                "value": "tool",
+                                                "nested": [
+                                                    {
+                                                        "help": "The return of the function. This role should only be used when you have processed a previous function call and want to send the output of the function execution back to the AI.",
+                                                        "name": "content",
+                                                        "type": "text",
+                                                        "label": "Text Content",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "label": "Tool Call ID.",
+                                                        "name": "tool_call_id",
+                                                        "type": "text",
+                                                        "required": true,
+                                                        "help": "Map this directly from the output of a previous **Create a Completion** module. Look for `Choices[]: Message.Tool Calls[]: ID`."
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "reasoning_effort",
+                        "type": "select",
+                        "label": "Reasoning Effort",
+                        "validate": {
+                            "enum": [
+                                "low",
+                                "medium",
+                                "high"
+                            ]
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "result",
+                        "type": "any",
+                        "label": "Result"
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "object",
+                        "type": "text",
+                        "label": "Object"
+                    },
+                    {
+                        "name": "created",
+                        "type": "date",
+                        "label": "Created"
+                    },
+                    {
+                        "name": "model",
+                        "type": "text",
+                        "label": "Model"
+                    },
+                    {
+                        "name": "choices",
+                        "spec": [
+                            {
+                                "name": "text",
+                                "type": "text",
+                                "label": "Text"
+                            },
+                            {
+                                "name": "index",
+                                "type": "number",
+                                "label": "Index"
+                            },
+                            {
+                                "name": "logprobs",
+                                "type": "text",
+                                "label": "Log Probs"
+                            },
+                            {
+                                "name": "finish_reason",
+                                "type": "text",
+                                "label": "Finish Reason"
+                            },
+                            {
+                                "name": "message",
+                                "spec": [
+                                    {
+                                        "name": "role",
+                                        "type": "text",
+                                        "label": "Role"
+                                    },
+                                    {
+                                        "name": "content",
+                                        "type": "text",
+                                        "label": "Content"
+                                    },
+                                    {
+                                        "name": "tool_calls",
+                                        "spec": [
+                                            {
+                                                "name": "id",
+                                                "type": "text",
+                                                "label": "ID"
+                                            },
+                                            {
+                                                "name": "type",
+                                                "type": "text",
+                                                "label": "Type"
+                                            },
+                                            {
+                                                "name": "function",
+                                                "spec": [
+                                                    {
+                                                        "name": "name",
+                                                        "type": "text",
+                                                        "label": "Name"
+                                                    },
+                                                    {
+                                                        "name": "arguments",
+                                                        "type": "text",
+                                                        "label": "Arguments"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Function"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Tool Calls"
+                                    },
+                                    {
+                                        "name": "refusal",
+                                        "type": "text",
+                                        "label": "Refusal"
+                                    },
+                                    {
+                                        "name": "annotations",
+                                        "spec": [
+                                            {
+                                                "name": "type",
+                                                "type": "text",
+                                                "label": "Type"
+                                            },
+                                            {
+                                                "name": "url_citation",
+                                                "spec": [
+                                                    {
+                                                        "name": "end_index",
+                                                        "type": "number",
+                                                        "label": "End Index"
+                                                    },
+                                                    {
+                                                        "name": "start_index",
+                                                        "type": "number",
+                                                        "label": "Start Index"
+                                                    },
+                                                    {
+                                                        "name": "title",
+                                                        "type": "text",
+                                                        "label": "Title"
+                                                    },
+                                                    {
+                                                        "name": "url",
+                                                        "type": "text",
+                                                        "label": "URL"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "URL Citation"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Annotations"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Message"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Choices"
+                    },
+                    {
+                        "name": "usage",
+                        "spec": [
+                            {
+                                "name": "prompt_tokens",
+                                "type": "number",
+                                "label": "Prompt Tokens"
+                            },
+                            {
+                                "name": "completion_tokens",
+                                "type": "text",
+                                "label": "Completion Tokens"
+                            },
+                            {
+                                "name": "total_tokens",
+                                "type": "number",
+                                "label": "Total Tokens"
+                            },
+                            {
+                                "name": "prompt_tokens_details",
+                                "spec": [
+                                    {
+                                        "name": "cached_tokens",
+                                        "type": "uinteger",
+                                        "label": "Cached Tokens"
+                                    },
+                                    {
+                                        "name": "text_tokens",
+                                        "type": "uinteger",
+                                        "label": "Text Tokens"
+                                    },
+                                    {
+                                        "name": "image_tokens",
+                                        "type": "uinteger",
+                                        "label": "Image Tokens"
+                                    },
+                                    {
+                                        "name": "audio_tokens",
+                                        "type": "uinteger",
+                                        "label": "Audio Tokens"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Prompt Tokens Details"
+                            },
+                            {
+                                "name": "completion_tokens_details",
+                                "spec": [
+                                    {
+                                        "name": "reasoning_tokens",
+                                        "type": "uinteger",
+                                        "label": "Reasoning Tokens"
+                                    },
+                                    {
+                                        "name": "text_tokens",
+                                        "type": "uinteger",
+                                        "label": "Text Tokens"
+                                    },
+                                    {
+                                        "name": "audio_tokens",
+                                        "type": "uinteger",
+                                        "label": "Audio Tokens"
+                                    },
+                                    {
+                                        "name": "accepted_prediction_tokens",
+                                        "type": "uinteger",
+                                        "label": "Accepted Prediction Tokens"
+                                    },
+                                    {
+                                        "name": "rejected_prediction_tokens",
+                                        "type": "uinteger",
+                                        "label": "Rejected Prediction Tokens"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Completion Tokens Details"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Usage"
+                    },
+                    {
+                        "name": "service_tier",
+                        "type": "text",
+                        "label": "Service Tier"
+                    },
+                    {
+                        "name": "system_fingerprint",
+                        "type": "text",
+                        "label": "System Fingerprint"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 50,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 250,
+                    "y": 0
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 63,
+                            "module": "json:CreateJSON",
+                            "version": 1,
+                            "parameters": {
+                                "type": 122783,
+                                "space": ""
+                            },
+                            "mapper": {
+                                "respuesta": "{{18.choices[].message.content}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 765,
+                                    "y": -283
+                                },
+                                "restore": {
+                                    "parameters": {
+                                        "type": {
+                                            "label": "My data structure"
+                                        },
+                                        "space": {
+                                            "label": "Empty"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "type",
+                                        "type": "udt",
+                                        "label": "Data structure",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "space",
+                                        "type": "select",
+                                        "label": "Indentation",
+                                        "validate": {
+                                            "enum": [
+                                                "tab",
+                                                "2",
+                                                "4"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "respuesta",
+                                        "type": "text",
+                                        "label": null
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 46,
+                            "module": "gateway:WebhookRespond",
+                            "version": 1,
+                            "parameters": {},
+                            "mapper": {
+                                "body": "{{63.json}}",
+                                "status": "200",
+                                "headers": [
+                                    {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                    }
+                                ]
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1284,
+                                    "y": -311
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "headers": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        }
+                                    }
+                                },
+                                "expect": [
+                                    {
+                                        "name": "status",
+                                        "type": "uinteger",
+                                        "label": "Status",
+                                        "required": true,
+                                        "validate": {
+                                            "min": 100
+                                        }
+                                    },
+                                    {
+                                        "name": "body",
+                                        "type": "any",
+                                        "label": "Body"
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 256
+                                                }
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value",
+                                                "required": true,
+                                                "validate": {
+                                                    "max": 4096
+                                                }
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Custom headers",
+                                        "validate": {
+                                            "maxItems": 16
+                                        }
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 52,
+                            "module": "google-sheets:addRow",
+                            "version": 2,
+                            "parameters": {
+                                "__IMTCONN__": 2654940
+                            },
+                            "mapper": {
+                                "from": "drive",
+                                "mode": "select",
+                                "values": {
+                                    "0": "{{15.nombre_completo}}",
+                                    "1": "{{15.email}}",
+                                    "2": "{{15.edad}}",
+                                    "3": "{{15.tiene_pareja}}",
+                                    "4": "{{15.tiene_hijos}}",
+                                    "5": "{{15.relacion_madre}}",
+                                    "6": "{{15.relacion_padre}}",
+                                    "7": "{{15.separacion_dificil}}",
+                                    "8": "{{15.temas_no_hablados}}",
+                                    "9": "{{15.ambiente_infancia}}",
+                                    "10": "{{15.familiar_rechazado}}",
+                                    "11": "{{15.familiar_admirado}}",
+                                    "12": "{{15.situaciones_repetitivas}}",
+                                    "13": "{{15.responsable_de_quien}}",
+                                    "14": "{{15.rol_diferente}}",
+                                    "15": "{{15.propension_dar_recibir}}",
+                                    "16": "{{15.patron_sentimental}}",
+                                    "17": "{{15.creencias_amor}}",
+                                    "18": "{{15.parecido_familiar}}",
+                                    "19": "{{15.relacion_padres_dinero}}",
+                                    "20": "{{15.frases_dinero}}",
+                                    "21": "{{15.emocion_mas_dinero_padres}}",
+                                    "22": "{{15.miedo_exito}}",
+                                    "23": "{{15.excluido_por_dinero}}",
+                                    "24": "{{15.comparacion_familiar_exito}}",
+                                    "25": "{{15.sintoma_fisico}}",
+                                    "26": "{{15.emociones_multiples}}",
+                                    "27": "{{15.anhelo_sanar}}",
+                                    "28": "{{15.timestamp}}"
+                                },
+                                "sheetId": "datos",
+                                "spreadsheetId": "/11HD4JEZG7VB7sbwpWqiJBQ2kJPODTS_1/1OPYI66glkWMjY9_Om1iMAfh5_EvysoX22LSQuldtr28",
+                                "includesHeaders": true,
+                                "insertDataOption": "INSERT_ROWS",
+                                "valueInputOption": "USER_ENTERED",
+                                "insertUnformatted": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 581,
+                                    "y": -10
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "from": {
+                                            "label": "My Drive"
+                                        },
+                                        "mode": {
+                                            "label": "Search by path"
+                                        },
+                                        "sheetId": {
+                                            "label": "datos"
+                                        },
+                                        "spreadsheetId": {
+                                            "path": [
+                                                "Automatizacion Carmen",
+                                                "Automatizacion Carmen Desde Webhook"
+                                            ]
+                                        },
+                                        "includesHeaders": {
+                                            "label": "Yes",
+                                            "nested": [
+                                                {
+                                                    "name": "values",
+                                                    "spec": [
+                                                        {
+                                                            "name": "0",
+                                                            "type": "text",
+                                                            "label": "lala (A)"
+                                                        },
+                                                        {
+                                                            "name": "1",
+                                                            "type": "text",
+                                                            "label": "cljrami@gmail.com (B)"
+                                                        },
+                                                        {
+                                                            "name": "2",
+                                                            "type": "text",
+                                                            "label": "41 (C)"
+                                                        },
+                                                        {
+                                                            "name": "3",
+                                                            "type": "text",
+                                                            "label": "Sí (D)"
+                                                        },
+                                                        {
+                                                            "name": "4",
+                                                            "type": "text",
+                                                            "label": "lala (E)"
+                                                        },
+                                                        {
+                                                            "name": "5",
+                                                            "type": "text",
+                                                            "label": "lala (F)"
+                                                        },
+                                                        {
+                                                            "name": "6",
+                                                            "type": "text",
+                                                            "label": "lala (G)"
+                                                        },
+                                                        {
+                                                            "name": "7",
+                                                            "type": "text",
+                                                            "label": "lala (H)"
+                                                        },
+                                                        {
+                                                            "name": "8",
+                                                            "type": "text",
+                                                            "label": "lala (I)"
+                                                        },
+                                                        {
+                                                            "name": "9",
+                                                            "type": "text",
+                                                            "label": "lala (J)"
+                                                        },
+                                                        {
+                                                            "name": "10",
+                                                            "type": "text",
+                                                            "label": "lala (K)"
+                                                        },
+                                                        {
+                                                            "name": "11",
+                                                            "type": "text",
+                                                            "label": "lala (L)"
+                                                        },
+                                                        {
+                                                            "name": "12",
+                                                            "type": "text",
+                                                            "label": "lala (M)"
+                                                        },
+                                                        {
+                                                            "name": "13",
+                                                            "type": "text",
+                                                            "label": "lala (N)"
+                                                        },
+                                                        {
+                                                            "name": "14",
+                                                            "type": "text",
+                                                            "label": "No (O)"
+                                                        },
+                                                        {
+                                                            "name": "15",
+                                                            "type": "text",
+                                                            "label": "Recibir (P)"
+                                                        },
+                                                        {
+                                                            "name": "16",
+                                                            "type": "text",
+                                                            "label": "lala (Q)"
+                                                        },
+                                                        {
+                                                            "name": "17",
+                                                            "type": "text",
+                                                            "label": "lala (R)"
+                                                        },
+                                                        {
+                                                            "name": "18",
+                                                            "type": "text",
+                                                            "label": "lala (S)"
+                                                        },
+                                                        {
+                                                            "name": "19",
+                                                            "type": "text",
+                                                            "label": "lala (T)"
+                                                        },
+                                                        {
+                                                            "name": "20",
+                                                            "type": "text",
+                                                            "label": "lala (U)"
+                                                        },
+                                                        {
+                                                            "name": "21",
+                                                            "type": "text",
+                                                            "label": "lala (V)"
+                                                        },
+                                                        {
+                                                            "name": "22",
+                                                            "type": "text",
+                                                            "label": "No (W)"
+                                                        },
+                                                        {
+                                                            "name": "23",
+                                                            "type": "text",
+                                                            "label": "lala (X)"
+                                                        },
+                                                        {
+                                                            "name": "24",
+                                                            "type": "text",
+                                                            "label": "lala (Y)"
+                                                        },
+                                                        {
+                                                            "name": "25",
+                                                            "type": "text",
+                                                            "label": "lala (Z)"
+                                                        },
+                                                        {
+                                                            "name": "26",
+                                                            "type": "text",
+                                                            "label": "(AA)"
+                                                        },
+                                                        {
+                                                            "name": "27",
+                                                            "type": "text",
+                                                            "label": "lala (AB)"
+                                                        },
+                                                        {
+                                                            "name": "28",
+                                                            "type": "text",
+                                                            "label": "Tue Jun 10 2025 19:20:57 GMT+0000 (Coordinated Universal Time) (AC)"
+                                                        }
+                                                    ],
+                                                    "type": "collection",
+                                                    "label": "Values"
+                                                }
+                                            ]
+                                        },
+                                        "insertDataOption": {
+                                            "mode": "chose",
+                                            "label": "Insert rows"
+                                        },
+                                        "valueInputOption": {
+                                            "mode": "chose",
+                                            "label": "User entered"
+                                        },
+                                        "insertUnformatted": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google"
+                                            },
+                                            "label": "My Google connection (digitalmagos.marketing@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "mode",
+                                        "type": "select",
+                                        "label": "Search Method",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "select",
+                                                "fromAll",
+                                                "map"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "insertUnformatted",
+                                        "type": "boolean",
+                                        "label": "Unformatted",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "valueInputOption",
+                                        "type": "select",
+                                        "label": "Value input option",
+                                        "validate": {
+                                            "enum": [
+                                                "USER_ENTERED",
+                                                "RAW"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "insertDataOption",
+                                        "type": "select",
+                                        "label": "Insert data option",
+                                        "validate": {
+                                            "enum": [
+                                                "INSERT_ROWS",
+                                                "OVERWRITE"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "from",
+                                        "type": "select",
+                                        "label": "Drive",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "drive",
+                                                "share",
+                                                "team"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "spreadsheetId",
+                                        "type": "file",
+                                        "label": "Spreadsheet ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "sheetId",
+                                        "type": "select",
+                                        "label": "Sheet Name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "includesHeaders",
+                                        "type": "select",
+                                        "label": "Table contains headers",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                true,
+                                                false
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "values",
+                                        "spec": [
+                                            {
+                                                "name": "0",
+                                                "type": "text",
+                                                "label": "lala (A)"
+                                            },
+                                            {
+                                                "name": "1",
+                                                "type": "text",
+                                                "label": "cljrami@gmail.com (B)"
+                                            },
+                                            {
+                                                "name": "2",
+                                                "type": "text",
+                                                "label": "41 (C)"
+                                            },
+                                            {
+                                                "name": "3",
+                                                "type": "text",
+                                                "label": "Sí (D)"
+                                            },
+                                            {
+                                                "name": "4",
+                                                "type": "text",
+                                                "label": "lala (E)"
+                                            },
+                                            {
+                                                "name": "5",
+                                                "type": "text",
+                                                "label": "lala (F)"
+                                            },
+                                            {
+                                                "name": "6",
+                                                "type": "text",
+                                                "label": "lala (G)"
+                                            },
+                                            {
+                                                "name": "7",
+                                                "type": "text",
+                                                "label": "lala (H)"
+                                            },
+                                            {
+                                                "name": "8",
+                                                "type": "text",
+                                                "label": "lala (I)"
+                                            },
+                                            {
+                                                "name": "9",
+                                                "type": "text",
+                                                "label": "lala (J)"
+                                            },
+                                            {
+                                                "name": "10",
+                                                "type": "text",
+                                                "label": "lala (K)"
+                                            },
+                                            {
+                                                "name": "11",
+                                                "type": "text",
+                                                "label": "lala (L)"
+                                            },
+                                            {
+                                                "name": "12",
+                                                "type": "text",
+                                                "label": "lala (M)"
+                                            },
+                                            {
+                                                "name": "13",
+                                                "type": "text",
+                                                "label": "lala (N)"
+                                            },
+                                            {
+                                                "name": "14",
+                                                "type": "text",
+                                                "label": "No (O)"
+                                            },
+                                            {
+                                                "name": "15",
+                                                "type": "text",
+                                                "label": "Recibir (P)"
+                                            },
+                                            {
+                                                "name": "16",
+                                                "type": "text",
+                                                "label": "lala (Q)"
+                                            },
+                                            {
+                                                "name": "17",
+                                                "type": "text",
+                                                "label": "lala (R)"
+                                            },
+                                            {
+                                                "name": "18",
+                                                "type": "text",
+                                                "label": "lala (S)"
+                                            },
+                                            {
+                                                "name": "19",
+                                                "type": "text",
+                                                "label": "lala (T)"
+                                            },
+                                            {
+                                                "name": "20",
+                                                "type": "text",
+                                                "label": "lala (U)"
+                                            },
+                                            {
+                                                "name": "21",
+                                                "type": "text",
+                                                "label": "lala (V)"
+                                            },
+                                            {
+                                                "name": "22",
+                                                "type": "text",
+                                                "label": "No (W)"
+                                            },
+                                            {
+                                                "name": "23",
+                                                "type": "text",
+                                                "label": "lala (X)"
+                                            },
+                                            {
+                                                "name": "24",
+                                                "type": "text",
+                                                "label": "lala (Y)"
+                                            },
+                                            {
+                                                "name": "25",
+                                                "type": "text",
+                                                "label": "lala (Z)"
+                                            },
+                                            {
+                                                "name": "26",
+                                                "type": "text",
+                                                "label": "(AA)"
+                                            },
+                                            {
+                                                "name": "27",
+                                                "type": "text",
+                                                "label": "lala (AB)"
+                                            },
+                                            {
+                                                "name": "28",
+                                                "type": "text",
+                                                "label": "Tue Jun 10 2025 19:20:57 GMT+0000 (Coordinated Universal Time) (AC)"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Values"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 65,
+                            "module": "json:CreateJSON",
+                            "version": 1,
+                            "parameters": {
+                                "type": 122783,
+                                "space": ""
+                            },
+                            "mapper": {
+                                "respuesta": "{{18.choices[].message.content}}"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 466,
+                                    "y": 293
+                                },
+                                "restore": {
+                                    "parameters": {
+                                        "type": {
+                                            "label": "My data structure"
+                                        },
+                                        "space": {
+                                            "label": "Empty"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "type",
+                                        "type": "udt",
+                                        "label": "Data structure",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "space",
+                                        "type": "select",
+                                        "label": "Indentation",
+                                        "validate": {
+                                            "enum": [
+                                                "tab",
+                                                "2",
+                                                "4"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "respuesta",
+                                        "type": "text",
+                                        "label": null
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 56,
+                            "module": "pdf-co:HTMLtoPDF",
+                            "version": 1,
+                            "parameters": {
+                                "__IMTCONN__": 3417937
+                            },
+                            "mapper": {
+                                "name": "Perfil Sistémico - {{15.`¿Cuál es tu nombre completo?`}}",
+                                "async": false,
+                                "export": {
+                                    "exportType": "downloadFile"
+                                },
+                                "convert": {
+                                    "html": "<!DOCTYPE html>\r\n<html lang=\"es\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <title>Perfil Sistémico de {{15.nombre_completo}}</title>\r\n</head>\r\n<body>\r\n\r\n<h1>Perfil Sistémico de {{15.nombre_completo}}</h1>\n\n\n{{18.choices[].message.content}}\n</body>\n</html>\n\n\n\n<div class=\"firma\">\r\n  Con cariño,<br>\r\n  Carmen Rascón\r\n</div>\r\n\r\n</body>\r\n</html>",
+                                    "convertType": "fromHtml"
+                                },
+                                "paperSize": "letter",
+                                "expiration": "60",
+                                "orientation": "portrait",
+                                "printBackground": true,
+                                "doNotWaitFullLoad": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 889,
+                                    "y": 285
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "async": {
+                                            "mode": "chose",
+                                            "label": "Sync"
+                                        },
+                                        "export": {
+                                            "nested": {
+                                                "exportType": {
+                                                    "label": "Download a File"
+                                                }
+                                            }
+                                        },
+                                        "convert": {
+                                            "nested": {
+                                                "convertType": {
+                                                    "label": "HTML to PDF"
+                                                }
+                                            }
+                                        },
+                                        "paperSize": {
+                                            "label": "Letter"
+                                        },
+                                        "orientation": {
+                                            "label": "Portrait"
+                                        },
+                                        "printBackground": {
+                                            "mode": "chose"
+                                        },
+                                        "doNotWaitFullLoad": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "pdf-co"
+                                            },
+                                            "label": "My PDF.co connection"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:pdf-co",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "convert",
+                                        "spec": [
+                                            {
+                                                "name": "convertType",
+                                                "type": "select",
+                                                "label": "Convert Type",
+                                                "required": true,
+                                                "validate": {
+                                                    "enum": [
+                                                        "fromHtml",
+                                                        "fromHtmlTemplate",
+                                                        "fromWebsite"
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "name": "html",
+                                                "type": "text",
+                                                "label": "Input HTML Code",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Convert Options",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Output File Name"
+                                    },
+                                    {
+                                        "name": "orientation",
+                                        "type": "select",
+                                        "label": "Orientation",
+                                        "validate": {
+                                            "enum": [
+                                                "portrait",
+                                                "landscape"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "paperSize",
+                                        "type": "select",
+                                        "label": "Paper Size ",
+                                        "validate": {
+                                            "enum": [
+                                                "a0",
+                                                "a1",
+                                                "a2",
+                                                "a3",
+                                                "a4",
+                                                "a5",
+                                                "a6",
+                                                "legal",
+                                                "letter",
+                                                "tabloid",
+                                                "custom"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "printBackground",
+                                        "type": "boolean",
+                                        "label": "Render Page Background"
+                                    },
+                                    {
+                                        "name": "doNotWaitFullLoad",
+                                        "type": "boolean",
+                                        "label": "Do not wait for full load"
+                                    },
+                                    {
+                                        "name": "margins",
+                                        "type": "text",
+                                        "label": "Margins"
+                                    },
+                                    {
+                                        "name": "async",
+                                        "type": "select",
+                                        "label": "Execution Mode",
+                                        "validate": {
+                                            "enum": [
+                                                false,
+                                                15000,
+                                                "asyncCheckLater"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "profiles",
+                                        "type": "text",
+                                        "label": "Profiles"
+                                    },
+                                    {
+                                        "name": "expiration",
+                                        "type": "number",
+                                        "label": "Output Links Expiration"
+                                    },
+                                    {
+                                        "name": "export",
+                                        "spec": [
+                                            {
+                                                "name": "exportType",
+                                                "type": "select",
+                                                "label": "Export Type",
+                                                "required": true,
+                                                "validate": {
+                                                    "enum": [
+                                                        "downloadFile",
+                                                        "inline"
+                                                    ]
+                                                }
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Export Options",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 57,
+                            "module": "email:ActionSendEmail",
+                            "version": 7,
+                            "parameters": {
+                                "account": 3327843,
+                                "saveAfterSent": false
+                            },
+                            "mapper": {
+                                "cc": [],
+                                "to": [
+                                    "{{15.email}}"
+                                ],
+                                "bcc": [],
+                                "from": "",
+                                "html": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Mensaje de Reflexión Sistémica</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            line-height: 1.6;\n            color: #333;\n            margin: 20px;\n        }\n        h1 {\n            font-size: 1.5em;\n            color: #4CAF50;\n        }\n        p {\n            margin-bottom: 15px;\n        }\n        a {\n            color: #4CAF50;\n            text-decoration: none;\n            font-weight: bold;\n        }\n        a:hover {\n            text-decoration: underline;\n        }\n        .signature {\n            margin-top: 30px;\n            font-style: italic;\n            color: #555;\n        }\n    </style>\n</head>\n<body>\n    <h1>Hola {{15.nombre_completo}},</h1>\n\n    <p>Gracias por atreverte a mirar más profundo.</p>\n\n    <p>Ese simple test que acabas de completar no fue un juego: fue una puerta abierta a la historia que tu alma ha estado cargando en silencio.</p>\n\n    <p>El resultado que recibirás ahora no es un diagnóstico, es un reflejo sistémico elaborado con base en las respuestas emocionales y familiares que compartiste, y respaldado por el conocimiento profundo de la psicología sistémica y terapias transgeneracionales.</p>\n\n    <p>Con cada palabra que leas, podrás comenzar a identificar las lealtades invisibles que hoy podrían estar afectando tu forma de amar, de recibir, de vivir… y descubrir que muchas de tus cargas no nacieron contigo.</p>\n\n    <p>🌱 Ya puedes leer tu reflejo sistémico aquí:</p>\n\n    <p><a href=\"LINK_DE_DESCARGA_PARA_EL_PDF_CON_EL_RESULTADO\" target=\"_blank\">👉 LINK DE DESCARGA PARA EL PDF CON EL RESULTADO</a></p>\n\n    <p>🌀 ¿Y ahora qué?</p>\n\n    <p>Es completamente normal que este tipo de verdades te remuevan por dentro. A veces nos sentimos confundidos, sensibles, abrumados… Pero eso no significa que algo esté mal: significa que algo se está moviendo.</p>\n\n    <p>✨ Si quieres saber qué hacer con lo que descubriste… Si deseas continuar este proceso y empezar a liberarlo con ayuda real…</p>\n\n    <p><a href=\"IR_AL_SALES_PAGE\" target=\"_blank\">👉 Haz clic aquí para ver cómo puedes seguir trabajando con nuestro método de Aromaterapia Sistémica y personalizada</a></p>\n\n    <p>Te abrazo con respeto y esperanza. Gracias por permitirte este primer paso. Nos vemos pronto en tu camino de sanación.</p>\n\n    <div class=\"signature\">\n        Con cariño,<br>\n        Carmen Rascón<br>\n        Maestra en Psicología Sistémica<br>\n        Creadora de AromaConstelaciones®\n    </div>\n</body>\n</html>",
+                                "sender": "\"Carmen Rascon\" hola@carmen.com ",
+                                "headers": [],
+                                "replyTo": "",
+                                "subject": "{{15.nombre_completo}}, aquí está tu reflejo sistémico.",
+                                "priority": "normal",
+                                "inReplyTo": "",
+                                "references": [],
+                                "attachments": [
+                                    {
+                                        "cid": "",
+                                        "data": "{{56.data}}",
+                                        "fileName": "{{56.name}}"
+                                    }
+                                ],
+                                "contentType": "html"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1102,
+                                    "y": 214
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "cc": {
+                                            "mode": "chose"
+                                        },
+                                        "to": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        },
+                                        "bcc": {
+                                            "mode": "chose"
+                                        },
+                                        "priority": {
+                                            "label": "Normal"
+                                        },
+                                        "references": {
+                                            "mode": "chose"
+                                        },
+                                        "attachments": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        },
+                                        "contentType": {
+                                            "label": "HTML"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "account": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google-restricted"
+                                            },
+                                            "label": "My Google Restricted connection (osvaldho@magosesenciales.com)"
+                                        },
+                                        "saveAfterSent": {
+                                            "label": "No"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "account",
+                                        "type": "account:smtp,google-restricted,microsoft-smtp-imap",
+                                        "label": "Connection",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "saveAfterSent",
+                                        "type": "select",
+                                        "label": "Save message after sending",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                true,
+                                                false
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "hidden"
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "to",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address",
+                                            "required": true
+                                        },
+                                        "type": "array",
+                                        "label": "To",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "subject",
+                                        "type": "text",
+                                        "label": "Subject"
+                                    },
+                                    {
+                                        "name": "contentType",
+                                        "type": "select",
+                                        "label": "Content Type",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "html",
+                                                "text"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "attachments",
+                                        "spec": [
+                                            {
+                                                "name": "fileName",
+                                                "type": "filename",
+                                                "label": "File name",
+                                                "required": true,
+                                                "semantic": "file:name"
+                                            },
+                                            {
+                                                "name": "data",
+                                                "type": "buffer",
+                                                "label": "Data",
+                                                "required": true,
+                                                "semantic": "file:data"
+                                            },
+                                            {
+                                                "name": "cid",
+                                                "type": "text",
+                                                "label": "Content-ID"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Attachments"
+                                    },
+                                    {
+                                        "name": "cc",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address"
+                                        },
+                                        "type": "array",
+                                        "label": "Copy recipient"
+                                    },
+                                    {
+                                        "name": "bcc",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address"
+                                        },
+                                        "type": "array",
+                                        "label": "Blind copy recipient"
+                                    },
+                                    {
+                                        "name": "from",
+                                        "type": "text",
+                                        "label": "From"
+                                    },
+                                    {
+                                        "name": "sender",
+                                        "type": "text",
+                                        "label": "Sender"
+                                    },
+                                    {
+                                        "name": "replyTo",
+                                        "type": "text",
+                                        "label": "Reply-To"
+                                    },
+                                    {
+                                        "name": "inReplyTo",
+                                        "type": "text",
+                                        "label": "In-Reply-To"
+                                    },
+                                    {
+                                        "name": "references",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "text",
+                                            "label": "Reference",
+                                            "required": true
+                                        },
+                                        "type": "array",
+                                        "label": "References"
+                                    },
+                                    {
+                                        "name": "priority",
+                                        "type": "select",
+                                        "label": "Priority",
+                                        "validate": {
+                                            "enum": [
+                                                "high",
+                                                "normal",
+                                                "low"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Headers"
+                                    },
+                                    {
+                                        "name": "html",
+                                        "type": "text",
+                                        "label": "Content"
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "slots": null
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    }
+}
