@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap");
+
+      :root {
+        --color-primary: #d31a6a;
+        --color-accent: #2c3e50;
+        --color-text-dark: #1d2538;
+        --color-text-light: #5a6175;
+        --color-bg-main: #ffffff;
+        --color-border: #e8eaf0;
+        --font-heading: "Playfair Display", serif;
+        --font-body: "Roboto", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: var(--font-body);
+        background-color: #e9e9e9;
+        color: var(--color-text-light);
+        line-height: 1.8;
+        font-size: 15px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: var(--color-bg-main);
+      }
+
+      .main-table {
+        width: 100%;
+        border-spacing: 0;
+      }
+
+      .header-banner {
+        padding: 60px;
+        text-align: center;
+        border-bottom: 2px solid var(--color-primary);
+      }
+      .header-banner p {
+        font-family: var(--font-body);
+        font-size: 16px;
+        color: var(--color-text-light);
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .header-banner h1 {
+        font-family: var(--font-heading);
+        font-size: 42px;
+        color: var(--color-accent);
+        margin: 10px 0 0 0;
+        font-weight: 700;
+      }
+
+      .content-cell {
+        padding: 50px 70px;
+      }
+
+      .intro-text {
+        text-align: center;
+        font-size: 18px;
+        font-style: italic;
+        margin-bottom: 50px;
+        color: var(--color-text-dark);
+        line-height: 1.7;
+      }
+
+      .section-divider {
+        text-align: center;
+        padding: 30px 0;
+      }
+      .section-divider svg {
+        width: 40px;
+        height: 40px;
+        fill: var(--color-primary);
+        opacity: 0.3;
+      }
+
+      .section-title {
+        font-family: var(--font-heading);
+        font-size: 28px;
+        color: var(--color-accent);
+        margin-bottom: 25px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .content p {
+        margin-bottom: 20px;
+      }
+      .content strong,
+      .content b {
+        color: var(--color-primary);
+        font-weight: 700;
+      }
+
+      .analysis-card {
+        background-color: #f8f9fa;
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        padding: 30px 35px;
+        margin: 30px 0;
+      }
+      .analysis-card h4 {
+        margin: 0 0 15px 0;
+        font-family: var(--font-heading);
+        color: var(--color-accent);
+        font-size: 18px;
+      }
+
+      .cta-section {
+        margin: 40px 0;
+        padding: 40px;
+        text-align: center;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        border: 1px solid var(--color-border);
+      }
+      .cta-section p {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cta-button {
+        display: inline-block;
+        padding: 16px 40px;
+        background: var(--color-primary);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 16px;
+        font-family: "Roboto", sans-serif;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 15px;
+      }
+
+      .footer-signature {
+        padding-top: 30px;
+        border-top: 1px solid var(--color-border);
+      }
+      .signature-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+      }
+      .signature-text p {
+        margin: 0;
+        line-height: 1.6;
+      }
+      .signature-text .name {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 22px;
+        color: var(--color-text-dark);
+      }
+      .signature-text .title {
+        font-size: 14px;
+      }
+
+      .page-break {
+        page-break-after: always;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-wrapper">
+      <table class="main-table">
+        <!-- HEADER -->
+        <tr>
+          <td>
+            <div class="header-banner">
+              <p>Un Reflejo Sistémico para</p>
+              <h1>{{15.nombre_completo}}</h1>
+            </div>
+          </td>
+        </tr>
+
+        <!-- MAIN CONTENT -->
+        <tr>
+          <td class="content-cell">
+            <p class="intro-text">
+              "Lo que descubriste no fue un juego: fue una puerta abierta a la
+              historia que tu alma ha estado cargando en silencio."
+            </p>
+
+            <div class="content">
+              <h2 class="section-title">Análisis de Lealtades Invisibles</h2>
+              <p>Hola <strong>{{15.nombre_completo}}</strong>,</p>
+              <p>
+                Gracias por tu confianza y por atreverte a mirar más profundo.
+                El siguiente reflejo sistémico se ha elaborado en base a tus
+                respuestas, respaldado por el conocimiento profundo de la
+                psicología sistémica y las terapias transgeneracionales.
+              </p>
+              <p>
+                Con cada palabra, podrás comenzar a identificar las
+                <b>lealtades invisibles</b> que podrían estar afectando tu forma
+                de amar, de recibir y de vivir. Descubrirás que muchas de tus
+                cargas no nacieron contigo.
+              </p>
+              <div class="analysis-card">
+                <h4>🌱 Tu Reflejo Sistémico Personalizado:</h4>
+                <p>{{18.choices[].message.content}}</p>
+              </div>
+            </div>
+
+            <!-- This div forces a page break in the PDF -->
+            <div class="page-break"></div>
+
+            <div class="section-divider">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                />
+              </svg>
+            </div>
+
+            <div class="content">
+              <h2 class="section-title">¿Y Ahora Qué?</h2>
+              <p>
+                Es normal que estas verdades te remuevan. A veces nos sentimos
+                confundidos o abrumados. Pero eso no significa que algo esté
+                mal: <strong>significa que algo se está moviendo.</strong>
+              </p>
+            </div>
+
+            <div class="cta-section">
+              <h2 class="section-title">Continúa tu Proceso</h2>
+              <p>
+                Si quieres saber qué hacer con lo que descubriste y deseas
+                continuar este proceso para liberarlo con ayuda real...
+              </p>
+              <a
+                href="https://app.ndefi.io/v2/preview/FZrUTsEvqX7tGbFGpnwc"
+                class="cta-button"
+                >Ver Cómo Continuar</a
+              >
+            </div>
+
+            <!-- FOOTER SIGNATURE (TABLE-BASED) -->
+            <table
+              class="footer-signature"
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+            >
+              <tr>
+                <td width="120" valign="top">
+                  <!-- Replace with a real photo URL of Carmen Rascon -->
+                  <img
+                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop"
+                    alt="Carmen Rascón"
+                    class="signature-image"
+                  />
+                </td>
+                <td valign="middle" style="padding-left: 20px">
+                  <div class="signature-text">
+                    <p>
+                      Te abrazo con respeto y esperanza.<br />Gracias por
+                      permitirte este primer paso.
+                    </p>
+                    <p class="name">Carmen Rascón</p>
+                    <p class="title">
+                      Maestra en Psicología Sistémica<br />Creadora de
+                      AromaConstelaciones®
+                    </p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
