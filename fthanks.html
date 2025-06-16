@@ -97,8 +97,6 @@
         transform: translateY(-5px) scale(1.05);
         box-shadow: 0 15px 40px rgba(230, 0, 126, 0.5);
       }
-
-      /* Result Card Specifics */
       .results-card {
         background: var(--color-bg-light-translucent);
         backdrop-filter: blur(15px);
@@ -140,19 +138,70 @@
         font-size: 1.8rem;
         color: var(--color-primary);
         margin-bottom: 25px;
-        display: none; /* Hidden by default */
+        display: none;
       }
 
-      #result-placeholder {
-        min-height: 200px; /* To prevent layout shift */
+      /* Estilos para el nuevo formato de resultado */
+      .results-text {
+        font-size: 1.15rem;
+        color: var(--color-text-medium);
+        line-height: 1.8;
+        counter-reset: section-counter; /* Inicia el contador de secciones */
+      }
+      .results-text h4 {
+        font-family: var(--font-headings);
+        color: var(--color-primary);
+        font-size: 1.4rem;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-weight: 700;
         display: flex;
         align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        transition: all 0.5s ease;
       }
+      .results-text h4::before {
+        counter-increment: section-counter; /* Incrementa el contador */
+        content: counter(section-counter); /* Muestra el número */
+        margin-right: 12px;
+        font-size: 1rem;
+        background-color: var(--color-accent);
+        color: white;
+        border-radius: 50%;
+        min-width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        line-height: 1;
+      }
+      .results-text ul {
+        list-style: none;
+        padding-left: 20px;
+        margin-left: 14px; /* Alinea con el círculo numérico */
+        border-left: 2px solid var(--color-border);
+      }
+      .results-text li {
+        margin-bottom: 12px;
+        padding-left: 20px;
+        position: relative;
+      }
+      .results-text li::before {
+        content: "-";
+        color: var(--color-accent);
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+      }
+      .results-text p.error-message {
+        text-align: center;
+        color: #ffb8b8;
+        font-style: italic;
+        line-height: 1.6;
+        font-size: 1.1rem;
+      }
+
       .loader-wrapper {
-        display: block; /* Shown by default, hidden by JS */
+        display: block;
         text-align: center;
         transition: opacity 0.5s ease-out, transform 0.5s ease-out;
       }
@@ -166,7 +215,7 @@
         stroke: var(--color-primary);
         stroke-width: 6;
         fill: transparent;
-        stroke-dasharray: 283; /* 2 * PI * 45 */
+        stroke-dasharray: 283;
         stroke-dashoffset: 283;
         animation: draw 1.5s ease-in-out forwards;
       }
@@ -181,26 +230,6 @@
       @keyframes draw {
         to {
           stroke-dashoffset: 0;
-        }
-      }
-
-      .results-text {
-        font-size: 1.15rem;
-        color: var(--color-text-medium);
-        line-height: 1.8;
-        white-space: pre-wrap;
-      }
-      .typing-cursor {
-        display: inline-block;
-        width: 2px;
-        height: 1.5rem;
-        background-color: var(--color-primary);
-        animation: blink 0.7s infinite;
-        margin-left: 4px;
-      }
-      @keyframes blink {
-        50% {
-          opacity: 0;
         }
       }
 
@@ -358,12 +387,38 @@
           comenzado.
         </p>
         <p style="margin-top: 30px">
-          &copy; 2024 Aromaconstelaciones | <a href="#">Aviso de Privacidad</a>
+          &copy; 2025 Aromaconstelaciones | <a href="#">Aviso de Privacidad</a>
         </p>
       </footer>
     </div>
 
     <script>
+      // **IMPORTANTE**: Este código ahora espera una respuesta JSON estructurada.
+      // Tu escenario de Make.com debe devolver un objeto con este formato:
+      /*
+      {
+        "bienvenida": "¡Hola! Soy Carmen Rascón y celebro...",
+        "secciones": [
+          {
+            "titulo": "Tu historia de infancia",
+            "puntos": [
+              "El ambiente en casa era...",
+              "Recuerdo que la relación con mi madre...",
+              "Una frase que me marcó fue..."
+            ]
+          },
+          {
+            "titulo": "Eventos transgeneracionales",
+            "puntos": [
+              "Hubo un divorcio importante en la familia.",
+              "Mis abuelos migraron de..."
+            ]
+          }
+        ]
+      }
+      // O el formato antiguo como fallback: { "respuesta": "..." }
+      */
+
       window.addEventListener("load", () => {
         const loadingContainer = document.getElementById("loading-container");
         const resultsCardWrapper = document.getElementById(
@@ -371,19 +426,44 @@
         );
         const resultsCard = document.getElementById("results-card");
         const resultTitle = document.getElementById("result-title");
-        const contentWrapper = document.getElementById("post-content-wrapper");
         const respuestaContainer = document.getElementById("respuesta");
 
-        // Get the real result from localStorage
-        const realResult = localStorage.getItem("resultadoSistemico");
-        const defaultResult = `Hola valiente, gracias por tu confianza.\n\nEste es un espacio para la reflexión. Si has llegado hasta aquí sin completar el test, te invitamos a hacerlo para recibir una lectura personalizada.\n\nSi ya lo completaste, puede que haya habido un inconveniente al guardar tu resultado. Te pedimos que lo intentes de nuevo. Tu historia merece ser escuchada.`;
+        const storedResult = localStorage.getItem("resultadoSistemico");
+        let resultHTML = "";
+        let isValid = false;
 
-        // Use the real result or the default message
-        const resultToShow = realResult || defaultResult;
+        // **LÓGICA ANTI-NULL MEJORADA**
+        if (
+          storedResult &&
+          storedResult.trim() !== "" &&
+          storedResult.trim().toLowerCase() !== "null"
+        ) {
+          try {
+            const data = JSON.parse(storedResult);
 
-        // Start loading simulation
+            // Opción 1: Es un JSON con el nuevo formato estructurado
+            if (data && data.bienvenida && Array.isArray(data.secciones)) {
+              resultHTML = buildFormattedResult(data);
+              isValid = true;
+              // Opción 2: Es un JSON con el formato antiguo ({ "respuesta": "..." })
+            } else if (data && data.respuesta) {
+              resultHTML = `<p>${data.respuesta.replace(
+                /\n/g,
+                "<br><br>"
+              )}</p>`;
+              isValid = true;
+            }
+          } catch (e) {
+            // Opción 3: No es un JSON, es un texto simple. Aún es válido.
+            console.log(
+              "El resultado no es JSON, se mostrará como texto plano."
+            );
+            resultHTML = `<p>${storedResult.replace(/\n/g, "<br><br>")}</p>`;
+            isValid = true;
+          }
+        }
+
         setTimeout(() => {
-          // Fade out loader
           loadingContainer.style.transition = "opacity 0.5s ease-out";
           loadingContainer.style.opacity = "0";
 
@@ -395,58 +475,54 @@
               resultsCard.classList.add("loaded");
               resultTitle.style.display = "block";
 
-              typeWriter(resultToShow, respuestaContainer, () => {
-                // After typing is finished, reveal the rest of the content
-                contentWrapper.style.display = "block";
-                const sections = contentWrapper.querySelectorAll(
-                  ".page-section .container, .footer"
-                );
-                sections.forEach((section, index) => {
-                  section.classList.add("fade-in-up");
-                  section.style.animationDelay = `${index * 0.2}s`;
-                });
-                // Clean up the stored item
-                if (realResult) {
-                  localStorage.removeItem("resultadoSistemico");
-                }
-              });
+              if (isValid) {
+                respuestaContainer.innerHTML = resultHTML;
+              } else {
+                // Mensaje de error final si nada de lo anterior funciona
+                respuestaContainer.innerHTML = `<p class="error-message">No pudimos cargar tu resultado personalizado. Esto puede ocurrir si hubo un problema con el envío o si accediste directamente a esta página.<br><br>Por favor, realiza el test nuevamente para obtener tu reflejo sistémico.</p>`;
+              }
+              showPostContent();
             },
             { once: true }
           );
-        }, 4000); // 4-second loading simulation
+        }, 1500);
       });
 
-      function typeWriter(text, element, callback) {
-        let i = 0;
-        text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
-        text = text.replace(/\n/g, "<br /><br />");
-        const speed = 25;
-
-        function type() {
-          if (i < text.length) {
-            let char = text.charAt(i);
-            if (text.substring(i, i + 8) === "<strong>") {
-              const closingTagIndex = text.indexOf("</strong>", i);
-              element.innerHTML += text.substring(i, closingTagIndex + 9);
-              i = closingTagIndex + 9;
-            } else if (text.substring(i, i + 12) === "<br /><br />") {
-              element.innerHTML += "<br /><br />";
-              i += 12;
-            } else {
-              element.innerHTML += char;
-              i++;
-            }
-            const cursor = element.querySelector(".typing-cursor");
-            if (cursor) cursor.style.display = "inline-block";
-            setTimeout(type, speed);
-          } else {
-            const cursor = element.querySelector(".typing-cursor");
-            if (cursor) cursor.style.display = "none";
-            if (callback) callback();
-          }
+      function buildFormattedResult(data) {
+        let html = "";
+        if (data.bienvenida) {
+          html += `<p>${data.bienvenida.replace(/\n/g, "<br><br>")}</p>`;
         }
-        element.innerHTML = '<span class="typing-cursor"></span>';
-        type();
+        if (data.secciones) {
+          data.secciones.forEach((seccion) => {
+            if (
+              seccion.titulo &&
+              Array.isArray(seccion.puntos) &&
+              seccion.puntos.length > 0
+            ) {
+              html += `<h4>${seccion.titulo}</h4>`;
+              html += "<ul>";
+              seccion.puntos.forEach((punto) => {
+                html += `<li>${punto}</li>`;
+              });
+              html += "</ul>";
+            }
+          });
+        }
+        return html;
+      }
+
+      function showPostContent() {
+        const contentWrapper = document.getElementById("post-content-wrapper");
+        contentWrapper.style.display = "block";
+        const sections = contentWrapper.querySelectorAll(
+          ".page-section .container, .footer"
+        );
+        sections.forEach((section, index) => {
+          section.classList.add("fade-in-up");
+          section.style.animationDelay = `${index * 0.2}s`;
+        });
+        localStorage.removeItem("resultadoSistemico");
       }
     </script>
   </body>

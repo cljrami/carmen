@@ -24,12 +24,9 @@
                 "__IMTCONN__": 2652980
             },
             "mapper": {
-                "select": "chat",
-                "temperature": "1",
-                "top_p": "1",
-                "n_completions": "1",
                 "model": "o4-mini",
-                "max_tokens": "2048",
+                "top_p": "1",
+                "select": "chat",
                 "messages": [
                     {
                         "role": "user",
@@ -37,6 +34,9 @@
                         "imageDetail": "auto"
                     }
                 ],
+                "max_tokens": "2048",
+                "temperature": "1",
+                "n_completions": "1",
                 "response_format": "text"
             },
             "metadata": {
@@ -45,35 +45,16 @@
                     "y": 0
                 },
                 "restore": {
-                    "parameters": {
-                        "__IMTCONN__": {
-                            "label": "My OpenAI connection",
-                            "data": {
-                                "scoped": "true",
-                                "connection": "openai-gpt-3"
-                            }
-                        }
-                    },
                     "expect": {
-                        "select": {
-                            "label": "Create a Chat Completion (GPT and o1 models)"
-                        },
-                        "logit_bias": {
-                            "mode": "chose"
-                        },
-                        "tool_choice": {
-                            "mode": "chose",
-                            "label": "Empty"
-                        },
                         "stop": {
-                            "mode": "chose"
-                        },
-                        "additionalParameters": {
                             "mode": "chose"
                         },
                         "model": {
                             "mode": "chose",
                             "label": "o4-mini (system)"
+                        },
+                        "select": {
+                            "label": "Create a Chat Completion (GPT and o1 models)"
                         },
                         "messages": {
                             "mode": "chose",
@@ -83,16 +64,23 @@
                                         "mode": "chose",
                                         "label": "User"
                                     },
-                                    "imageInputType": {
-                                        "mode": "chose",
-                                        "label": "Empty"
-                                    },
                                     "imageDetail": {
                                         "mode": "chose",
                                         "label": "Auto"
+                                    },
+                                    "imageInputType": {
+                                        "mode": "chose",
+                                        "label": "Empty"
                                     }
                                 }
                             ]
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "tool_choice": {
+                            "mode": "chose",
+                            "label": "Empty"
                         },
                         "response_format": {
                             "mode": "chose",
@@ -101,6 +89,18 @@
                         "reasoning_effort": {
                             "mode": "chose",
                             "label": "Empty"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            },
+                            "label": "My OpenAI connection"
                         }
                     }
                 },
@@ -168,9 +168,8 @@
                     },
                     {
                         "name": "logit_bias",
-                        "type": "array",
-                        "label": "Token Probability",
                         "spec": {
+                            "name": "value",
                             "spec": [
                                 {
                                     "name": "token",
@@ -190,9 +189,10 @@
                                 }
                             ],
                             "type": "collection",
-                            "label": "Token Probability",
-                            "name": "value"
-                        }
+                            "label": "Token Probability"
+                        },
+                        "type": "array",
+                        "label": "Token Probability"
                     },
                     {
                         "name": "seed",
@@ -213,22 +213,21 @@
                     },
                     {
                         "name": "stop",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Stop Sequence"
+                        },
                         "type": "array",
                         "label": "Stop Sequences",
                         "validate": {
                             "maxItems": 4
-                        },
-                        "spec": {
-                            "type": "text",
-                            "label": "Stop Sequence",
-                            "name": "value"
                         }
                     },
                     {
                         "name": "additionalParameters",
-                        "type": "array",
-                        "label": "Other Input Parameters",
                         "spec": {
+                            "name": "value",
                             "spec": [
                                 {
                                     "name": "key",
@@ -301,9 +300,10 @@
                                 }
                             ],
                             "type": "collection",
-                            "label": "Input Parameter",
-                            "name": "value"
-                        }
+                            "label": "Input Parameter"
+                        },
+                        "type": "array",
+                        "label": "Other Input Parameters"
                     },
                     {
                         "name": "model",
@@ -318,18 +318,13 @@
                     },
                     {
                         "name": "messages",
-                        "type": "array",
-                        "label": "Messages",
-                        "required": true,
                         "spec": {
-                            "label": "Message",
-                            "type": "collection",
+                            "name": "value",
                             "spec": [
                                 {
                                     "name": "role",
                                     "type": "select",
                                     "label": "Role",
-                                    "required": true,
                                     "options": {
                                         "store": [
                                             {
@@ -346,30 +341,28 @@
                                                         "name": "imageInputType",
                                                         "type": "select",
                                                         "label": "Image Input Type",
-                                                        "mappable": false,
                                                         "options": [
                                                             {
-                                                                "value": "url",
                                                                 "label": "URL",
+                                                                "value": "url",
                                                                 "nested": [
                                                                     {
+                                                                        "help": "Make sure to use a publicly accessible URL.\nYou can test if your image is publicly accessible by opening the link in an incognito tab.",
                                                                         "name": "imageUrl",
-                                                                        "label": "Image URL",
                                                                         "type": "url",
-                                                                        "help": "Make sure to use a publicly accessible URL.\nYou can test if your image is publicly accessible by opening the link in an incognito tab."
+                                                                        "label": "Image URL"
                                                                     }
                                                                 ]
                                                             },
                                                             {
-                                                                "value": "file",
                                                                 "label": "Image File",
+                                                                "value": "file",
                                                                 "nested": [
                                                                     {
                                                                         "name": "imageFile",
-                                                                        "label": "Image",
-                                                                        "type": "collection",
                                                                         "spec": [
                                                                             {
+                                                                                "help": "Accepted extensions: `.jpg`, `.jpeg`, `.png`, `.webp` and `.gif`.",
                                                                                 "name": "imageFilename",
                                                                                 "type": "filename",
                                                                                 "label": "Image Filename",
@@ -380,8 +373,7 @@
                                                                                     "png",
                                                                                     "webp",
                                                                                     "gif"
-                                                                                ],
-                                                                                "help": "Accepted extensions: `.jpg`, `.jpeg`, `.png`, `.webp` and `.gif`."
+                                                                                ]
                                                                             },
                                                                             {
                                                                                 "name": "imageData",
@@ -389,30 +381,33 @@
                                                                                 "label": "Image Data",
                                                                                 "semantic": "file:data"
                                                                             }
-                                                                        ]
+                                                                        ],
+                                                                        "type": "collection",
+                                                                        "label": "Image"
                                                                     }
                                                                 ]
                                                             }
-                                                        ]
+                                                        ],
+                                                        "mappable": false
                                                     },
                                                     {
+                                                        "help": "Recommended value: `Auto`",
                                                         "name": "imageDetail",
                                                         "type": "select",
                                                         "label": "Image Detail",
-                                                        "help": "Recommended value: `Auto`",
                                                         "options": [
                                                             {
+                                                                "label": "Auto",
                                                                 "value": "auto",
-                                                                "default": true,
-                                                                "label": "Auto"
+                                                                "default": true
                                                             },
                                                             {
-                                                                "value": "high",
-                                                                "label": "High"
+                                                                "label": "High",
+                                                                "value": "high"
                                                             },
                                                             {
-                                                                "value": "low",
-                                                                "label": "Low"
+                                                                "label": "Low",
+                                                                "value": "low"
                                                             }
                                                         ]
                                                     }
@@ -429,19 +424,9 @@
                                                         "label": "Text Content"
                                                     },
                                                     {
-                                                        "name": "tool_calls",
-                                                        "label": "Tool Calls",
-                                                        "type": "array",
-                                                        "labels": {
-                                                            "add": "Add tool call"
-                                                        },
                                                         "mode": "edit",
-                                                        "mappable": {
-                                                            "help": "You can map the entire `Choices[]: Message.Tool Calls` array from a previous Create a Completion module here."
-                                                        },
+                                                        "name": "tool_calls",
                                                         "spec": {
-                                                            "label": "Tool Call",
-                                                            "type": "collection",
                                                             "spec": [
                                                                 {
                                                                     "name": "type",
@@ -449,39 +434,50 @@
                                                                     "default": "function"
                                                                 },
                                                                 {
+                                                                    "help": "Map this directly from the output of a previous **Create a Completion** module. Look for `Choices[]: Message.Tool Calls[]: ID`.",
                                                                     "name": "id",
                                                                     "type": "text",
-                                                                    "label": "Tool call ID",
-                                                                    "help": "Map this directly from the output of a previous **Create a Completion** module. Look for `Choices[]: Message.Tool Calls[]: ID`."
+                                                                    "label": "Tool call ID"
                                                                 },
                                                                 {
                                                                     "name": "function",
-                                                                    "type": "collection",
-                                                                    "label": "Function",
                                                                     "spec": [
                                                                         {
+                                                                            "help": "The name of the function previously called.",
                                                                             "name": "name",
-                                                                            "label": "Name",
                                                                             "type": "text",
-                                                                            "required": true,
-                                                                            "help": "The name of the function previously called."
+                                                                            "label": "Name",
+                                                                            "required": true
                                                                         },
                                                                         {
+                                                                            "help": "The arguments previously output by the AI.",
                                                                             "name": "arguments",
-                                                                            "label": "Arguments",
                                                                             "type": "text",
-                                                                            "required": true,
-                                                                            "help": "The arguments previously output by the AI."
+                                                                            "label": "Arguments",
+                                                                            "required": true
                                                                         }
-                                                                    ]
+                                                                    ],
+                                                                    "type": "collection",
+                                                                    "label": "Function"
                                                                 }
-                                                            ]
+                                                            ],
+                                                            "type": "collection",
+                                                            "label": "Tool Call"
+                                                        },
+                                                        "type": "array",
+                                                        "label": "Tool Calls",
+                                                        "labels": {
+                                                            "add": "Add tool call"
+                                                        },
+                                                        "mappable": {
+                                                            "help": "You can map the entire `Choices[]: Message.Tool Calls` array from a previous Create a Completion module here."
                                                         }
                                                     }
                                                 ]
                                             },
                                             {
                                                 "label": "Developer / System",
+                                                "value": "system",
                                                 "nested": [
                                                     {
                                                         "help": "Text content of the message on behalf of the selected __Role__.",
@@ -489,8 +485,7 @@
                                                         "type": "text",
                                                         "label": "Text Content"
                                                     }
-                                                ],
-                                                "value": "system"
+                                                ]
                                             },
                                             {
                                                 "label": "Tool",
@@ -504,20 +499,25 @@
                                                         "required": true
                                                     },
                                                     {
-                                                        "label": "Tool Call ID.",
+                                                        "help": "Map this directly from the output of a previous **Create a Completion** module. Look for `Choices[]: Message.Tool Calls[]: ID`.",
                                                         "name": "tool_call_id",
                                                         "type": "text",
-                                                        "required": true,
-                                                        "help": "Map this directly from the output of a previous **Create a Completion** module. Look for `Choices[]: Message.Tool Calls[]: ID`."
+                                                        "label": "Tool Call ID.",
+                                                        "required": true
                                                     }
                                                 ]
                                             }
                                         ]
-                                    }
+                                    },
+                                    "required": true
                                 }
                             ],
-                            "name": "value"
-                        }
+                            "type": "collection",
+                            "label": "Message"
+                        },
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true
                     },
                     {
                         "name": "response_format",
@@ -1499,7 +1499,7 @@
                                     "exportType": "downloadFile"
                                 },
                                 "convert": {
-                                    "html": "<!DOCTYPE html>\r\n<html lang=\"es\">\r\n<head>\r\n  <meta charset=\"UTF-8\">\r\n  <title>Perfil Sistémico de {{15.nombre_completo}}</title>\r\n</head>\r\n<body>\r\n\r\n<h1>Perfil Sistémico de {{15.nombre_completo}}</h1>\n\n\n{{18.choices[].message.content}}\n</body>\n</html>\n\n\n\n<div class=\"firma\">\r\n  Con cariño,<br>\r\n  Carmen Rascón\r\n</div>\r\n\r\n</body>\r\n</html>",
+                                    "html": "<!DOCTYPE html>\r\n<html lang=\"es\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <style>\r\n      @import url(\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap\");\r\n\r\n      :root {\r\n        --color-primary: #d31a6a;\r\n        --color-accent: #2c3e50;\r\n        --color-text-dark: #1d2538;\r\n        --color-text-light: #5a6175;\r\n        --color-bg-main: #ffffff;\r\n        --color-border: #e8eaf0;\r\n        --font-heading: \"Playfair Display\", serif;\r\n        --font-body: \"Roboto\", sans-serif;\r\n      }\r\n\r\n      body {\r\n        margin: 0;\r\n        padding: 0;\r\n        font-family: var(--font-body);\r\n        background-color: #e9e9e9;\r\n        color: var(--color-text-light);\r\n        line-height: 1.8;\r\n        font-size: 15px;\r\n        -webkit-font-smoothing: antialiased;\r\n      }\r\n\r\n      .page-wrapper {\r\n        max-width: 800px;\r\n        margin: 0 auto;\r\n        background-color: var(--color-bg-main);\r\n      }\r\n      \r\n      .main-table {\r\n          width: 100%;\r\n          border-spacing: 0;\r\n      }\r\n      \r\n      .header-banner {\r\n        padding: 60px;\r\n        text-align: center;\r\n        border-bottom: 2px solid var(--color-primary);\r\n      }\r\n      .header-banner p {\r\n        font-family: var(--font-body);\r\n        font-size: 16px;\r\n        color: var(--color-text-light);\r\n        margin: 0;\r\n        text-transform: uppercase;\r\n        letter-spacing: 1px;\r\n      }\r\n      .header-banner h1 {\r\n        font-family: var(--font-heading);\r\n        font-size: 42px;\r\n        color: var(--color-accent);\r\n        margin: 10px 0 0 0;\r\n        font-weight: 700;\r\n      }\r\n      \r\n      .content-cell {\r\n        padding: 50px 70px;\r\n      }\r\n      \r\n      .intro-text {\r\n        text-align: center;\r\n        font-size: 18px;\r\n        font-style: italic;\r\n        margin-bottom: 50px;\r\n        color: var(--color-text-dark);\r\n        line-height: 1.7;\r\n      }\r\n\r\n      .section-divider {\r\n          text-align: center;\r\n          padding: 30px 0;\r\n      }\r\n       .section-divider svg {\r\n          width: 40px;\r\n          height: 40px;\r\n          fill: var(--color-primary);\r\n          opacity: 0.3;\r\n      }\r\n\r\n      .section-title {\r\n        font-family: var(--font-heading);\r\n        font-size: 28px;\r\n        color: var(--color-accent);\r\n        margin-bottom: 25px;\r\n        font-weight: 700;\r\n        text-align: center;\r\n      }\r\n      \r\n      .content p {\r\n        margin-bottom: 20px;\r\n      }\r\n      .content strong, .content b {\r\n        color: var(--color-primary);\r\n        font-weight: 700;\r\n      }\r\n      \r\n      .analysis-card {\r\n        background-color: #f8f9fa;\r\n        border: 1px solid var(--color-border);\r\n        border-radius: 8px;\r\n        padding: 30px 35px;\r\n        margin: 30px 0;\r\n      }\r\n      .analysis-card h4 {\r\n        margin: 0 0 15px 0;\r\n        font-family: var(--font-heading);\r\n        color: var(--color-accent);\r\n        font-size: 18px;\r\n      }\r\n      \r\n      .cta-section {\r\n        margin: 40px 0;\r\n        padding: 40px;\r\n        text-align: center;\r\n        background-color: #f8f9fa;\r\n        border-radius: 8px;\r\n        border: 1px solid var(--color-border);\r\n      }\r\n       .cta-section p {\r\n        max-width: 500px;\r\n        margin-left: auto;\r\n        margin-right: auto;\r\n       }\r\n      .cta-button {\r\n        display: inline-block;\r\n        padding: 16px 40px;\r\n        background: var(--color-primary);\r\n        color: white;\r\n        border: none;\r\n        border-radius: 50px;\r\n        font-weight: bold;\r\n        font-size: 16px;\r\n        font-family: \"Roboto\", sans-serif;\r\n        text-decoration: none;\r\n        transition: all 0.3s ease;\r\n        margin-top: 15px;\r\n      }\r\n      \r\n      .footer-signature {\r\n        padding-top: 30px;\r\n        border-top: 1px solid var(--color-border);\r\n      }\r\n      .signature-image {\r\n        width: 120px;\r\n        height: 120px;\r\n        border-radius: 50%;\r\n      }\r\n      .signature-text p {\r\n        margin: 0;\r\n        line-height: 1.6;\r\n      }\r\n      .signature-text .name {\r\n        font-family: var(--font-heading);\r\n        font-weight: 700;\r\n        font-size: 22px;\r\n        color: var(--color-text-dark);\r\n      }\r\n       .signature-text .title {\r\n        font-size: 14px;\r\n      }\r\n      \r\n      .page-break {\r\n        page-break-after: always;\r\n      }\r\n\r\n    </style>\r\n  </head>\r\n  <body>\r\n    <div class=\"page-wrapper\">\r\n      <table class=\"main-table\">\r\n        <!-- HEADER -->\r\n        <tr>\r\n          <td>\r\n            <div class=\"header-banner\">\r\n              <p>Un Reflejo Sistémico para</p>\r\n              <h1>{{15.nombre_completo}}</h1>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n\r\n        <!-- MAIN CONTENT -->\r\n        <tr>\r\n          <td class=\"content-cell\">\r\n            <p class=\"intro-text\">\r\n                \"Lo que descubriste no fue un juego: fue una puerta abierta a la historia que tu alma ha estado cargando en silencio.\"\r\n            </p>\r\n            \r\n            <div class=\"content\">\r\n                <h2 class=\"section-title\">Análisis de Lealtades Invisibles</h2>\r\n                <p>Hola <strong>{{15.nombre_completo}}</strong>,</p>\r\n                <p>Gracias por tu confianza y por atreverte a mirar más profundo. El siguiente reflejo sistémico se ha elaborado en base a tus respuestas, respaldado por el conocimiento profundo de la psicología sistémica y las terapias transgeneracionales.</p>\r\n                <p>Con cada palabra, podrás comenzar a identificar las <b>lealtades invisibles</b> que podrían estar afectando tu forma de amar, de recibir y de vivir. Descubrirás que muchas de tus cargas no nacieron contigo.</p>\r\n                <div class=\"analysis-card\">\r\n                    <h4>🌱 Tu Reflejo Sistémico Personalizado:</h4>\r\n                    <p>\r\n                        {{18.choices[].message.content}}\r\n                    </p>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- This div forces a page break in the PDF -->\r\n            <div class=\"page-break\"></div>\r\n\r\n            <div class=\"section-divider\">\r\n                <svg viewBox=\"0 0 24 24\"><path d=\"M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\"/></svg>\r\n            </div>\r\n\r\n            <div class=\"content\">\r\n                <h2 class=\"section-title\">¿Y Ahora Qué?</h2>\r\n                <p>Es normal que estas verdades te remuevan. A veces nos sentimos confundidos o abrumados. Pero eso no significa que algo esté mal: <strong>significa que algo se está moviendo.</strong></p>\r\n            </div>\r\n            \r\n            <div class=\"cta-section\">\r\n                <h2 class=\"section-title\">Continúa tu Proceso</h2>\r\n                <p>Si quieres saber qué hacer con lo que descubriste y deseas continuar este proceso para liberarlo con ayuda real...</p>\r\n                <a href=\"https://app.ndefi.io/v2/preview/FZrUTsEvqX7tGbFGpnwc\" class=\"cta-button\">Ver Cómo Continuar</a>\r\n            </div>\r\n            \r\n            <!-- FOOTER SIGNATURE (TABLE-BASED) -->\r\n            <table class=\"footer-signature\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">\r\n                <tr>\r\n                    <td width=\"120\" valign=\"top\">\r\n                        <!-- Replace with a real photo URL of Carmen Rascon -->\r\n                        <img src=\"https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop\" alt=\"Carmen Rascón\" class=\"signature-image\">\r\n                    </td>\r\n                    <td valign=\"middle\" style=\"padding-left: 20px;\">\r\n                        <div class=\"signature-text\">\r\n                            <p>Te abrazo con respeto y esperanza.<br>Gracias por permitirte este primer paso.</p>\r\n                            <p class=\"name\">Carmen Rascón</p>\r\n                            <p class=\"title\">Maestra en Psicología Sistémica<br>Creadora de AromaConstelaciones®</p>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n            </table>\r\n\r\n          </td>\r\n        </tr>\r\n      </table>\r\n    </div>\r\n  </body>\r\n</html>\r\n",
                                     "convertType": "fromHtml"
                                 },
                                 "paperSize": "letter",
@@ -1703,7 +1703,7 @@
                                 ],
                                 "bcc": [],
                                 "from": "",
-                                "html": "<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Mensaje de Reflexión Sistémica</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            line-height: 1.6;\n            color: #333;\n            margin: 20px;\n        }\n        h1 {\n            font-size: 1.5em;\n            color: #4CAF50;\n        }\n        p {\n            margin-bottom: 15px;\n        }\n        a {\n            color: #4CAF50;\n            text-decoration: none;\n            font-weight: bold;\n        }\n        a:hover {\n            text-decoration: underline;\n        }\n        .signature {\n            margin-top: 30px;\n            font-style: italic;\n            color: #555;\n        }\n    </style>\n</head>\n<body>\n    <h1>Hola {{15.nombre_completo}},</h1>\n\n    <p>Gracias por atreverte a mirar más profundo.</p>\n\n    <p>Ese simple test que acabas de completar no fue un juego: fue una puerta abierta a la historia que tu alma ha estado cargando en silencio.</p>\n\n    <p>El resultado que recibirás ahora no es un diagnóstico, es un reflejo sistémico elaborado con base en las respuestas emocionales y familiares que compartiste, y respaldado por el conocimiento profundo de la psicología sistémica y terapias transgeneracionales.</p>\n\n    <p>Con cada palabra que leas, podrás comenzar a identificar las lealtades invisibles que hoy podrían estar afectando tu forma de amar, de recibir, de vivir… y descubrir que muchas de tus cargas no nacieron contigo.</p>\n\n    <p>🌱 Ya puedes leer tu reflejo sistémico aquí:</p>\n\n    <p><a href=\"LINK_DE_DESCARGA_PARA_EL_PDF_CON_EL_RESULTADO\" target=\"_blank\">👉 LINK DE DESCARGA PARA EL PDF CON EL RESULTADO</a></p>\n\n    <p>🌀 ¿Y ahora qué?</p>\n\n    <p>Es completamente normal que este tipo de verdades te remuevan por dentro. A veces nos sentimos confundidos, sensibles, abrumados… Pero eso no significa que algo esté mal: significa que algo se está moviendo.</p>\n\n    <p>✨ Si quieres saber qué hacer con lo que descubriste… Si deseas continuar este proceso y empezar a liberarlo con ayuda real…</p>\n\n    <p><a href=\"IR_AL_SALES_PAGE\" target=\"_blank\">👉 Haz clic aquí para ver cómo puedes seguir trabajando con nuestro método de Aromaterapia Sistémica y personalizada</a></p>\n\n    <p>Te abrazo con respeto y esperanza. Gracias por permitirte este primer paso. Nos vemos pronto en tu camino de sanación.</p>\n\n    <div class=\"signature\">\n        Con cariño,<br>\n        Carmen Rascón<br>\n        Maestra en Psicología Sistémica<br>\n        Creadora de AromaConstelaciones®\n    </div>\n</body>\n</html>",
+                                "html": "<!DOCTYPE html>\r\n<html lang=\"es\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <meta name=\"color-scheme\" content=\"light\" />\r\n    <meta name=\"supported-color-schemes\" content=\"light\" />\r\n    <title>Tu Reflejo Sistémico</title>\r\n    <style>\r\n      /* Estilos generales y para clientes que soportan <style> */\r\n      body {\r\n        margin: 0;\r\n        padding: 0;\r\n        width: 100% !important;\r\n        -webkit-text-size-adjust: 100%;\r\n        -ms-text-size-adjust: 100%;\r\n      }\r\n      /* Pequeño reseteo para Outlook */\r\n      .ExternalClass {\r\n        width: 100%;\r\n      }\r\n      .ExternalClass,\r\n      .ExternalClass p,\r\n      .ExternalClass span,\r\n      .ExternalClass font,\r\n      .ExternalClass td,\r\n      .ExternalClass div {\r\n        line-height: 100%;\r\n      }\r\n      /* Estilos para los botones que se mostrarán en clientes que lo soporten */\r\n      .button-link a {\r\n        color: #ffffff !important;\r\n        text-decoration: none !important;\r\n      }\r\n    </style>\r\n  </head>\r\n  <body\r\n    style=\"\r\n      margin: 0;\r\n      padding: 20px 0;\r\n      background-color: #f8f7f5;\r\n      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\r\n        Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',\r\n        'Segoe UI Symbol';\r\n    \"\r\n  >\r\n    <!-- Contenedor principal del correo -->\r\n    <table\r\n      align=\"center\"\r\n      border=\"0\"\r\n      cellpadding=\"0\"\r\n      cellspacing=\"0\"\r\n      width=\"100%\"\r\n      style=\"\r\n        max-width: 600px;\r\n        margin: 0 auto;\r\n        background-color: #ffffff;\r\n        border-radius: 12px;\r\n        border: 1px solid #e5e5e5;\r\n      \"\r\n    >\r\n      <!-- Sección del encabezado -->\r\n      <tr>\r\n        <td align=\"center\" style=\"padding: 40px 20px 20px 20px\">\r\n          <h1\r\n            style=\"\r\n              margin: 0;\r\n              font-size: 28px;\r\n              color: #383838;\r\n              font-weight: 300;\r\n              line-height: 1.3;\r\n            \"\r\n          >\r\n            🌿<br />Tu reflejo sistémico está aquí\r\n          </h1>\r\n        </td>\r\n      </tr>\r\n\r\n      <!-- Contenido principal -->\r\n      <tr>\r\n        <td style=\"padding: 20px 40px 30px 40px\">\r\n          <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n            <tr>\r\n              <td\r\n                style=\"\r\n                  font-size: 16px;\r\n                  line-height: 1.6;\r\n                  color: #555555;\r\n                  text-align: left;\r\n                \"\r\n              >\r\n                <p style=\"margin: 0 0 20px 0\">Hola {{15.nombre_completo}},</p>\r\n                <p style=\"margin: 0 0 15px 0\">\r\n                  Gracias por atreverte a mirar más profundo.\r\n                </p>\r\n                <p style=\"margin: 0 0 15px 0\">\r\n                  Ese simple test que acabas de completar no fue un juego: fue\r\n                  una puerta abierta a la historia que tu alma ha estado\r\n                  cargando en silencio.\r\n                </p>\r\n                <p style=\"margin: 0 0 15px 0\">\r\n                  El resultado que recibirás ahora no es un diagnóstico, es un\r\n                  <strong>reflejo sistémico</strong> elaborado con base en las\r\n                  respuestas emocionales y familiares que compartiste, y\r\n                  respaldado por el conocimiento profundo de la psicología\r\n                  sistémica y terapias transgeneracionales.\r\n                </p>\r\n                <p style=\"margin: 0 0 25px 0\">\r\n                  Con cada palabra que leas, podrás comenzar a identificar las\r\n                  <strong>lealtades invisibles</strong> que hoy podrían estar\r\n                  afectando tu forma de amar, de recibir, de vivir… y descubrir\r\n                  que muchas de tus cargas no nacieron contigo.\r\n                </p>\r\n\r\n                <!-- Primer Botón de Llamada a la Acción (CTA) -->\r\n                <p\r\n                  style=\"\r\n                    margin: 25px 0 15px 0;\r\n                    font-size: 18px;\r\n                    color: #383838;\r\n                    font-weight: 500;\r\n                  \"\r\n                >\r\n                  🌱 Ya puedes leer tu reflejo sistémico aquí:\r\n                </p>\r\n                <table\r\n                  border=\"0\"\r\n                  cellpadding=\"0\"\r\n                  cellspacing=\"0\"\r\n                  width=\"100%\"\r\n                  role=\"presentation\"\r\n                >\r\n                  <tr>\r\n                    <td\r\n                      align=\"center\"\r\n                      style=\"padding: 10px 0 25px 0\"\r\n                      class=\"button-link\"\r\n                    >\r\n                      <!-- El enlace del href debe ser reemplazado por tu variable de Make.com -->\r\n                      <a\r\n                        href=\"LINK_DE_DESCARGA_PARA_EL_PDF\"\r\n                        target=\"_blank\"\r\n                        style=\"\r\n                          background-color: #4a90e2;\r\n                          color: #ffffff;\r\n                          padding: 16px 32px;\r\n                          text-decoration: none;\r\n                          border-radius: 8px;\r\n                          display: inline-block;\r\n                          font-weight: bold;\r\n                          font-size: 16px;\r\n                          border: 1px solid #4a90e2;\r\n                        \"\r\n                      >\r\n                        👉 Descargar mi Resultado en PDF\r\n                      </a>\r\n                    </td>\r\n                  </tr>\r\n                </table>\r\n\r\n                <!-- Divisor -->\r\n                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n                  <tr>\r\n                    <td height=\"20\" style=\"font-size: 1px; line-height: 1px\">\r\n                      &nbsp;\r\n                    </td>\r\n                  </tr>\r\n                  <tr>\r\n                    <td style=\"border-top: 1px solid #eeeeee\"></td>\r\n                  </tr>\r\n                  <tr>\r\n                    <td height=\"20\" style=\"font-size: 1px; line-height: 1px\">\r\n                      &nbsp;\r\n                    </td>\r\n                  </tr>\r\n                </table>\r\n\r\n                <!-- Sección \"¿Y ahora qué?\" -->\r\n                <h2\r\n                  style=\"\r\n                    font-size: 24px;\r\n                    color: #383838;\r\n                    margin: 20px 0 15px 0;\r\n                    font-weight: 300;\r\n                  \"\r\n                >\r\n                  🌀 ¿Y ahora qué?\r\n                </h2>\r\n                <p style=\"margin: 0 0 15px 0\">\r\n                  Es completamente normal que este tipo de verdades te remuevan\r\n                  por dentro. A veces nos sentimos confundidos, sensibles,\r\n                  abrumados…\r\n                </p>\r\n                <p style=\"margin: 0 0 20px 0\">\r\n                  Pero eso no significa que algo esté mal:\r\n                  <strong>significa que algo se está moviendo.</strong>\r\n                </p>\r\n                <p\r\n                  style=\"\r\n                    margin: 25px 0 15px 0;\r\n                    font-size: 18px;\r\n                    color: #383838;\r\n                    font-weight: 500;\r\n                  \"\r\n                >\r\n                  ✨ Si quieres saber qué hacer con lo que descubriste y deseas\r\n                  continuar este proceso para liberarlo con ayuda real…\r\n                </p>\r\n\r\n                <!-- Segundo Botón de Llamada a la Acción (CTA) -->\r\n                <table\r\n                  border=\"0\"\r\n                  cellpadding=\"0\"\r\n                  cellspacing=\"0\"\r\n                  width=\"100%\"\r\n                  role=\"presentation\"\r\n                >\r\n                  <tr>\r\n                    <td\r\n                      align=\"center\"\r\n                      style=\"padding: 10px 0 30px 0\"\r\n                      class=\"button-link\"\r\n                    >\r\n                      <!-- IMPORTANTE: El texto de abajo se ha colocado como URL, pero parece un título. Asegúrate de que sea una URL completa y válida (ej: https://www.tusitio.com/pagina) -->\r\n                      <a\r\n                        href=\"https://app.ndefi.io/v2/preview/FZrUTsEvqX7tGbFGpnwc\"\r\n                        style=\"\r\n                          background-color: #334155;\r\n                          color: #ffffff;\r\n                          padding: 16px 32px;\r\n                          text-decoration: none;\r\n                          border-radius: 8px;\r\n                          display: inline-block;\r\n                          font-weight: bold;\r\n                          font-size: 16px;\r\n                          border: 1px solid #334155;\r\n                        \"\r\n                      >\r\n                        Ver cómo puedo continuar\r\n                      </a>\r\n                    </td>\r\n                  </tr>\r\n                </table>\r\n\r\n                <!-- Mensaje de cierre -->\r\n                <p style=\"margin: 30px 0 15px 0\">\r\n                  Te abrazo con respeto y esperanza.<br />Gracias por permitirte\r\n                  este primer paso.<br />Nos vemos pronto en tu camino de\r\n                  sanación.\r\n                </p>\r\n              </td>\r\n            </tr>\r\n          </table>\r\n        </td>\r\n      </tr>\r\n\r\n      <!-- Pie de página / Firma -->\r\n      <tr>\r\n        <td\r\n          style=\"\r\n            padding: 20px 40px 40px 40px;\r\n            border-top: 1px solid #eeeeee;\r\n            background-color: #fafafa;\r\n            border-radius: 0 0 12px 12px;\r\n          \"\r\n        >\r\n          <p\r\n            style=\"margin: 0; font-size: 14px; line-height: 1.5; color: #888888\"\r\n          >\r\n            Con cariño,\r\n          </p>\r\n          <p\r\n            style=\"\r\n              margin: 5px 0 0 0;\r\n              font-size: 15px;\r\n              font-weight: bold;\r\n              color: #383838;\r\n            \"\r\n          >\r\n            Carmen Rascón\r\n          </p>\r\n          <p\r\n            style=\"\r\n              margin: 2px 0 0 0;\r\n              font-size: 14px;\r\n              color: #888888;\r\n              font-style: italic;\r\n            \"\r\n          >\r\n            Maestra en Psicología Sistémica\r\n          </p>\r\n          <p\r\n            style=\"\r\n              margin: 2px 0 0 0;\r\n              font-size: 14px;\r\n              color: #888888;\r\n              font-style: italic;\r\n            \"\r\n          >\r\n            Creadora de AromaConstelaciones®\r\n          </p>\r\n        </td>\r\n      </tr>\r\n    </table>\r\n    <!-- Fin del contenedor principal -->\r\n  </body>\r\n</html>\r\n",
                                 "sender": "\"Carmen Rascon\" hola@carmen.com ",
                                 "headers": [],
                                 "replyTo": "",
