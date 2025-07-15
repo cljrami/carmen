@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resultado de tu Test Sistémico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Lato:wght@400;700&family=Montserrat:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      /* === ESTILOS PARA ANCHO COMPLETO Y MÁRGENES === */
+      .hl_page-preview,
+      .hl_page-preview--content,
+      #preview-container,
+      .fullSection,
+      .row,
+      .col,
+      body,
+      html {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
+        overflow-x: hidden;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      #page-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow-y: auto;
+        z-index: 99999;
+        font-family: var(--font-body);
+        line-height: 1.7;
+        background-color: var(--color-bg-light);
+        display: none;
+        flex-direction: column;
+      }
+      .container {
+        width: 100%;
+        max-width: none;
+        padding: 80px 5%;
+        text-align: center;
+      }
+      .body-text {
+        max-width: 850px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .results-card {
+        width: 100%;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 40px 5%;
+      }
+      .page-section,
+      section {
+        width: 100% !important;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #6a3a8d;
+        --color-bg-light: #ffffff;
+        --color-text-dark: #333333;
+        --color-text-light: #f0e8ff;
+        --color-accent: #d3a4ff;
+        --font-headings: "Lora", serif;
+        --font-body: "Lato", sans-serif;
+      }
+      #page-container {
+        flex-grow: 1;
+      }
+      .section-dark {
+        background-color: var(--color-bg);
+        color: var(--color-text-light);
+      }
+      .section-light {
+        background-color: var(--color-bg-light);
+        color: var(--color-text-dark);
+      }
+      .section-heading {
+        font-family: var(--font-headings);
+        font-weight: 700;
+        font-size: 2.8rem;
+        line-height: 1.3;
+        margin-bottom: 20px;
+      }
+      .results-card {
+        background: var(--color-bg-light);
+        color: var(--color-text-dark);
+        border-radius: 12px;
+        text-align: left;
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.15);
+      }
+      .results-text p.error-message {
+        text-align: left;
+        white-space: pre-wrap;
+        word-break: break-all;
+        color: #d9534f;
+        font-style: normal;
+        font-size: 1rem;
+        padding: 20px;
+        background-color: #f2dede;
+        border-radius: 8px;
+      }
+      .results-text h4 {
+        font-family: var(--font-headings);
+        color: var(--color-bg);
+        font-size: 1.5rem;
+        margin-top: 35px;
+        margin-bottom: 15px;
+      }
+      .results-text ul {
+        list-style: none;
+        padding-left: 0;
+      }
+      .results-text li {
+        margin-bottom: 12px;
+        padding-left: 25px;
+        position: relative;
+      }
+      .results-text li::before {
+        content: "🌿";
+        color: var(--color-bg);
+        position: absolute;
+        left: 0;
+      }
+      .cta-button {
+        display: inline-block;
+        padding: 18px 45px;
+        background: var(--color-accent);
+        color: var(--color-bg);
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 1.1em;
+        font-family: var(--font-headings);
+        text-decoration: none;
+      }
+
+      .footer {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        padding: 20px 5%;
+        background-color: var(--color-bg);
+        color: rgba(255, 255, 255, 0.8);
+        gap: 20px;
+        width: 100%;
+      }
+      .footer-col.logo {
+        text-align: left;
+      }
+      .footer-col.copyright {
+        text-align: center;
+      }
+      .footer-col.contact {
+        text-align: right;
+      }
+      .footer a {
+        color: var(--color-text-light);
+        text-decoration: none;
+      }
+      .footer i {
+        margin-right: 8px;
+      }
+
+      .loader-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(60, 28, 94, 0.98);
+        z-index: 10001;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        font-family: "Lora", serif;
+        transition: opacity 0.5s ease;
+      }
+      .loader-content {
+        text-align: center;
+        color: #f0e8ff;
+        max-width: 700px;
+        animation: fadeInContent 1s ease-out;
+      }
+      @keyframes fadeInContent {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .loader-content h2 {
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+        line-height: 1.3;
+      }
+      .loader-content p {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .progress-bar-container {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        height: 10px;
+        width: 80%;
+        max-width: 400px;
+        margin-top: 20px;
+        overflow: hidden;
+      }
+      .progress-bar {
+        background-color: var(--color-accent);
+        height: 100%;
+        width: 0%;
+        border-radius: 10px;
+        transition: width 0.4s ease-out;
+      }
+
+      @media (max-width: 768px) {
+        .footer {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .footer-col.logo,
+        .footer-col.copyright,
+        .footer-col.contact {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="loader-overlay" id="fullScreenLoader">
+      <div class="loader-content">
+        <h2>
+          ✨ Has hecho algo poderoso: nombrar lo que antes no tenía forma.
+        </h2>
+        <p>
+          Tus respuestas ya están siendo procesadas con base en un enfoque
+          profundo y compasivo, guiado por el método de AromaConstelaciones.
+        </p>
+        <p>
+          En la siguiente pantalla podrás recibir tu perfil personalizado con lo
+          que descubrimos sobre tus posibles lealtades invisibles, patrones
+          heredados y oportunidades de liberación.
+        </p>
+      </div>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <div id="page-wrapper">
+      <div id="page-container">
+        <section class="page-section section-dark intro-section">
+          <div class="container">
+            <h1 class="section-heading">
+              ✨ Gracias por
+              <span style="color: var(--color-accent)">abrir esta puerta</span>
+            </h1>
+            <p class="body-text">
+              Lo que estás a punto de leer es una lectura profunda, inspirada en
+              la sabiduría de la psicología sistémica, constelaciones familiares
+              y aromaterapia.
+            </p>
+          </div>
+        </section>
+        <section
+          id="results"
+          class="page-section section-light results-section"
+        >
+          <div class="container">
+            <h2 class="section-heading">📩 Tu resultado está listo</h2>
+            <p class="body-text" style="font-style: italic">
+              “A veces lo que más nos duele... no empezó con nosotros.”
+            </p>
+            <div class="results-card">
+              <div id="respuesta" class="results-text"></div>
+            </div>
+          </div>
+        </section>
+        <div id="post-content-wrapper" style="display: none">
+          <section class="page-section section-dark">
+            <div class="container">
+              <h2 class="section-heading">
+                🌿 Lo que estás sintiendo ahora es parte del proceso
+              </h2>
+              <p class="body-text">
+                Quizás sientes alivio, confusión o tristeza.
+                <strong>Todo es normal.</strong><br /><br />Este resultado no es
+                el final, es el primer paso.
+              </p>
+            </div>
+          </section>
+          <section class="page-section section-light">
+            <div class="container">
+              <h2 class="section-heading">🎯 ¿Y ahora, qué haces con esto?</h2>
+              <p class="body-text">
+                Lo que descubriste hoy no es casualidad. Hay algo que quiere ser
+                liberado.<br /><br />Por eso existe AromaConstelaciones: Para
+                acompañarte a integrar lo que hoy apareció en tu historia.
+              </p>
+              <a
+                href="https://app.gohighlevel.com/v2/preview/bxqnl2Elu8NeBWQ4cnGk"
+                class="cta-button"
+                >🔗 Quiero seguir mi proceso →</a
+              >
+            </div>
+          </section>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="footer-col logo">
+          <img
+            src="https://images.leadconnectorhq.com/image/f_webp/q_80/r_1200/u_https://assets.cdn.filesafe.space/6p29ZyuEuYrXMnUzx8G1/media/686807d863f9ecf4075cc57d.png"
+            alt="Aroma Constelaciones Logo"
+            style="width: 180px; height: auto"
+          />
+        </div>
+        <div class="footer-col copyright">
+          © 2025 AromaConstelaciones - All Rights Reserved
+        </div>
+        <div class="footer-col contact">
+          <p><i class="fas fa-phone-alt"></i> +52 998 745 324</p>
+          <p>
+            <a href="mailto:info@aromaconstelaciones.com"
+              ><i class="fas fa-envelope"></i> info@aromaconstelaciones.com</a
+            >
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      let progressInterval;
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const storedAnswers = sessionStorage.getItem("systemicTestAnswers");
+        if (storedAnswers) {
+          startProgressBar();
+          fetchAndDisplayResults(JSON.parse(storedAnswers));
+        } else {
+          hideLoaderAndShowPage();
+          displayError(
+            "<strong>Error:</strong> No se encontraron datos del test. Por favor, realiza el test nuevamente."
+          );
+        }
+        sessionStorage.removeItem("systemicTestAnswers");
+      });
+
+      function startProgressBar() {
+        const tiempoEstimadoEnSegundos = 20; // Puedes ajustar este valor
+        const progressBar = document.getElementById("progressBar");
+        if (!progressBar) return;
+        let progress = 0;
+        const totalPasos = 19;
+        const intervaloDeTiempo =
+          (tiempoEstimadoEnSegundos * 1000) / totalPasos;
+        progressInterval = setInterval(() => {
+          progress += 5;
+          if (progress <= 95) {
+            progressBar.style.width = progress + "%";
+          } else {
+            clearInterval(progressInterval);
+          }
+        }, intervaloDeTiempo);
+      }
+
+      async function fetchAndDisplayResults(answers) {
+        const webhookUrl =
+          "https://hook.us2.make.com/ql9bnmilwb8e63h6ndtsys37po68gurn";
+        try {
+          const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(answers),
+          });
+
+          // Primero obtenemos la respuesta como texto para poder depurarla
+          const rawText = await response.text();
+
+          if (!response.ok) {
+            throw new Error(
+              `El servidor respondió con un error ${response.status}. Respuesta cruda: <pre>${rawText}</pre>`
+            );
+          }
+
+          // Ahora que sabemos que la respuesta es texto, la intentamos interpretar
+          // Si esto falla, el bloque catch lo manejará
+          const data = JSON.parse(rawText);
+
+          completeProgressBarAndHide();
+          displaySuccess(data);
+        } catch (error) {
+          console.error("Error al procesar:", error);
+          completeProgressBarAndHide();
+          // Mostramos el error detallado para saber exactamente qué falló
+          displayError(
+            `<strong>No se pudo procesar la respuesta del servidor.</strong><br><br><u>Detalle del error:</u><br><pre>${error.message}</pre><br><p>Esto usualmente significa que el flujo en Make.com tiene un error o no está devolviendo un JSON válido.</p>`
+          );
+        }
+      }
+
+      function completeProgressBarAndHide() {
+        clearInterval(progressInterval);
+        const progressBar = document.getElementById("progressBar");
+        if (progressBar) progressBar.style.width = "100%";
+        setTimeout(hideLoaderAndShowPage, 400);
+      }
+
+      function hideLoaderAndShowPage() {
+        const loader = document.getElementById("fullScreenLoader");
+        const pageWrapper = document.getElementById("page-wrapper");
+        if (loader) {
+          loader.style.opacity = "0";
+          setTimeout(() => {
+            loader.style.display = "none";
+          }, 500);
+        }
+        if (pageWrapper) {
+          pageWrapper.style.display = "flex";
+        }
+      }
+
+      function displaySuccess(data) {
+        const respuestaContainer = document.getElementById("respuesta");
+        if (!respuestaContainer) return;
+
+        // La validación principal es que el objeto tenga las claves correctas
+        if (data && data.bienvenida && data.secciones) {
+          respuestaContainer.innerHTML = buildFormattedResult(data);
+        } else {
+          // Si el JSON es válido pero no tiene las claves, lo mostramos para depurar
+          const rawDataString = JSON.stringify(data, null, 2);
+          displayError(
+            `<strong>Respuesta Válida, pero Formato Incorrecto.</strong><br><br><u>Datos recibidos de Make.com:</u><br><pre>${rawDataString}</pre>`
+          );
+        }
+        showPostContent();
+      }
+
+      function displayError(message) {
+        const respuestaContainer = document.getElementById("respuesta");
+        if (respuestaContainer) {
+          respuestaContainer.innerHTML = `<p class="error-message">${message}</p>`;
+        }
+        showPostContent();
+      }
+
+      function buildFormattedResult(data) {
+        let html = "";
+        if (data.bienvenida) {
+          html += `<p style="font-style: italic; margin-bottom: 25px;">${data.bienvenida.replace(
+            /\n/g,
+            "<br>"
+          )}</p>`;
+        }
+        if (data.secciones) {
+          data.secciones.forEach((seccion) => {
+            if (
+              seccion.titulo &&
+              Array.isArray(seccion.puntos) &&
+              seccion.puntos.length > 0
+            ) {
+              html += `<h4>${seccion.titulo}</h4><ul>`;
+              seccion.puntos.forEach((punto) => {
+                html += `<li>${punto}</li>`;
+              });
+              html += "</ul>";
+            }
+          });
+        }
+        return html;
+      }
+
+      function showPostContent() {
+        const contentWrapper = document.getElementById("post-content-wrapper");
+        if (contentWrapper) {
+          contentWrapper.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>

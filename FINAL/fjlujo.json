@@ -1,0 +1,2075 @@
+{
+    "name": "CARME (copy)",
+    "flow": [
+        {
+            "id": 15,
+            "module": "gateway:CustomWebHook",
+            "version": 1,
+            "parameters": {
+                "hook": 760544
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": -563,
+                    "y": 4
+                }
+            }
+        },
+        {
+            "id": 72,
+            "module": "openai-gpt-3:CreateCompletion",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 4158673
+            },
+            "mapper": {
+                "select": "chat",
+                "temperature": "1",
+                "top_p": "1",
+                "n_completions": "1",
+                "model": "o4-mini",
+                "max_tokens": "4096",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "Eres un terapeuta experto en Psicología Sistémica (enfoque Bert Hellinger), especializado en Constelaciones Familiares, Biodescodificación Emocional, Heridas de la Infancia, los Cinco Lenguajes del Amor y Aromaterapia Emocional. Tu enfoque principal son las relaciones de pareja y los bloqueos relacionados con abundancia y dinero. Te comunicas como Carmen Rascón, con un tono conversacional, afectuoso, terapéutico y profundo, pero siempre claro y sin juicios.\r\n\r\nTu tarea es elaborar un Perfil de Lealtades Invisibles personalizado a partir de las respuestas del usuario. Debes analizar los patrones familiares, emocionales y simbólicos para revelar las dinámicas inconscientes que condicionan su vida.\r\n\r\nLa salida final debe ser un único objeto JSON ESTRICTO y COMPACTO, sin ningún otro texto, explicaciones, o caracteres \\n fuera de este objeto. Las claves del JSON son obligatorias y el contenido debe ser dinámico y específico a las respuestas del usuario.\r\n\r\n{\r\n  \"bienvenida\": \"¡Hola {{15.nombre_completo}}! Celebro de corazón tu valentía al abrir tu historia y permitirnos mirar juntos. Soy Carmen Rascón, y a través de mi método AromaConstelaciones, integro la sabiduría del sistema familiar con el poder de la aromaterapia para sanar desde la raíz. Lo que estás a punto de leer no es un diagnóstico clínico, sino una guía de reflexión amorosa, un primer paso para iluminar esas lealtades invisibles que, sin saberlo, han estado guiando tus pasos. Te abrazo con respeto en este inicio de tu transformación.\",\r\n  \"secciones\": [\r\n    {\r\n      \"titulo\": \"1️⃣ Dinámicas familiares e historia emocional\",\r\n      \"puntos\": [\r\n        \"Describes tu ambiente familiar en la infancia como '{{15.ambiente_infancia}}'. Esta primera atmósfera emocional es clave, pues es donde aprendemos inconscientemente qué es el amor, el merecimiento y nuestro lugar en el mundo. La forma en que defines tu relación con tu madre ('{{15.relacion_madre}}') y con tu padre ('{{15.relacion_padre}}'), ha modelado profundamente la manera en que hoy te vinculas contigo y con los demás.\",\r\n        \"Mencionas que en tu familia existieron situaciones difíciles como '{{15.situaciones_dificiles}}'. Los secretos, duelos no resueltos o traumas en generaciones anteriores crean una 'carga sistémica'. El sistema familiar, en su afán de equilibrio, busca que alguien de una generación posterior (en este caso, tú) mire aquello que fue excluido. Por lealtad invisible, puedes estar repitiendo destinos o cargando con emociones que no te corresponden, lo que podría explicar por qué hoy experimentas '{{15.emocion_frecuente}}'.\"\r\n      ]\r\n    },\r\n    {\r\n      \"titulo\": \"2️⃣ Patrones familiares que se repiten\",\r\n      \"puntos\": [\r\n        \"Observo un patrón claro de '{{15.situaciones_repetitivas}}' que se manifiesta en tu vida. Esto no es casualidad. Cuando en un sistema familiar se excluye a alguien por su destino doloroso, como a '{{15.familiar_dolor}}', la conciencia familiar busca incluirlo de nuevo a través de la repetición de su historia en un descendiente. Inconscientemente, podrías estar repitiendo su destino para darle un lugar en el sistema.\",\r\n        \"Otro patrón visible está en tus relaciones sentimentales, donde has identificado '{{15.patron_sentimental}}'. Esto se conecta directamente con tu creencia de que el amor es '{{15.creencias_amor}}', una idea forjada al observar la relación de tus padres. A su vez, las frases sobre el dinero que escuchaste, como '{{15.frases_dinero}}', instalan un programa inconsciente sobre la abundancia.\"\r\n      ]\r\n    },\r\n    {\r\n      \"titulo\": \"3️⃣ Relación con el amor y el dinero\",\r\n      \"puntos\": [\r\n        \"Tu forma de vincularte en pareja está profundamente influenciada por la herida de tu infancia y la relación con tus padres. Al sentir que en tus relaciones tiendes a '{{15.propension_dar_recibir}}', es probable que estés repitiendo un rol aprendido para sentirte amada o validada, lo que puede generar un desequilibrio.\",\r\n        \"Tu relación con el dinero parece estar atada a una lealtad familiar. El hecho de que tus padres tuvieran una relación con el dinero descrita como '{{15.relacion_padres_dinero}}' y que tú sientas '{{15.emocion_mas_dinero_padres}}' al pensar en tener más que ellos, indica una posible culpa inconsciente por prosperar. Tu anhelo de sanar '{{15.anhelo_sanar}}' puede estar conectado con un miedo a ser desleal al clan si te permites tener éxito.\"\r\n      ]\r\n    },\r\n    {\r\n      \"titulo\": \"4️⃣ Somatización y reflejo en el cuerpo\",\r\n      \"puntos\": [\r\n        \"Mencionas que experimentas '{{15.sintoma_fisico}}'. Desde la biodescodificación, el cuerpo es el escenario donde se representan los dramas no resueltos del alma. Un síntoma físico es a menudo una emoción atrapada o una lealtad que se ha vuelto demasiado pesada y que el cuerpo intenta comunicar para que sea sanada.\",\r\n        \"Por ejemplo, la ansiedad puede hablar de un estado de alerta heredado; los problemas digestivos, de situaciones que 'no podemos tragar' del sistema; y el sobrepeso, de la necesidad de 'protección'. Tu cuerpo te está hablando con amor, pidiéndote que atiendas el conflicto emocional de raíz para que él pueda liberarse.\"\r\n      ]\r\n    },\r\n    {\r\n      \"titulo\": \"5️⃣ Acciones para tu proceso de sanación\",\r\n      \"puntos\": [\r\n        \"Mantra diario: Cada mañana, mírate al espejo y repite con convicción: 'Yo soy yo. Vosotros sois vosotros. Con vuestro permiso, y en vuestro honor, elijo hacerlo diferente. Ahora tomo mi propia fuerza y mi propio destino.'.\",\r\n        \"Carta simbólica de liberación: Escribe una carta a mano a '{{15.familiar_dolor}}' o a la situación de '{{15.separacion_dificil}}'. No necesitas enviarla. Exprésale todo tu sentir sin filtros. Finaliza con la frase: 'Te veo. Respeto tu destino. Te devuelvo lo que es tuyo y tomo para mí lo que me corresponde. Ahora estoy en paz.'. Luego, quema la carta como acto de transmutación.\",\r\n        \"Visualización sistémica: Cierra los ojos e imagina a tus padres detrás de ti, a tu padre detrás de tu hombro derecho y a tu madre detrás del izquierdo. Siente la fuerza que viene de ellos y de todos tus ancestros. Siente cómo te dan el permiso para vivir una vida plena, abundante y feliz. Recibe esa bendición.\"\r\n      ]\r\n    },\r\n    {\r\n      \"titulo\": \"6️⃣ Aromaterapia emocional recomendada\",\r\n      \"puntos\": [\r\n        \"Para tu proceso, te recomiendo el aceite esencial de Abeto Siberiano. Este aceite es un poderoso aliado a nivel energético y sistémico. Es conocido por ayudar a cortar con las cargas transgeneracionales y las lealtades invisibles que te limitan. Su aroma a bosque profundo te conecta con la fuerza de tus raíces, pero desde un lugar de libertad, no de repetición.\",\r\n        \"El Abeto Siberiano libera memorias celulares de tristeza o sacrificio ancladas en el ADN familiar y restaura tu fuerza interior para que puedas tomar tu propio camino. Úsalo de 1 a 2 gotas en un difusor para limpiar tu espacio, o inhala directamente de la botella antes de tus ejercicios de visualización para anclar tu nuevo lugar en el sistema.\"\r\n      ]\r\n    },\r\n    {\r\n      \"titulo\": \"7️⃣ Mensaje de cierre\",\r\n      \"puntos\": [\r\n        \"{{15.nombre_completo}}, ¿hasta cuándo seguirás cargando con lo que no es tuyo?\",\r\n        \"Lo que has descubierto hoy no es una casualidad. Es tu alma pidiendo sanar, es el primer paso para ocupar el lugar que te corresponde en la vida. Y la buena noticia es que esto se puede cambiar. El amor que sientes por tu familia puede convertirse en la fuerza que te impulse, en lugar de la carga que te frene.\",\r\n        \"Si sientes el llamado a continuar este viaje de sanación de una forma profunda, amorosa y sostenida, te invito a conocer cómo podemos seguir trabajando juntos con el método AromaConstelaciones. Te abrazo con respeto y esperanza. Haz clic en el siguiente enlace: [LINK]\"\r\n      ]\r\n    }\r\n  ]\r\n}",
+                        "imageDetail": "auto"
+                    }
+                ],
+                "response_format": "json_object",
+                "parseJSONResponse": true
+            },
+            "metadata": {
+                "designer": {
+                    "x": -158,
+                    "y": -1,
+                    "name": "Carmen GTP API"
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "Carmen GPT",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "openai-gpt-3"
+                            }
+                        }
+                    },
+                    "expect": {
+                        "select": {
+                            "label": "Create a Chat Completion (GPT and o1 models)"
+                        },
+                        "logit_bias": {
+                            "mode": "chose"
+                        },
+                        "tool_choice": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "stop": {
+                            "mode": "chose"
+                        },
+                        "additionalParameters": {
+                            "mode": "chose"
+                        },
+                        "model": {
+                            "mode": "chose",
+                            "label": "o4-mini (system)"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    },
+                                    "imageInputType": {
+                                        "mode": "chose",
+                                        "label": "Empty"
+                                    },
+                                    "imageDetail": {
+                                        "mode": "chose",
+                                        "label": "Auto"
+                                    }
+                                }
+                            ]
+                        },
+                        "response_format": {
+                            "mode": "chose",
+                            "label": "JSON Object"
+                        },
+                        "reasoning_effort": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "parseJSONResponse": {
+                            "mode": "chose"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:openai-gpt-3",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "select",
+                        "type": "select",
+                        "label": "Select Method",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "chat",
+                                "prompt"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 2,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "top_p",
+                        "type": "number",
+                        "label": "Top P",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "n_completions",
+                        "type": "number",
+                        "label": "Number"
+                    },
+                    {
+                        "name": "frequency_penalty",
+                        "type": "number",
+                        "label": "Frequency Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "presence_penalty",
+                        "type": "number",
+                        "label": "Presence Penalty",
+                        "validate": {
+                            "max": 2,
+                            "min": -2
+                        }
+                    },
+                    {
+                        "name": "logit_bias",
+                        "type": "array",
+                        "label": "Token Probability",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "token",
+                                    "type": "text",
+                                    "label": "Token ID",
+                                    "required": true
+                                },
+                                {
+                                    "name": "probability",
+                                    "type": "number",
+                                    "label": "Probability",
+                                    "required": true,
+                                    "validate": {
+                                        "max": 100,
+                                        "min": -100
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Token Probability",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "seed",
+                        "type": "integer",
+                        "label": "Seed"
+                    },
+                    {
+                        "name": "tool_choice",
+                        "type": "select",
+                        "label": "Tool Choice",
+                        "validate": {
+                            "enum": [
+                                "none",
+                                "auto",
+                                "required"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "stop",
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 4
+                        },
+                        "spec": {
+                            "type": "text",
+                            "label": "Stop Sequence",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "additionalParameters",
+                        "type": "array",
+                        "label": "Other Input Parameters",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "key",
+                                    "type": "text",
+                                    "label": "Parameter Name",
+                                    "required": true
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "select",
+                                    "label": "Input Type",
+                                    "options": [
+                                        {
+                                            "label": "Text",
+                                            "value": "text",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "text",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ],
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Number",
+                                            "value": "number",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "number",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Boolean",
+                                            "value": "boolean",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "boolean",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Date",
+                                            "value": "date",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "date",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Any",
+                                            "value": "any",
+                                            "nested": [
+                                                {
+                                                    "name": "value",
+                                                    "type": "any",
+                                                    "label": "Parameter Value"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Input Parameter",
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "max_tokens",
+                        "type": "uinteger",
+                        "label": "Max Completion Tokens"
+                    },
+                    {
+                        "name": "messages",
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true,
+                        "spec": {
+                            "label": "Message",
+                            "type": "collection",
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "required": true,
+                                    "options": {
+                                        "store": [
+                                            {
+                                                "label": "User",
+                                                "value": "user",
+                                                "nested": [
+                                                    {
+                                                        "help": "Text content of the message on behalf of the selected __Role__.",
+                                                        "name": "content",
+                                                        "type": "text",
+                                                        "label": "Text Content"
+                                                    },
+                                                    {
+                                                        "name": "imageInputType",
+                                                        "type": "select",
+                                                        "label": "Image Input Type",
+                                                        "mappable": false,
+                                                        "options": [
+                                                            {
+                                                                "value": "url",
+                                                                "label": "URL",
+                                                                "nested": [
+                                                                    {
+                                                                        "name": "imageUrl",
+                                                                        "label": "Image URL",
+                                                                        "type": "url",
+                                                                        "help": "Make sure to use a publicly accessible URL.\nYou can test if your image is publicly accessible by opening the link in an incognito tab."
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "value": "file",
+                                                                "label": "Image File",
+                                                                "nested": [
+                                                                    {
+                                                                        "name": "imageFile",
+                                                                        "label": "Image",
+                                                                        "type": "collection",
+                                                                        "spec": [
+                                                                            {
+                                                                                "name": "imageFilename",
+                                                                                "type": "filename",
+                                                                                "label": "Image Filename",
+                                                                                "semantic": "file:name",
+                                                                                "extension": [
+                                                                                    "jpg",
+                                                                                    "jpeg",
+                                                                                    "png",
+                                                                                    "webp",
+                                                                                    "gif"
+                                                                                ],
+                                                                                "help": "Accepted extensions: `.jpg`, `.jpeg`, `.png`, `.webp` and `.gif`."
+                                                                            },
+                                                                            {
+                                                                                "name": "imageData",
+                                                                                "type": "buffer",
+                                                                                "label": "Image Data",
+                                                                                "semantic": "file:data"
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "name": "imageDetail",
+                                                        "type": "select",
+                                                        "label": "Image Detail",
+                                                        "help": "Recommended value: `Auto`",
+                                                        "options": [
+                                                            {
+                                                                "value": "auto",
+                                                                "default": true,
+                                                                "label": "Auto"
+                                                            },
+                                                            {
+                                                                "value": "high",
+                                                                "label": "High"
+                                                            },
+                                                            {
+                                                                "value": "low",
+                                                                "label": "Low"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "label": "Assistant",
+                                                "value": "assistant",
+                                                "nested": [
+                                                    {
+                                                        "help": "Text content of the message on behalf of the selected __Role__.",
+                                                        "name": "content",
+                                                        "type": "text",
+                                                        "label": "Text Content"
+                                                    },
+                                                    {
+                                                        "name": "tool_calls",
+                                                        "label": "Tool Calls",
+                                                        "type": "array",
+                                                        "labels": {
+                                                            "add": "Add tool call"
+                                                        },
+                                                        "mode": "edit",
+                                                        "mappable": {
+                                                            "help": "You can map the entire `Choices[]: Message.Tool Calls` array from a previous Create a Completion module here."
+                                                        },
+                                                        "spec": {
+                                                            "label": "Tool Call",
+                                                            "type": "collection",
+                                                            "spec": [
+                                                                {
+                                                                    "name": "type",
+                                                                    "type": "hidden",
+                                                                    "default": "function"
+                                                                },
+                                                                {
+                                                                    "name": "id",
+                                                                    "type": "text",
+                                                                    "label": "Tool call ID",
+                                                                    "help": "Map this directly from the output of a previous **Create a Completion** module. Look for `Choices[]: Message.Tool Calls[]: ID`."
+                                                                },
+                                                                {
+                                                                    "name": "function",
+                                                                    "type": "collection",
+                                                                    "label": "Function",
+                                                                    "spec": [
+                                                                        {
+                                                                            "name": "name",
+                                                                            "label": "Name",
+                                                                            "type": "text",
+                                                                            "required": true,
+                                                                            "help": "The name of the function previously called."
+                                                                        },
+                                                                        {
+                                                                            "name": "arguments",
+                                                                            "label": "Arguments",
+                                                                            "type": "text",
+                                                                            "required": true,
+                                                                            "help": "The arguments previously output by the AI."
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "label": "Developer / System",
+                                                "nested": [
+                                                    {
+                                                        "help": "Text content of the message on behalf of the selected __Role__.",
+                                                        "name": "content",
+                                                        "type": "text",
+                                                        "label": "Text Content"
+                                                    }
+                                                ],
+                                                "value": "system"
+                                            },
+                                            {
+                                                "label": "Tool",
+                                                "value": "tool",
+                                                "nested": [
+                                                    {
+                                                        "help": "The return of the function. This role should only be used when you have processed a previous function call and want to send the output of the function execution back to the AI.",
+                                                        "name": "content",
+                                                        "type": "text",
+                                                        "label": "Text Content",
+                                                        "required": true
+                                                    },
+                                                    {
+                                                        "label": "Tool Call ID.",
+                                                        "name": "tool_call_id",
+                                                        "type": "text",
+                                                        "required": true,
+                                                        "help": "Map this directly from the output of a previous **Create a Completion** module. Look for `Choices[]: Message.Tool Calls[]: ID`."
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "name": "value"
+                        }
+                    },
+                    {
+                        "name": "response_format",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "json_object"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "reasoning_effort",
+                        "type": "select",
+                        "label": "Reasoning Effort",
+                        "validate": {
+                            "enum": [
+                                "low",
+                                "medium",
+                                "high"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "parseJSONResponse",
+                        "type": "boolean",
+                        "label": "Parse JSON Response",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "result",
+                        "type": "any",
+                        "label": "Result"
+                    },
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "object",
+                        "type": "text",
+                        "label": "Object"
+                    },
+                    {
+                        "name": "created",
+                        "type": "date",
+                        "label": "Created"
+                    },
+                    {
+                        "name": "model",
+                        "type": "text",
+                        "label": "Model"
+                    },
+                    {
+                        "name": "choices",
+                        "spec": [
+                            {
+                                "name": "text",
+                                "type": "text",
+                                "label": "Text"
+                            },
+                            {
+                                "name": "index",
+                                "type": "number",
+                                "label": "Index"
+                            },
+                            {
+                                "name": "logprobs",
+                                "type": "text",
+                                "label": "Log Probs"
+                            },
+                            {
+                                "name": "finish_reason",
+                                "type": "text",
+                                "label": "Finish Reason"
+                            },
+                            {
+                                "name": "message",
+                                "spec": [
+                                    {
+                                        "name": "role",
+                                        "type": "text",
+                                        "label": "Role"
+                                    },
+                                    {
+                                        "name": "content",
+                                        "type": "text",
+                                        "label": "Content"
+                                    },
+                                    {
+                                        "name": "tool_calls",
+                                        "spec": [
+                                            {
+                                                "name": "id",
+                                                "type": "text",
+                                                "label": "ID"
+                                            },
+                                            {
+                                                "name": "type",
+                                                "type": "text",
+                                                "label": "Type"
+                                            },
+                                            {
+                                                "name": "function",
+                                                "spec": [
+                                                    {
+                                                        "name": "name",
+                                                        "type": "text",
+                                                        "label": "Name"
+                                                    },
+                                                    {
+                                                        "name": "arguments",
+                                                        "type": "text",
+                                                        "label": "Arguments"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Function"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Tool Calls"
+                                    },
+                                    {
+                                        "name": "refusal",
+                                        "type": "text",
+                                        "label": "Refusal"
+                                    },
+                                    {
+                                        "name": "annotations",
+                                        "spec": [
+                                            {
+                                                "name": "type",
+                                                "type": "text",
+                                                "label": "Type"
+                                            },
+                                            {
+                                                "name": "url_citation",
+                                                "spec": [
+                                                    {
+                                                        "name": "end_index",
+                                                        "type": "number",
+                                                        "label": "End Index"
+                                                    },
+                                                    {
+                                                        "name": "start_index",
+                                                        "type": "number",
+                                                        "label": "Start Index"
+                                                    },
+                                                    {
+                                                        "name": "title",
+                                                        "type": "text",
+                                                        "label": "Title"
+                                                    },
+                                                    {
+                                                        "name": "url",
+                                                        "type": "text",
+                                                        "label": "URL"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "URL Citation"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Annotations"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Message"
+                            }
+                        ],
+                        "type": "array",
+                        "label": "Choices"
+                    },
+                    {
+                        "name": "usage",
+                        "spec": [
+                            {
+                                "name": "prompt_tokens",
+                                "type": "number",
+                                "label": "Prompt Tokens"
+                            },
+                            {
+                                "name": "completion_tokens",
+                                "type": "text",
+                                "label": "Completion Tokens"
+                            },
+                            {
+                                "name": "total_tokens",
+                                "type": "number",
+                                "label": "Total Tokens"
+                            },
+                            {
+                                "name": "prompt_tokens_details",
+                                "spec": [
+                                    {
+                                        "name": "cached_tokens",
+                                        "type": "uinteger",
+                                        "label": "Cached Tokens"
+                                    },
+                                    {
+                                        "name": "text_tokens",
+                                        "type": "uinteger",
+                                        "label": "Text Tokens"
+                                    },
+                                    {
+                                        "name": "image_tokens",
+                                        "type": "uinteger",
+                                        "label": "Image Tokens"
+                                    },
+                                    {
+                                        "name": "audio_tokens",
+                                        "type": "uinteger",
+                                        "label": "Audio Tokens"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Prompt Tokens Details"
+                            },
+                            {
+                                "name": "completion_tokens_details",
+                                "spec": [
+                                    {
+                                        "name": "reasoning_tokens",
+                                        "type": "uinteger",
+                                        "label": "Reasoning Tokens"
+                                    },
+                                    {
+                                        "name": "text_tokens",
+                                        "type": "uinteger",
+                                        "label": "Text Tokens"
+                                    },
+                                    {
+                                        "name": "audio_tokens",
+                                        "type": "uinteger",
+                                        "label": "Audio Tokens"
+                                    },
+                                    {
+                                        "name": "accepted_prediction_tokens",
+                                        "type": "uinteger",
+                                        "label": "Accepted Prediction Tokens"
+                                    },
+                                    {
+                                        "name": "rejected_prediction_tokens",
+                                        "type": "uinteger",
+                                        "label": "Rejected Prediction Tokens"
+                                    }
+                                ],
+                                "type": "collection",
+                                "label": "Completion Tokens Details"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Usage"
+                    },
+                    {
+                        "name": "service_tier",
+                        "type": "text",
+                        "label": "Service Tier"
+                    },
+                    {
+                        "name": "system_fingerprint",
+                        "type": "text",
+                        "label": "System Fingerprint"
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 74,
+            "module": "json:ParseJSON",
+            "version": 1,
+            "parameters": {
+                "type": ""
+            },
+            "mapper": {
+                "json": "{{72.choices[].message.content}}"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 316,
+                    "y": -7
+                },
+                "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "Choose a data structure"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "type",
+                        "type": "udt",
+                        "label": "Data structure"
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "json",
+                        "type": "text",
+                        "label": "JSON string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        {
+            "id": 73,
+            "module": "gateway:WebhookRespond",
+            "version": 1,
+            "parameters": {},
+            "mapper": {
+                "status": "200",
+                "body": "{{`74`}}",
+                "headers": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    },
+                    {
+                        "key": "Access-Control-Allow-Origin",
+                        "value": "*"
+                    }
+                ]
+            },
+            "metadata": {
+                "designer": {
+                    "x": 616,
+                    "y": -7,
+                    "name": "nuevo Modulo"
+                },
+                "restore": {
+                    "expect": {
+                        "headers": {
+                            "mode": "chose",
+                            "items": [
+                                null,
+                                null
+                            ]
+                        }
+                    }
+                },
+                "expect": [
+                    {
+                        "name": "status",
+                        "type": "uinteger",
+                        "label": "Status",
+                        "validate": {
+                            "min": 100
+                        },
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "type": "any",
+                        "label": "Body"
+                    },
+                    {
+                        "name": "headers",
+                        "type": "array",
+                        "label": "Custom headers",
+                        "validate": {
+                            "maxItems": 16
+                        },
+                        "spec": [
+                            {
+                                "name": "key",
+                                "label": "Key",
+                                "type": "text",
+                                "required": true,
+                                "validate": {
+                                    "max": 256
+                                }
+                            },
+                            {
+                                "name": "value",
+                                "label": "Value",
+                                "type": "text",
+                                "required": true,
+                                "validate": {
+                                    "max": 4096
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "advanced": true
+            }
+        },
+        {
+            "id": 50,
+            "module": "builtin:BasicRouter",
+            "version": 1,
+            "mapper": null,
+            "metadata": {
+                "designer": {
+                    "x": 916,
+                    "y": -7
+                }
+            },
+            "routes": [
+                {
+                    "flow": [
+                        {
+                            "id": 52,
+                            "module": "google-sheets:addRow",
+                            "version": 2,
+                            "parameters": {
+                                "__IMTCONN__": 2654940
+                            },
+                            "mapper": {
+                                "from": "drive",
+                                "mode": "select",
+                                "values": {
+                                    "0": "{{15.nombre_completo}}",
+                                    "1": "{{15.email}}",
+                                    "2": "{{15.edad}}",
+                                    "3": "{{15.tiene_pareja}}",
+                                    "4": "{{15.tiene_hijos}}",
+                                    "5": "{{15.relacion_madre}}",
+                                    "6": "{{15.relacion_padre}}",
+                                    "7": "{{15.separacion_dificil}}",
+                                    "8": "{{15.temas_no_hablados}}",
+                                    "9": "{{15.ambiente_infancia}}",
+                                    "10": "{{15.familiar_rechazado}}",
+                                    "11": "{{15.familiar_admirado}}",
+                                    "12": "{{15.situaciones_repetitivas}}",
+                                    "13": "{{15.responsable_de_quien}}",
+                                    "14": "{{15.rol_diferente}}",
+                                    "15": "{{15.propension_dar_recibir}}",
+                                    "16": "{{15.patron_sentimental}}",
+                                    "17": "{{15.creencias_amor}}",
+                                    "18": "{{15.parecido_familiar}}",
+                                    "19": "{{15.relacion_padres_dinero}}",
+                                    "20": "{{15.frases_dinero}}",
+                                    "21": "{{15.emocion_mas_dinero_padres}}",
+                                    "22": "{{15.miedo_exito}}",
+                                    "23": "{{15.excluido_por_dinero}}",
+                                    "24": "{{15.comparacion_familiar_exito}}",
+                                    "25": "{{15.sintoma_fisico}}",
+                                    "26": "{{15.emociones_multiples}}",
+                                    "27": "{{15.anhelo_sanar}}",
+                                    "28": "{{15.timestamp}}"
+                                },
+                                "sheetId": "datos",
+                                "spreadsheetId": "/11HD4JEZG7VB7sbwpWqiJBQ2kJPODTS_1/1OPYI66glkWMjY9_Om1iMAfh5_EvysoX22LSQuldtr28",
+                                "includesHeaders": true,
+                                "insertDataOption": "INSERT_ROWS",
+                                "valueInputOption": "USER_ENTERED",
+                                "insertUnformatted": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1767,
+                                    "y": 19
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "from": {
+                                            "label": "My Drive"
+                                        },
+                                        "mode": {
+                                            "label": "Search by path"
+                                        },
+                                        "sheetId": {
+                                            "label": "datos"
+                                        },
+                                        "spreadsheetId": {
+                                            "path": [
+                                                "Automatizacion Carmen",
+                                                "Automatizacion Carmen Desde Webhook"
+                                            ]
+                                        },
+                                        "includesHeaders": {
+                                            "label": "Yes",
+                                            "nested": [
+                                                {
+                                                    "name": "values",
+                                                    "spec": [
+                                                        {
+                                                            "name": "0",
+                                                            "type": "text",
+                                                            "label": "lala (A)"
+                                                        },
+                                                        {
+                                                            "name": "1",
+                                                            "type": "text",
+                                                            "label": "cljrami@gmail.com (B)"
+                                                        },
+                                                        {
+                                                            "name": "2",
+                                                            "type": "text",
+                                                            "label": "41 (C)"
+                                                        },
+                                                        {
+                                                            "name": "3",
+                                                            "type": "text",
+                                                            "label": "Sí (D)"
+                                                        },
+                                                        {
+                                                            "name": "4",
+                                                            "type": "text",
+                                                            "label": "lala (E)"
+                                                        },
+                                                        {
+                                                            "name": "5",
+                                                            "type": "text",
+                                                            "label": "lala (F)"
+                                                        },
+                                                        {
+                                                            "name": "6",
+                                                            "type": "text",
+                                                            "label": "lala (G)"
+                                                        },
+                                                        {
+                                                            "name": "7",
+                                                            "type": "text",
+                                                            "label": "lala (H)"
+                                                        },
+                                                        {
+                                                            "name": "8",
+                                                            "type": "text",
+                                                            "label": "lala (I)"
+                                                        },
+                                                        {
+                                                            "name": "9",
+                                                            "type": "text",
+                                                            "label": "lala (J)"
+                                                        },
+                                                        {
+                                                            "name": "10",
+                                                            "type": "text",
+                                                            "label": "lala (K)"
+                                                        },
+                                                        {
+                                                            "name": "11",
+                                                            "type": "text",
+                                                            "label": "lala (L)"
+                                                        },
+                                                        {
+                                                            "name": "12",
+                                                            "type": "text",
+                                                            "label": "lala (M)"
+                                                        },
+                                                        {
+                                                            "name": "13",
+                                                            "type": "text",
+                                                            "label": "lala (N)"
+                                                        },
+                                                        {
+                                                            "name": "14",
+                                                            "type": "text",
+                                                            "label": "No (O)"
+                                                        },
+                                                        {
+                                                            "name": "15",
+                                                            "type": "text",
+                                                            "label": "Recibir (P)"
+                                                        },
+                                                        {
+                                                            "name": "16",
+                                                            "type": "text",
+                                                            "label": "lala (Q)"
+                                                        },
+                                                        {
+                                                            "name": "17",
+                                                            "type": "text",
+                                                            "label": "lala (R)"
+                                                        },
+                                                        {
+                                                            "name": "18",
+                                                            "type": "text",
+                                                            "label": "lala (S)"
+                                                        },
+                                                        {
+                                                            "name": "19",
+                                                            "type": "text",
+                                                            "label": "lala (T)"
+                                                        },
+                                                        {
+                                                            "name": "20",
+                                                            "type": "text",
+                                                            "label": "lala (U)"
+                                                        },
+                                                        {
+                                                            "name": "21",
+                                                            "type": "text",
+                                                            "label": "lala (V)"
+                                                        },
+                                                        {
+                                                            "name": "22",
+                                                            "type": "text",
+                                                            "label": "No (W)"
+                                                        },
+                                                        {
+                                                            "name": "23",
+                                                            "type": "text",
+                                                            "label": "lala (X)"
+                                                        },
+                                                        {
+                                                            "name": "24",
+                                                            "type": "text",
+                                                            "label": "lala (Y)"
+                                                        },
+                                                        {
+                                                            "name": "25",
+                                                            "type": "text",
+                                                            "label": "lala (Z)"
+                                                        },
+                                                        {
+                                                            "name": "26",
+                                                            "type": "text",
+                                                            "label": "(AA)"
+                                                        },
+                                                        {
+                                                            "name": "27",
+                                                            "type": "text",
+                                                            "label": "lala (AB)"
+                                                        },
+                                                        {
+                                                            "name": "28",
+                                                            "type": "text",
+                                                            "label": "Tue Jun 10 2025 19:20:57 GMT+0000 (Coordinated Universal Time) (AC)"
+                                                        }
+                                                    ],
+                                                    "type": "collection",
+                                                    "label": "Values"
+                                                }
+                                            ]
+                                        },
+                                        "insertDataOption": {
+                                            "mode": "chose",
+                                            "label": "Insert rows"
+                                        },
+                                        "valueInputOption": {
+                                            "mode": "chose",
+                                            "label": "User entered"
+                                        },
+                                        "insertUnformatted": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "google"
+                                            },
+                                            "label": "My Google connection (digitalmagos.marketing@gmail.com)"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:google",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "mode",
+                                        "type": "select",
+                                        "label": "Search Method",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "select",
+                                                "fromAll",
+                                                "map"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "insertUnformatted",
+                                        "type": "boolean",
+                                        "label": "Unformatted",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "valueInputOption",
+                                        "type": "select",
+                                        "label": "Value input option",
+                                        "validate": {
+                                            "enum": [
+                                                "USER_ENTERED",
+                                                "RAW"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "insertDataOption",
+                                        "type": "select",
+                                        "label": "Insert data option",
+                                        "validate": {
+                                            "enum": [
+                                                "INSERT_ROWS",
+                                                "OVERWRITE"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "from",
+                                        "type": "select",
+                                        "label": "Drive",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "drive",
+                                                "share",
+                                                "team"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "spreadsheetId",
+                                        "type": "file",
+                                        "label": "Spreadsheet ID",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "sheetId",
+                                        "type": "select",
+                                        "label": "Sheet Name",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "includesHeaders",
+                                        "type": "select",
+                                        "label": "Table contains headers",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                true,
+                                                false
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "values",
+                                        "spec": [
+                                            {
+                                                "name": "0",
+                                                "type": "text",
+                                                "label": "lala (A)"
+                                            },
+                                            {
+                                                "name": "1",
+                                                "type": "text",
+                                                "label": "cljrami@gmail.com (B)"
+                                            },
+                                            {
+                                                "name": "2",
+                                                "type": "text",
+                                                "label": "41 (C)"
+                                            },
+                                            {
+                                                "name": "3",
+                                                "type": "text",
+                                                "label": "Sí (D)"
+                                            },
+                                            {
+                                                "name": "4",
+                                                "type": "text",
+                                                "label": "lala (E)"
+                                            },
+                                            {
+                                                "name": "5",
+                                                "type": "text",
+                                                "label": "lala (F)"
+                                            },
+                                            {
+                                                "name": "6",
+                                                "type": "text",
+                                                "label": "lala (G)"
+                                            },
+                                            {
+                                                "name": "7",
+                                                "type": "text",
+                                                "label": "lala (H)"
+                                            },
+                                            {
+                                                "name": "8",
+                                                "type": "text",
+                                                "label": "lala (I)"
+                                            },
+                                            {
+                                                "name": "9",
+                                                "type": "text",
+                                                "label": "lala (J)"
+                                            },
+                                            {
+                                                "name": "10",
+                                                "type": "text",
+                                                "label": "lala (K)"
+                                            },
+                                            {
+                                                "name": "11",
+                                                "type": "text",
+                                                "label": "lala (L)"
+                                            },
+                                            {
+                                                "name": "12",
+                                                "type": "text",
+                                                "label": "lala (M)"
+                                            },
+                                            {
+                                                "name": "13",
+                                                "type": "text",
+                                                "label": "lala (N)"
+                                            },
+                                            {
+                                                "name": "14",
+                                                "type": "text",
+                                                "label": "No (O)"
+                                            },
+                                            {
+                                                "name": "15",
+                                                "type": "text",
+                                                "label": "Recibir (P)"
+                                            },
+                                            {
+                                                "name": "16",
+                                                "type": "text",
+                                                "label": "lala (Q)"
+                                            },
+                                            {
+                                                "name": "17",
+                                                "type": "text",
+                                                "label": "lala (R)"
+                                            },
+                                            {
+                                                "name": "18",
+                                                "type": "text",
+                                                "label": "lala (S)"
+                                            },
+                                            {
+                                                "name": "19",
+                                                "type": "text",
+                                                "label": "lala (T)"
+                                            },
+                                            {
+                                                "name": "20",
+                                                "type": "text",
+                                                "label": "lala (U)"
+                                            },
+                                            {
+                                                "name": "21",
+                                                "type": "text",
+                                                "label": "lala (V)"
+                                            },
+                                            {
+                                                "name": "22",
+                                                "type": "text",
+                                                "label": "No (W)"
+                                            },
+                                            {
+                                                "name": "23",
+                                                "type": "text",
+                                                "label": "lala (X)"
+                                            },
+                                            {
+                                                "name": "24",
+                                                "type": "text",
+                                                "label": "lala (Y)"
+                                            },
+                                            {
+                                                "name": "25",
+                                                "type": "text",
+                                                "label": "lala (Z)"
+                                            },
+                                            {
+                                                "name": "26",
+                                                "type": "text",
+                                                "label": "(AA)"
+                                            },
+                                            {
+                                                "name": "27",
+                                                "type": "text",
+                                                "label": "lala (AB)"
+                                            },
+                                            {
+                                                "name": "28",
+                                                "type": "text",
+                                                "label": "Tue Jun 10 2025 19:20:57 GMT+0000 (Coordinated Universal Time) (AC)"
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Values"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "flow": [
+                        {
+                            "id": 56,
+                            "module": "pdf-co:HTMLtoPDF",
+                            "version": 1,
+                            "parameters": {
+                                "__IMTCONN__": 3417937
+                            },
+                            "mapper": {
+                                "name": "Perfil Sistémico - {{15.nombre_completo}}",
+                                "async": false,
+                                "export": {
+                                    "exportType": "downloadFile"
+                                },
+                                "convert": {
+                                    "html": "<!DOCTYPE html>\r\n<html lang=\"es\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <style>\r\n      @import url(\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500;700&display=swap\");\r\n\r\n      :root {\r\n        --color-primary: #d31a6a;\r\n        --color-accent: #2c3e50;\r\n        --color-text-dark: #1d2538;\r\n        --color-text-light: #5a6175;\r\n        --color-bg-main: #ffffff;\r\n        --color-border: #e8eaf0;\r\n        --font-heading: \"Playfair Display\", serif;\r\n        --font-body: \"Roboto\", sans-serif;\r\n      }\r\n\r\n      body {\r\n        margin: 0;\r\n        padding: 0;\r\n        font-family: var(--font-body);\r\n        background-color: #e9e9e9;\r\n        color: var(--color-text-light);\r\n        line-height: 1.8;\r\n        font-size: 15px;\r\n        -webkit-font-smoothing: antialiased;\r\n      }\r\n\r\n      .page-wrapper {\r\n        max-width: 800px;\r\n        margin: 0 auto;\r\n        background-color: var(--color-bg-main);\r\n      }\r\n      \r\n      .main-table {\r\n          width: 100%;\r\n          border-spacing: 0;\r\n      }\r\n      \r\n      .header-banner {\r\n        padding: 60px;\r\n        text-align: center;\r\n        border-bottom: 2px solid var(--color-primary);\r\n      }\r\n      .header-banner p {\r\n        font-family: var(--font-body);\r\n        font-size: 16px;\r\n        color: var(--color-text-light);\r\n        margin: 0;\r\n        text-transform: uppercase;\r\n        letter-spacing: 1px;\r\n      }\r\n      .header-banner h1 {\r\n        font-family: var(--font-heading);\r\n        font-size: 42px;\r\n        color: var(--color-accent);\r\n        margin: 10px 0 0 0;\r\n        font-weight: 700;\r\n      }\r\n      \r\n      .content-cell {\r\n        padding: 50px 70px;\r\n      }\r\n      \r\n      .intro-text {\r\n        text-align: center;\r\n        font-size: 18px;\r\n        font-style: italic;\r\n        margin-bottom: 50px;\r\n        color: var(--color-text-dark);\r\n        line-height: 1.7;\r\n      }\r\n\r\n      .section-divider {\r\n          text-align: center;\r\n          padding: 30px 0;\r\n      }\r\n       .section-divider svg {\r\n          width: 40px;\r\n          height: 40px;\r\n          fill: var(--color-primary);\r\n          opacity: 0.3;\r\n      }\r\n\r\n      .section-title {\r\n        font-family: var(--font-heading);\r\n        font-size: 28px;\r\n        color: var(--color-accent);\r\n        margin-bottom: 25px;\r\n        font-weight: 700;\r\n        text-align: center;\r\n      }\r\n      \r\n      .content p {\r\n        margin-bottom: 20px;\r\n      }\r\n      .content strong, .content b {\r\n        color: var(--color-primary);\r\n        font-weight: 700;\r\n      }\r\n      \r\n      .analysis-card {\r\n        background-color: #f8f9fa;\r\n        border: 1px solid var(--color-border);\r\n        border-radius: 8px;\r\n        padding: 30px 35px;\r\n        margin: 30px 0;\r\n      }\r\n      .analysis-card h4 {\r\n        margin: 0 0 15px 0;\r\n        font-family: var(--font-heading);\r\n        color: var(--color-accent);\r\n        font-size: 18px;\r\n      }\r\n      \r\n      .cta-section {\r\n        margin: 40px 0;\r\n        padding: 40px;\r\n        text-align: center;\r\n        background-color: #f8f9fa;\r\n        border-radius: 8px;\r\n        border: 1px solid var(--color-border);\r\n      }\r\n       .cta-section p {\r\n        max-width: 500px;\r\n        margin-left: auto;\r\n        margin-right: auto;\r\n       }\r\n      .cta-button {\r\n        display: inline-block;\r\n        padding: 16px 40px;\r\n        background: var(--color-primary);\r\n        color: white;\r\n        border: none;\r\n        border-radius: 50px;\r\n        font-weight: bold;\r\n        font-size: 16px;\r\n        font-family: \"Roboto\", sans-serif;\r\n        text-decoration: none;\r\n        transition: all 0.3s ease;\r\n        margin-top: 15px;\r\n      }\r\n      \r\n      .footer-signature {\r\n        padding-top: 30px;\r\n        border-top: 1px solid var(--color-border);\r\n      }\r\n      .signature-image {\r\n        width: 120px;\r\n        height: 120px;\r\n        border-radius: 50%;\r\n      }\r\n      .signature-text p {\r\n        margin: 0;\r\n        line-height: 1.6;\r\n      }\r\n      .signature-text .name {\r\n        font-family: var(--font-heading);\r\n        font-weight: 700;\r\n        font-size: 22px;\r\n        color: var(--color-text-dark);\r\n      }\r\n       .signature-text .title {\r\n        font-size: 14px;\r\n      }\r\n      \r\n      .page-break {\r\n        page-break-after: always;\r\n      }\r\n\r\n    </style>\r\n  </head>\r\n  <body>\r\n    <div class=\"page-wrapper\">\r\n      <table class=\"main-table\">\r\n        <!-- HEADER -->\r\n        <tr>\r\n          <td>\r\n            <div class=\"header-banner\">\r\n              <p>Un Reflejo Sistémico para</p>\r\n              <h1>{{15.nombre_completo}}</h1>\r\n            </div>\r\n          </td>\r\n        </tr>\r\n\r\n        <!-- MAIN CONTENT -->\r\n        <tr>\r\n          <td class=\"content-cell\">\r\n            <p class=\"intro-text\">\r\n                \"Lo que descubriste no fue un juego: fue una puerta abierta a la historia que tu alma ha estado cargando en silencio.\"\r\n            </p>\r\n            \r\n            <div class=\"content\">\r\n                <h2 class=\"section-title\">Análisis de Lealtades Invisibles</h2>\r\n                <p>Hola <strong>{{15.nombre_completo}}</strong>,</p>\r\n                <p>Gracias por tu confianza y por atreverte a mirar más profundo. El siguiente reflejo sistémico se ha elaborado en base a tus respuestas, respaldado por el conocimiento profundo de la psicología sistémica y las terapias transgeneracionales.</p>\r\n                <p>Con cada palabra, podrás comenzar a identificar las <b>lealtades invisibles</b> que podrían estar afectando tu forma de amar, de recibir y de vivir. Descubrirás que muchas de tus cargas no nacieron contigo.</p>\r\n                <div class=\"analysis-card\">\r\n                    <h4>🌱 Tu Reflejo Sistémico Personalizado:</h4>\r\n                    <p>\r\n                        {{72.choices[].message.content}}                    </p>\r\n                </div>\r\n            </div>\r\n\r\n            <!-- This div forces a page break in the PDF -->\r\n            <div class=\"page-break\"></div>\r\n\r\n            <div class=\"section-divider\">\r\n                <svg viewBox=\"0 0 24 24\"><path d=\"M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z\"/></svg>\r\n            </div>\r\n\r\n            <div class=\"content\">\r\n                <h2 class=\"section-title\">¿Y Ahora Qué?</h2>\r\n                <p>Es normal que estas verdades te remuevan. A veces nos sentimos confundidos o abrumados. Pero eso no significa que algo esté mal: <strong>significa que algo se está moviendo.</strong></p>\r\n            </div>\r\n            \r\n            <div class=\"cta-section\">\r\n                <h2 class=\"section-title\">Continúa tu Proceso</h2>\r\n                <p>Si quieres saber qué hacer con lo que descubriste y deseas continuar este proceso para liberarlo con ayuda real...</p>\r\n                <a href=\"https://app.ndefi.io/v2/preview/FZrUTsEvqX7tGbFGpnwc\" class=\"cta-button\">Ver Cómo Continuar</a>\r\n            </div>\r\n            \r\n            <!-- FOOTER SIGNATURE (TABLE-BASED) -->\r\n            <table class=\"footer-signature\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">\r\n                <tr>\r\n                    <td width=\"120\" valign=\"top\">\r\n                        <!-- Replace with a real photo URL of Carmen Rascon -->\r\n                        <img src=\"https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop\" alt=\"Carmen Rascón\" class=\"signature-image\">\r\n                    </td>\r\n                    <td valign=\"middle\" style=\"padding-left: 20px;\">\r\n                        <div class=\"signature-text\">\r\n                            <p>Te abrazo con respeto y esperanza.<br>Gracias por permitirte este primer paso.</p>\r\n                            <p class=\"name\">Carmen Rascón</p>\r\n                            <p class=\"title\">Maestra en Psicología Sistémica<br>Creadora de AromaConstelaciones®</p>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n            </table>\r\n\r\n          </td>\r\n        </tr>\r\n      </table>\r\n    </div>\r\n  </body>\r\n</html>\r\n",
+                                    "convertType": "fromHtml"
+                                },
+                                "paperSize": "letter",
+                                "expiration": "60",
+                                "orientation": "portrait",
+                                "printBackground": true,
+                                "doNotWaitFullLoad": false
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 1930,
+                                    "y": 293
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "async": {
+                                            "mode": "chose",
+                                            "label": "Sync"
+                                        },
+                                        "export": {
+                                            "nested": {
+                                                "exportType": {
+                                                    "label": "Download a File"
+                                                }
+                                            }
+                                        },
+                                        "convert": {
+                                            "nested": {
+                                                "convertType": {
+                                                    "label": "HTML to PDF"
+                                                }
+                                            }
+                                        },
+                                        "paperSize": {
+                                            "label": "Letter"
+                                        },
+                                        "orientation": {
+                                            "label": "Portrait"
+                                        },
+                                        "printBackground": {
+                                            "mode": "chose"
+                                        },
+                                        "doNotWaitFullLoad": {
+                                            "mode": "chose"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "__IMTCONN__": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "pdf-co"
+                                            },
+                                            "label": "My PDF.co connection"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "__IMTCONN__",
+                                        "type": "account:pdf-co",
+                                        "label": "Connection",
+                                        "required": true
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "convert",
+                                        "spec": [
+                                            {
+                                                "name": "convertType",
+                                                "type": "select",
+                                                "label": "Convert Type",
+                                                "required": true,
+                                                "validate": {
+                                                    "enum": [
+                                                        "fromHtml",
+                                                        "fromHtmlTemplate",
+                                                        "fromWebsite"
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "name": "html",
+                                                "type": "text",
+                                                "label": "Input HTML Code",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Convert Options",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "name",
+                                        "type": "text",
+                                        "label": "Output File Name"
+                                    },
+                                    {
+                                        "name": "orientation",
+                                        "type": "select",
+                                        "label": "Orientation",
+                                        "validate": {
+                                            "enum": [
+                                                "portrait",
+                                                "landscape"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "paperSize",
+                                        "type": "select",
+                                        "label": "Paper Size ",
+                                        "validate": {
+                                            "enum": [
+                                                "a0",
+                                                "a1",
+                                                "a2",
+                                                "a3",
+                                                "a4",
+                                                "a5",
+                                                "a6",
+                                                "legal",
+                                                "letter",
+                                                "tabloid",
+                                                "custom"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "printBackground",
+                                        "type": "boolean",
+                                        "label": "Render Page Background"
+                                    },
+                                    {
+                                        "name": "doNotWaitFullLoad",
+                                        "type": "boolean",
+                                        "label": "Do not wait for full load"
+                                    },
+                                    {
+                                        "name": "margins",
+                                        "type": "text",
+                                        "label": "Margins"
+                                    },
+                                    {
+                                        "name": "async",
+                                        "type": "select",
+                                        "label": "Execution Mode",
+                                        "validate": {
+                                            "enum": [
+                                                false,
+                                                15000,
+                                                "asyncCheckLater"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "profiles",
+                                        "type": "text",
+                                        "label": "Profiles"
+                                    },
+                                    {
+                                        "name": "expiration",
+                                        "type": "number",
+                                        "label": "Output Links Expiration"
+                                    },
+                                    {
+                                        "name": "export",
+                                        "spec": [
+                                            {
+                                                "name": "exportType",
+                                                "type": "select",
+                                                "label": "Export Type",
+                                                "required": true,
+                                                "validate": {
+                                                    "enum": [
+                                                        "downloadFile",
+                                                        "inline"
+                                                    ]
+                                                }
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "Export Options",
+                                        "required": true
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": 57,
+                            "module": "email:ActionSendEmail",
+                            "version": 7,
+                            "parameters": {
+                                "account": 3411389,
+                                "saveAfterSent": false
+                            },
+                            "mapper": {
+                                "cc": [],
+                                "to": [
+                                    "{{15.email}}"
+                                ],
+                                "bcc": [],
+                                "from": "",
+                                "html": "<!DOCTYPE html>\r\n<html lang=\"es\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <meta name=\"color-scheme\" content=\"light\" />\r\n    <meta name=\"supported-color-schemes\" content=\"light\" />\r\n    <title>Tu Reflejo Sistémico</title>\r\n    <style>\r\n      /* Estilos generales y para clientes que soportan <style> */\r\n      body {\r\n        margin: 0;\r\n        padding: 0;\r\n        width: 100% !important;\r\n        -webkit-text-size-adjust: 100%;\r\n        -ms-text-size-adjust: 100%;\r\n      }\r\n      /* Pequeño reseteo para Outlook */\r\n      .ExternalClass {\r\n        width: 100%;\r\n      }\r\n      .ExternalClass,\r\n      .ExternalClass p,\r\n      .ExternalClass span,\r\n      .ExternalClass font,\r\n      .ExternalClass td,\r\n      .ExternalClass div {\r\n        line-height: 100%;\r\n      }\r\n      /* Estilos para los botones que se mostrarán en clientes que lo soporten */\r\n      .button-link a {\r\n        color: #ffffff !important;\r\n        text-decoration: none !important;\r\n      }\r\n    </style>\r\n  </head>\r\n  <body\r\n    style=\"\r\n      margin: 0;\r\n      padding: 20px 0;\r\n      background-color: #f8f7f5;\r\n      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,\r\n        Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',\r\n        'Segoe UI Symbol';\r\n    \"\r\n  >\r\n    <!-- Contenedor principal del correo -->\r\n    <table\r\n      align=\"center\"\r\n      border=\"0\"\r\n      cellpadding=\"0\"\r\n      cellspacing=\"0\"\r\n      width=\"100%\"\r\n      style=\"\r\n        max-width: 600px;\r\n        margin: 0 auto;\r\n        background-color: #ffffff;\r\n        border-radius: 12px;\r\n        border: 1px solid #e5e5e5;\r\n      \"\r\n    >\r\n      <!-- Sección del encabezado -->\r\n      <tr>\r\n        <td align=\"center\" style=\"padding: 40px 20px 20px 20px\">\r\n          <h1\r\n            style=\"\r\n              margin: 0;\r\n              font-size: 28px;\r\n              color: #383838;\r\n              font-weight: 300;\r\n              line-height: 1.3;\r\n            \"\r\n          >\r\n            🌿<br />Tu reflejo sistémico está aquí\r\n          </h1>\r\n        </td>\r\n      </tr>\r\n\r\n      <!-- Contenido principal -->\r\n      <tr>\r\n        <td style=\"padding: 20px 40px 30px 40px\">\r\n          <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n            <tr>\r\n              <td\r\n                style=\"\r\n                  font-size: 16px;\r\n                  line-height: 1.6;\r\n                  color: #555555;\r\n                  text-align: left;\r\n                \"\r\n              >\r\n                <p style=\"margin: 0 0 20px 0\">Hola {{15.nombre_completo}},</p>\r\n                <p style=\"margin: 0 0 15px 0\">\r\n                  Gracias por atreverte a mirar más profundo.\r\n                </p>\r\n                <p style=\"margin: 0 0 15px 0\">\r\n                  Ese simple test que acabas de completar no fue un juego: fue\r\n                  una puerta abierta a la historia que tu alma ha estado\r\n                  cargando en silencio.\r\n                </p>\r\n                <p style=\"margin: 0 0 15px 0\">\r\n                  El resultado que recibirás ahora no es un diagnóstico, es un\r\n                  <strong>reflejo sistémico</strong> elaborado con base en las\r\n                  respuestas emocionales y familiares que compartiste, y\r\n                  respaldado por el conocimiento profundo de la psicología\r\n                  sistémica y terapias transgeneracionales.\r\n                </p>\r\n                <p style=\"margin: 0 0 25px 0\">\r\n                  Con cada palabra que leas, podrás comenzar a identificar las\r\n                  <strong>lealtades invisibles</strong> que hoy podrían estar\r\n                  afectando tu forma de amar, de recibir, de vivir… y descubrir\r\n                  que muchas de tus cargas no nacieron contigo.\r\n                </p>\r\n\r\n                <!-- Primer Botón de Llamada a la Acción (CTA) -->\r\n                <p\r\n                  style=\"\r\n                    margin: 25px 0 15px 0;\r\n                    font-size: 18px;\r\n                    color: #383838;\r\n                    font-weight: 500;\r\n                  \"\r\n                >\r\n                  🌱 Ya puedes leer tu reflejo sistémico aquí:\r\n                </p>\r\n                <table\r\n                  border=\"0\"\r\n                  cellpadding=\"0\"\r\n                  cellspacing=\"0\"\r\n                  width=\"100%\"\r\n                  role=\"presentation\"\r\n                >\r\n                  <tr>\r\n                    <td\r\n                      align=\"center\"\r\n                      style=\"padding: 10px 0 25px 0\"\r\n                      class=\"button-link\"\r\n                    >\r\n                      <!-- El enlace del href debe ser reemplazado por tu variable de Make.com -->\r\n                      <a\r\n                        href=\"LINK_DE_DESCARGA_PARA_EL_PDF\"\r\n                        target=\"_blank\"\r\n                        style=\"\r\n                          background-color: #4a90e2;\r\n                          color: #ffffff;\r\n                          padding: 16px 32px;\r\n                          text-decoration: none;\r\n                          border-radius: 8px;\r\n                          display: inline-block;\r\n                          font-weight: bold;\r\n                          font-size: 16px;\r\n                          border: 1px solid #4a90e2;\r\n                        \"\r\n                      >\r\n                        👉 Descargar mi Resultado en PDF\r\n                      </a>\r\n                    </td>\r\n                  </tr>\r\n                </table>\r\n\r\n                <!-- Divisor -->\r\n                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\r\n                  <tr>\r\n                    <td height=\"20\" style=\"font-size: 1px; line-height: 1px\">\r\n                      &nbsp;\r\n                    </td>\r\n                  </tr>\r\n                  <tr>\r\n                    <td style=\"border-top: 1px solid #eeeeee\"></td>\r\n                  </tr>\r\n                  <tr>\r\n                    <td height=\"20\" style=\"font-size: 1px; line-height: 1px\">\r\n                      &nbsp;\r\n                    </td>\r\n                  </tr>\r\n                </table>\r\n\r\n                <!-- Sección \"¿Y ahora qué?\" -->\r\n                <h2\r\n                  style=\"\r\n                    font-size: 24px;\r\n                    color: #383838;\r\n                    margin: 20px 0 15px 0;\r\n                    font-weight: 300;\r\n                  \"\r\n                >\r\n                  🌀 ¿Y ahora qué?\r\n                </h2>\r\n                <p style=\"margin: 0 0 15px 0\">\r\n                  Es completamente normal que este tipo de verdades te remuevan\r\n                  por dentro. A veces nos sentimos confundidos, sensibles,\r\n                  abrumados…\r\n                </p>\r\n                <p style=\"margin: 0 0 20px 0\">\r\n                  Pero eso no significa que algo esté mal:\r\n                  <strong>significa que algo se está moviendo.</strong>\r\n                </p>\r\n                <p\r\n                  style=\"\r\n                    margin: 25px 0 15px 0;\r\n                    font-size: 18px;\r\n                    color: #383838;\r\n                    font-weight: 500;\r\n                  \"\r\n                >\r\n                  ✨ Si quieres saber qué hacer con lo que descubriste y deseas\r\n                  continuar este proceso para liberarlo con ayuda real…\r\n                </p>\r\n\r\n                <!-- Segundo Botón de Llamada a la Acción (CTA) -->\r\n                <table\r\n                  border=\"0\"\r\n                  cellpadding=\"0\"\r\n                  cellspacing=\"0\"\r\n                  width=\"100%\"\r\n                  role=\"presentation\"\r\n                >\r\n                  <tr>\r\n                    <td\r\n                      align=\"center\"\r\n                      style=\"padding: 10px 0 30px 0\"\r\n                      class=\"button-link\"\r\n                    >\r\n                      <!-- IMPORTANTE: El texto de abajo se ha colocado como URL, pero parece un título. Asegúrate de que sea una URL completa y válida (ej: https://www.tusitio.com/pagina) -->\r\n                      <a\r\n                        href=\"https://app.ndefi.io/v2/preview/FZrUTsEvqX7tGbFGpnwc\"\r\n                        style=\"\r\n                          background-color: #334155;\r\n                          color: #ffffff;\r\n                          padding: 16px 32px;\r\n                          text-decoration: none;\r\n                          border-radius: 8px;\r\n                          display: inline-block;\r\n                          font-weight: bold;\r\n                          font-size: 16px;\r\n                          border: 1px solid #334155;\r\n                        \"\r\n                      >\r\n                        Ver cómo puedo continuar\r\n                      </a>\r\n                    </td>\r\n                  </tr>\r\n                </table>\r\n\r\n                <!-- Mensaje de cierre -->\r\n                <p style=\"margin: 30px 0 15px 0\">\r\n                  Te abrazo con respeto y esperanza.<br />Gracias por permitirte\r\n                  este primer paso.<br />Nos vemos pronto en tu camino de\r\n                  sanación.\r\n                </p>\r\n              </td>\r\n            </tr>\r\n          </table>\r\n        </td>\r\n      </tr>\r\n\r\n      <!-- Pie de página / Firma -->\r\n      <tr>\r\n        <td\r\n          style=\"\r\n            padding: 20px 40px 40px 40px;\r\n            border-top: 1px solid #eeeeee;\r\n            background-color: #fafafa;\r\n            border-radius: 0 0 12px 12px;\r\n          \"\r\n        >\r\n          <p\r\n            style=\"margin: 0; font-size: 14px; line-height: 1.5; color: #888888\"\r\n          >\r\n            Con cariño,\r\n          </p>\r\n          <p\r\n            style=\"\r\n              margin: 5px 0 0 0;\r\n              font-size: 15px;\r\n              font-weight: bold;\r\n              color: #383838;\r\n            \"\r\n          >\r\n            Carmen Rascón\r\n          </p>\r\n          <p\r\n            style=\"\r\n              margin: 2px 0 0 0;\r\n              font-size: 14px;\r\n              color: #888888;\r\n              font-style: italic;\r\n            \"\r\n          >\r\n            Maestra en Psicología Sistémica\r\n          </p>\r\n          <p\r\n            style=\"\r\n              margin: 2px 0 0 0;\r\n              font-size: 14px;\r\n              color: #888888;\r\n              font-style: italic;\r\n            \"\r\n          >\r\n            Creadora de AromaConstelaciones®\r\n          </p>\r\n        </td>\r\n      </tr>\r\n    </table>\r\n    <!-- Fin del contenedor principal -->\r\n  </body>\r\n</html>\r\n",
+                                "sender": "\"Carmen Rascon\" hola@carmen.com ",
+                                "headers": [],
+                                "replyTo": "",
+                                "subject": "{{15.nombre_completo}}, aquí está tu reflejo sistémico.",
+                                "priority": "normal",
+                                "inReplyTo": "",
+                                "references": [],
+                                "attachments": [
+                                    {
+                                        "cid": "",
+                                        "data": "{{56.data}}",
+                                        "fileName": "{{56.name}}"
+                                    }
+                                ],
+                                "contentType": "html"
+                            },
+                            "metadata": {
+                                "designer": {
+                                    "x": 2449,
+                                    "y": 409
+                                },
+                                "restore": {
+                                    "expect": {
+                                        "cc": {
+                                            "mode": "chose"
+                                        },
+                                        "to": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        },
+                                        "bcc": {
+                                            "mode": "chose"
+                                        },
+                                        "priority": {
+                                            "label": "Normal"
+                                        },
+                                        "references": {
+                                            "mode": "chose"
+                                        },
+                                        "attachments": {
+                                            "mode": "chose",
+                                            "items": [
+                                                null
+                                            ]
+                                        },
+                                        "contentType": {
+                                            "label": "HTML"
+                                        }
+                                    },
+                                    "parameters": {
+                                        "account": {
+                                            "data": {
+                                                "scoped": "true",
+                                                "connection": "smtp"
+                                            },
+                                            "label": "My Others (SMTP) connection (SMTP comercial@hastalatumba.cl)"
+                                        },
+                                        "saveAfterSent": {
+                                            "label": "No"
+                                        }
+                                    }
+                                },
+                                "parameters": [
+                                    {
+                                        "name": "account",
+                                        "type": "account:smtp,google-restricted,microsoft-smtp-imap",
+                                        "label": "Connection",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "saveAfterSent",
+                                        "type": "select",
+                                        "label": "Save message after sending",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                true,
+                                                false
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "type": "hidden"
+                                    }
+                                ],
+                                "expect": [
+                                    {
+                                        "name": "to",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address",
+                                            "required": true
+                                        },
+                                        "type": "array",
+                                        "label": "To",
+                                        "required": true
+                                    },
+                                    {
+                                        "name": "subject",
+                                        "type": "text",
+                                        "label": "Subject"
+                                    },
+                                    {
+                                        "name": "contentType",
+                                        "type": "select",
+                                        "label": "Content Type",
+                                        "required": true,
+                                        "validate": {
+                                            "enum": [
+                                                "html",
+                                                "text"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "attachments",
+                                        "spec": [
+                                            {
+                                                "name": "fileName",
+                                                "type": "filename",
+                                                "label": "File name",
+                                                "required": true,
+                                                "semantic": "file:name"
+                                            },
+                                            {
+                                                "name": "data",
+                                                "type": "buffer",
+                                                "label": "Data",
+                                                "required": true,
+                                                "semantic": "file:data"
+                                            },
+                                            {
+                                                "name": "cid",
+                                                "type": "text",
+                                                "label": "Content-ID"
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Attachments"
+                                    },
+                                    {
+                                        "name": "cc",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address"
+                                        },
+                                        "type": "array",
+                                        "label": "Copy recipient"
+                                    },
+                                    {
+                                        "name": "bcc",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "email",
+                                            "label": "Email address"
+                                        },
+                                        "type": "array",
+                                        "label": "Blind copy recipient"
+                                    },
+                                    {
+                                        "name": "from",
+                                        "type": "text",
+                                        "label": "From"
+                                    },
+                                    {
+                                        "name": "sender",
+                                        "type": "text",
+                                        "label": "Sender"
+                                    },
+                                    {
+                                        "name": "replyTo",
+                                        "type": "text",
+                                        "label": "Reply-To"
+                                    },
+                                    {
+                                        "name": "inReplyTo",
+                                        "type": "text",
+                                        "label": "In-Reply-To"
+                                    },
+                                    {
+                                        "name": "references",
+                                        "spec": {
+                                            "name": "value",
+                                            "type": "text",
+                                            "label": "Reference",
+                                            "required": true
+                                        },
+                                        "type": "array",
+                                        "label": "References"
+                                    },
+                                    {
+                                        "name": "priority",
+                                        "type": "select",
+                                        "label": "Priority",
+                                        "validate": {
+                                            "enum": [
+                                                "high",
+                                                "normal",
+                                                "low"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "name": "headers",
+                                        "spec": [
+                                            {
+                                                "name": "key",
+                                                "type": "text",
+                                                "label": "Key",
+                                                "required": true
+                                            },
+                                            {
+                                                "name": "value",
+                                                "type": "text",
+                                                "label": "Value",
+                                                "required": true
+                                            }
+                                        ],
+                                        "type": "array",
+                                        "label": "Headers"
+                                    },
+                                    {
+                                        "name": "html",
+                                        "type": "text",
+                                        "label": "Content"
+                                    }
+                                ],
+                                "advanced": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "slots": null
+        },
+        "designer": {
+            "orphans": [
+                [
+                    {
+                        "id": 65,
+                        "module": "json:CreateJSON",
+                        "version": 1,
+                        "parameters": {
+                            "type": 122783,
+                            "space": ""
+                        },
+                        "mapper": {
+                            "respuesta": "{{72.choices[].message.content}}"
+                        },
+                        "metadata": {
+                            "designer": {
+                                "x": 1340,
+                                "y": 460,
+                                "messages": [
+                                    {
+                                        "category": "reference",
+                                        "severity": "warning",
+                                        "message": "Referenced module 'OpenAI (ChatGPT, Whisper, DALL-E) - Create a Completion (Prompt) (GPT and o-series Models)' [72] is not accessible."
+                                    },
+                                    {
+                                        "category": "link",
+                                        "severity": "warning",
+                                        "message": "The module is not connected to the data flow."
+                                    },
+                                    {
+                                        "category": "last",
+                                        "severity": "warning",
+                                        "message": "A transformer should not be the last module in the route."
+                                    }
+                                ]
+                            },
+                            "restore": {
+                                "parameters": {
+                                    "type": {
+                                        "label": "My data structure"
+                                    },
+                                    "space": {
+                                        "label": "Empty"
+                                    }
+                                }
+                            },
+                            "parameters": [
+                                {
+                                    "name": "type",
+                                    "type": "udt",
+                                    "label": "Data structure",
+                                    "required": true
+                                },
+                                {
+                                    "name": "space",
+                                    "type": "select",
+                                    "label": "Indentation",
+                                    "validate": {
+                                        "enum": [
+                                            "tab",
+                                            "2",
+                                            "4"
+                                        ]
+                                    }
+                                }
+                            ],
+                            "expect": [
+                                {
+                                    "name": "respuesta",
+                                    "type": "text",
+                                    "label": null
+                                }
+                            ]
+                        }
+                    }
+                ],
+                [
+                    {
+                        "id": 46,
+                        "module": "gateway:WebhookRespond",
+                        "version": 1,
+                        "parameters": {},
+                        "mapper": {
+                            "status": "200",
+                            "body": "{{74.bienvenida}}{{74.preguntas}}",
+                            "headers": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                },
+                                {
+                                    "key": "Access-Control-Allow-Origin",
+                                    "value": "*"
+                                }
+                            ]
+                        },
+                        "metadata": {
+                            "designer": {
+                                "x": 1292,
+                                "y": -262,
+                                "messages": [
+                                    {
+                                        "category": "link",
+                                        "severity": "warning",
+                                        "message": "The module is not connected to the data flow."
+                                    },
+                                    {
+                                        "category": "reference",
+                                        "severity": "warning",
+                                        "message": "Referenced module 'JSON - Parse JSON' [74] is not accessible."
+                                    }
+                                ]
+                            },
+                            "restore": {
+                                "expect": {
+                                    "headers": {
+                                        "mode": "chose",
+                                        "items": [
+                                            null,
+                                            null
+                                        ]
+                                    }
+                                }
+                            },
+                            "expect": [
+                                {
+                                    "name": "status",
+                                    "type": "uinteger",
+                                    "label": "Status",
+                                    "validate": {
+                                        "min": 100
+                                    },
+                                    "required": true
+                                },
+                                {
+                                    "name": "body",
+                                    "type": "any",
+                                    "label": "Body"
+                                },
+                                {
+                                    "name": "headers",
+                                    "type": "array",
+                                    "label": "Custom headers",
+                                    "validate": {
+                                        "maxItems": 16
+                                    },
+                                    "spec": [
+                                        {
+                                            "name": "key",
+                                            "label": "Key",
+                                            "type": "text",
+                                            "required": true,
+                                            "validate": {
+                                                "max": 256
+                                            }
+                                        },
+                                        {
+                                            "name": "value",
+                                            "label": "Value",
+                                            "type": "text",
+                                            "required": true,
+                                            "validate": {
+                                                "max": 4096
+                                            }
+                                        }
+                                    ]
+                                }
+                            ],
+                            "advanced": true
+                        }
+                    }
+                ]
+            ]
+        },
+        "zone": "us2.make.com",
+        "notes": []
+    }
+}
